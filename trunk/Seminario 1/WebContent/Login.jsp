@@ -24,7 +24,7 @@ if(request.getParameter("usuario") != null){
 			</tr>
 			<tr>
 				<td><span style="font-family: Verdana, Arial, Sans-Serif; font-weight: bold">Contraseña</span></td>
-				<td><input type="password" name="contrasenia" style="width: 138px;"></td>
+				<td><input type="password" name="password" style="width: 138px;"></td>
 			</tr>
 			<tr>
 		</table>
