@@ -8,7 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class PlanDiario {
@@ -17,21 +18,23 @@ public class PlanDiario {
 	private int idItemPlan;
 	private Date fecha;
 	private boolean feriado;
-	@OneToMany
+	@ManyToMany
+	@JoinColumn(name = "idItemPlan")
 	private List<ItemMenu> items;
 	private String estado;
 
-	public PlanDiario(){
+	public PlanDiario() {
 		items = new ArrayList<ItemMenu>();
 	}
-	
-	public PlanDiario(List<Tag> tags, List<Cliente> clientes){
-		//TODO debo recorrer los clientes para obtener las restricciones que tienen y matchearlas con las restricciones de los platos.
+
+	public PlanDiario(List<Tag> tags, List<Cliente> clientes) {
+		// TODO debo recorrer los clientes para obtener las restricciones que
+		// tienen y matchearlas con las restricciones de los platos.
 		for (Cliente cliente : clientes) {
-			//cliente.obtenerRestricciones();
+			// cliente.obtenerRestricciones();
 		}
 	}
-	
+
 	public int getIdItemPlan() {
 		return idItemPlan;
 	}

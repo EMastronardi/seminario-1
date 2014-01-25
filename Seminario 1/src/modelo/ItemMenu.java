@@ -20,7 +20,7 @@ public class ItemMenu {
 	private String nombre;
 	private int cantidad;
 	@ManyToOne
-	@JoinColumn(name = "idPlato")
+	@JoinColumn(name = "idMenu")
 	private Menu menu;
 	@ManyToMany
 	@JoinColumn(name="idItemMenu")
