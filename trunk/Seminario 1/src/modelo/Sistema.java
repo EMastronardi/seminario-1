@@ -25,7 +25,7 @@ public class Sistema {
 //}
 	public boolean validarLogin(String user, String password) {
 		Session s = HibernateUtil.getCurrent();
-        List<Usuario> list = s.createQuery(" from Usuario e where e.nombre = ? and  e.password = ?").setString(0, user).setString(1,password).list();
+        List<Usuario> list = s.createQuery(" from Usuario e where e.nombre = :nombre and  e.password = :password").setString("nombre", user).setString("password",password).list();
         if(!list.isEmpty())
                 return true;
         else

@@ -1,5 +1,8 @@
 package persistencia;
 
+import modelo.Plan;
+import modelo.PlanDiario;
+import modelo.Tag;
 import javax.servlet.jsp.tagext.Tag;
 
 import modelo.ItemIngrediente;
@@ -13,10 +16,7 @@ import modelo.Usuario;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 
 public class HibernateUtil {
@@ -30,6 +30,9 @@ public class HibernateUtil {
 
 		AnnotationConfiguration ac = new AnnotationConfiguration();
 		ac.addAnnotatedClass(Usuario.class);
+		ac.addAnnotatedClass(Tag.class);
+		ac.addAnnotatedClass(Plan.class);
+		ac.addAnnotatedClass(PlanDiario.class);
 		ac.addAnnotatedClass(Menu.class);
 		ac.addAnnotatedClass(ItemMenu.class);
 		ac.addAnnotatedClass(Plato.class);
