@@ -1,15 +1,19 @@
 package persistencia;
 
-import modelo.Plan;
-import modelo.PlanDiario;
-import modelo.Tag;
-import javax.servlet.jsp.tagext.Tag;
-
+import modelo.Cliente;
+import modelo.Estacion;
+import modelo.Ingrediente;
 import modelo.ItemIngrediente;
 import modelo.ItemMenu;
 import modelo.Menu;
+import modelo.Plan;
+import modelo.PlanDiario;
 import modelo.Plato;
 import modelo.Restriccion;
+import modelo.Servicio;
+import modelo.ServicioCliente;
+import modelo.Tag;
+import modelo.TipoPago;
 import modelo.TipoPlato;
 import modelo.Usuario;
 
@@ -40,6 +44,12 @@ public class HibernateUtil {
 		ac.addAnnotatedClass(TipoPlato.class);
 		ac.addAnnotatedClass(Restriccion.class);
 		ac.addAnnotatedClass(ItemIngrediente.class);
+		ac.addAnnotatedClass(Ingrediente.class);
+		ac.addAnnotatedClass(Estacion.class);
+		ac.addAnnotatedClass(Cliente.class);
+		ac.addAnnotatedClass(TipoPago.class);
+		ac.addAnnotatedClass(ServicioCliente.class);
+		ac.addAnnotatedClass(Servicio.class);
 		sessionFactory = ac.buildSessionFactory();
 		return sessionFactory;
 	}
