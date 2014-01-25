@@ -1,5 +1,13 @@
 package persistencia;
 
+import javax.servlet.jsp.tagext.Tag;
+
+import modelo.ItemIngrediente;
+import modelo.ItemMenu;
+import modelo.Menu;
+import modelo.Plato;
+import modelo.Restriccion;
+import modelo.TipoPlato;
 import modelo.Usuario;
 
 import org.hibernate.HibernateException;
@@ -22,6 +30,13 @@ public class HibernateUtil {
 
 		AnnotationConfiguration ac = new AnnotationConfiguration();
 		ac.addAnnotatedClass(Usuario.class);
+		ac.addAnnotatedClass(Menu.class);
+		ac.addAnnotatedClass(ItemMenu.class);
+		ac.addAnnotatedClass(Plato.class);
+		ac.addAnnotatedClass(Tag.class);
+		ac.addAnnotatedClass(TipoPlato.class);
+		ac.addAnnotatedClass(Restriccion.class);
+		ac.addAnnotatedClass(ItemIngrediente.class);
 		sessionFactory = ac.buildSessionFactory();
 		return sessionFactory;
 	}

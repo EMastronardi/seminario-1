@@ -6,24 +6,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Restriccion {
+public class TipoPlato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idRestriccion;
+	private int idTipoPlato;
 	private String nombre;
 	private String descripcion;
-	private int severidad;
 	
-	public Restriccion() {
+	public TipoPlato() {
 		super();
 	}
 
-	public int getIdRestriccion() {
-		return idRestriccion;
+	public int getIdTipoPlato() {
+		return idTipoPlato;
 	}
 
-	public void setIdRestriccion(int idRestriccion) {
-		this.idRestriccion = idRestriccion;
+	public void setIdTipoPlato(int idTipoPlato) {
+		this.idTipoPlato = idTipoPlato;
 	}
 
 	public String getNombre() {
@@ -41,16 +40,4 @@ public class Restriccion {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	public int getSeveridad() {
-		return severidad;
-	}
-
-	public void setSeveridad(int severidad) {
-		this.severidad = severidad;
-	}
-	
-	
-	
-	
 }
