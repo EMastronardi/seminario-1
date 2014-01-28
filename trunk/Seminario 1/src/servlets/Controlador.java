@@ -24,28 +24,26 @@ public class Controlador extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		action = request.getParameter("action");
-		jspPage = "";
-
-		if (action != null && !action.equals("validarLogin"))
-			validarSession(request);
+		jspPage = "/Home.jsp";
 
 		if ((action == null) || action.length() < 1) {
-			jspPage = "/Login.jsp";
+			jspPage = "/Home.jsp";
 
 		}
 
 		if ("default".equals(action)) {
-			jspPage = "/Default.jsp";
-		}else if("validarLogin".equals(action)){
+			jspPage = "/Home.jsp";
+		} /*else if ("validarLogin".equals(action)) {
 			String user = request.getParameter("usuario");
 			String password = request.getParameter("password");
-			boolean usuarioValido = Sistema.getInstance().validarLogin(user, password);
-			if(usuarioValido){
+			boolean usuarioValido = Sistema.getInstance().validarLogin(user,
+					password);
+			if (usuarioValido) {
 				HttpSession s = request.getSession();
 				s.setAttribute("usuario", user);
-				jspPage="/Home.jsp";
+				jspPage = "/Home.jsp";
 			}
-		}
+		}*/
 		dispatch(jspPage, request, response);
 
 	}

@@ -1,12 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Home</title>
-</head>
-<body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="img/favicon.ico">
 
+<title>Seminario I - La Cocina de Silvia / Home</title>
+
+<!-- Bootstrap core CSS -->
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/home.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<!-- Wrap all page content here -->
+	<div id="wrap">
+
+		<jsp:include page="/Header.jsp" />
+		<!-- Begin page content -->
+		<div class="container">
+			<div class="page-header">
+				<h1>Bienvenido a la Cocina de Silvia</h1>
+			</div>
+			<p class="lead">Mediante esta interfaz Web usted podra:
+			<ul>
+				<li>Crear nuevos Ingredientes y Platos con sus correspondientes
+					recetas</li>
+				<li>Ingresar nuevos Clientes</li>
+				<li>Generar el Plan Semanal</li>
+				<li>Administrar las Compras</li>
+
+			</ul>
+		</div>
+	</div>
+	<jsp:include page="/Footer.jsp" />
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script type="text/javascript" src="/js/jquery-2.1.0.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,21 +1,14 @@
-package modelo;
+package views;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import modelo.Cliente;
+import modelo.EnumEstado;
+import modelo.Restriccion;
+import modelo.ServicioCliente;
 
-@Entity
-public class Cliente {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ClienteVO {
 	private int idCliente;
 	private String nombre;
 	private String apellido;
@@ -24,27 +17,23 @@ public class Cliente {
 	private String horaEntrega;// WTF
 	private String localidad;
 	private String CP;
-	@OneToOne
-	private TipoPago tipoPago;
+	private TipoPagoVO tipoPago;
 	private EnumEstado estado;
-	@OneToMany
-	@JoinColumn(name = "idCliente")
-	private List<ServicioCliente> serviciosCliente;
-	@ManyToMany
-	@JoinColumn(name = "idCliente")
-	private List<Restriccion> restricciones;
+	private List<ServicioClienteVO> serviciosCliente;
+	private List<RestriccionVO> restricciones;
 	private String zona;
 
-	public Cliente() {
-		serviciosCliente = new ArrayList<ServicioCliente>();
-		restricciones = new ArrayList<Restriccion>();
+	public ClienteVO() {
+		serviciosCliente = new ArrayList<ServicioClienteVO>();
+		restricciones = new ArrayList<RestriccionVO>();
 	}
 
-	public Cliente(int idCliente, String nombre, String apellido, String calle,
-			String telefono, String horaEntrega, String localidad, String cP,
-			TipoPago tipoPago, EnumEstado estado,
-			ArrayList<ServicioCliente> serviciosCliente,
-			ArrayList<Restriccion> restricciones, String zona) {
+	public ClienteVO(int idCliente, String nombre, String apellido,
+			String calle, String telefono, String horaEntrega,
+			String localidad, String cP, TipoPagoVO tipoPago,
+			EnumEstado estado,
+			ArrayList<ServicioClienteVO> serviciosCliente,
+			ArrayList<RestriccionVO> restricciones, String zona) {
 		this.idCliente = idCliente;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -58,6 +47,31 @@ public class Cliente {
 		this.serviciosCliente = serviciosCliente;
 		this.restricciones = restricciones;
 		this.zona = zona;
+	}
+
+	public ClienteVO(Cliente c) {
+		this.idCliente = c.getIdCliente();
+		this.nombre = c.getNombre();
+		this.apellido = c.getApellido();
+		this.calle = c.getCalle();
+		this.telefono = c.getTelefono();
+		this.horaEntrega = c.getHoraEntrega();
+		this.localidad = c.getLocalidad();
+		this.CP = c.getCP();
+		this.tipoPago = new TipoPagoVO(c.getTipoPago());
+		this.estado = c.getEstado();
+		this.serviciosCliente = new ArrayList<ServicioClienteVO>();
+		for (ServicioCliente serv : c.getServiciosCliente()) {
+			ServicioClienteVO sVO = new ServicioClienteVO(serv);
+			this.serviciosCliente.add(sVO);
+		}
+		this.restricciones = new ArrayList<RestriccionVO>();
+		for (Restriccion r : c.getRestricciones()) {
+			RestriccionVO rVO = new RestriccionVO(r);
+			this.restricciones.add(rVO);
+		}
+		this.zona = c.getZona();
+
 	}
 
 	public int getIdCliente() {
@@ -124,11 +138,11 @@ public class Cliente {
 		CP = cP;
 	}
 
-	public TipoPago getTipoPago() {
+	public TipoPagoVO getTipoPago() {
 		return tipoPago;
 	}
 
-	public void setTipoPago(TipoPago tipoPago) {
+	public void setTipoPago(TipoPagoVO tipoPago) {
 		this.tipoPago = tipoPago;
 	}
 
@@ -141,20 +155,20 @@ public class Cliente {
 		this.estado = estado;
 	}
 
-	public List<ServicioCliente> getServiciosCliente() {
+	public List<ServicioClienteVO> getServiciosContratados() {
 		return serviciosCliente;
 	}
 
 	public void setServiciosContratados(
-			List<ServicioCliente> serviciosCliente) {
-		this.serviciosCliente = serviciosCliente;
+			List<ServicioClienteVO> serviciosContratados) {
+		this.serviciosCliente = serviciosContratados;
 	}
 
-	public List<Restriccion> getRestricciones() {
+	public List<RestriccionVO> getRestricciones() {
 		return restricciones;
 	}
 
-	public void setRestricciones(List<Restriccion> restricciones) {
+	public void setRestricciones(List<RestriccionVO> restricciones) {
 		this.restricciones = restricciones;
 	}
 
@@ -165,5 +179,4 @@ public class Cliente {
 	public void setZona(String zona) {
 		this.zona = zona;
 	}
-
 }
