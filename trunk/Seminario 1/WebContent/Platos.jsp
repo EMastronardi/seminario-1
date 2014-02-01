@@ -3,10 +3,6 @@
 <%@page import="views.ClienteVO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%
-	ArrayList<ClienteVO> clientes = Sistema.getInstance().getClientesVO();
-%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +12,7 @@
 <meta name="author" content="">
 <link rel="shortcut icon" href="img/favicon.ico">
 
-<title>Seminario I - La Cocina de Silvia / Clientes</title>
+<title>Seminario I - La Cocina de Silvia</title>
 
 <!-- Bootstrap core CSS -->
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -47,13 +43,13 @@ table tr td {
 		<jsp:include page="/Header.jsp" />
 		<!-- Begin page content -->
 		<div class="page-header">
-			<h1>Clientes</h1>
+			<h1>Platos</h1>
 		</div>
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading">
 				<button type="button" id="newCliente" class="btn btn-default btn-sm">
-					<span class="glyphicon glyphicon-star"></span> Nuevo Cliente
+					<span class="glyphicon glyphicon-star"></span> Nuevo Plato
 				</button>
 				<button type="button" id="updateCliente"
 					class="btn btn-default btn-sm">
@@ -80,23 +76,7 @@ table tr td {
 						<th>Estado</th>
 				</thead>
 				<tbody>
-					<%
-						for (ClienteVO cliente : clientes) {
-							out.println("<tr><td><input type='checkbox' value='"
-									+ cliente.getIdCliente()
-									+ "' onClick=\"unChecked(this,'"
-									+ cliente.getIdCliente() + "' )\"/></td>" + "<td>"
-									+ cliente.getIdCliente() + "</td>" + "<td>"
-									+ cliente.getNombre() + "</td>" + "<td>"
-									+ cliente.getApellido() + "</td>" + "<td>"
-									+ cliente.getCalle() + "</td>" + "<td>"
-									+ cliente.getCP() + "</td>" + "<td>"
-									+ cliente.getLocalidad() + "</td>" + "<td>"
-									+ cliente.getTelefono() + "</td>" + "<td>"
-									+ cliente.getHoraEntrega() + "</td>" + "<td>"
-									+ cliente.getEstado() + "</td>" + "</tr>");
-						}
-					%>
+				
 				</tbody>
 			</table>
 		</div>

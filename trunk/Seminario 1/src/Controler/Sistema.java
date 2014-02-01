@@ -1,13 +1,17 @@
-package modelo;
+package Controler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
+import modelo.Cliente;
+import modelo.Ingrediente;
+import modelo.Usuario;
+
 import org.hibernate.Session;
 
 import persistencia.HibernateUtil;
 import views.ClienteVO;
+import views.IngredienteVO;
 
 public class Sistema {
 	private static Sistema instancia;
@@ -20,12 +24,6 @@ public class Sistema {
 			instancia = new Sistema();
 		return instancia;
 	}
-//public static void main(String[] args) {
-//	Session s = HibernateUtil.getCurrent();
-//    List<Usuario> list = s.createQuery(" from Usuario e where e.nombre = ? and  e.password = ?").setString(0, "test").setString(1,"test").list();
-//    if(!list.isEmpty())
-//    	System.out.println("La lista no esta empty");
-//}
 	public boolean validarLogin(String user, String password) {
 		Session s = HibernateUtil.getCurrent();
         List<Usuario> list = s.createQuery(" from Usuario e where e.nombre = :nombre and  e.password = :password").setString("nombre", user).setString("password",password).list();
@@ -47,4 +45,18 @@ public class Sistema {
 		
 		return clientes;
 	}
+	public ArrayList<IngredienteVO> getIngredientes(){
+		ArrayList<IngredienteVO> ingredientes = new ArrayList<IngredienteVO>();
+		Session s = HibernateUtil.getCurrent();
+		
+		ArrayList<Ingrediente> ing = (ArrayList<Ingrediente>)s.createQuery("from Ingrediente").list();
+
+		for (Ingrediente ingrediente : ing) {
+			IngredienteVO ingVO = new IngredienteVO(ingrediente);
+			ingredientes.add(ingVO);
+		}
+		return ingredientes;
+		
+	}
+	
 }
