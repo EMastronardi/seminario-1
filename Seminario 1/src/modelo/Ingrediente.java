@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 public class Ingrediente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idInggrediente;
+	private int idIngrediente;
 	private String nombre;
 	private int cantidadStock;
 	private String medida;
@@ -33,10 +33,10 @@ public class Ingrediente {
 	}
 	
 	public int getIdInggrediente() {
-		return idInggrediente;
+		return idIngrediente;
 	}
 	public void setIdInggrediente(int idInggrediente) {
-		this.idInggrediente = idInggrediente;
+		this.idIngrediente = idInggrediente;
 	}
 	public String getNombre() {
 		return nombre;
