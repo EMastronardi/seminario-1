@@ -9,14 +9,20 @@ import modelo.Usuario;
 
 import org.hibernate.Session;
 
+import auxiliares.Cargador;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
+
 import persistencia.HibernateUtil;
 import views.ClienteVO;
 import views.IngredienteVO;
 
 public class Sistema {
 	private static Sistema instancia;
+	
+	
 	private Sistema(){
-		
+		Cargador.cargarDatos();
 	}
 	
 	public static Sistema getInstance(){
@@ -58,5 +64,7 @@ public class Sistema {
 		return ingredientes;
 		
 	}
+	
+	
 	
 }

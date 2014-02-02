@@ -40,12 +40,11 @@ public class Cliente {
 		restricciones = new ArrayList<Restriccion>();
 	}
 
-	public Cliente(int idCliente, String nombre, String apellido, String calle,
+	public Cliente(String nombre, String apellido, String calle,
 			String telefono, String horaEntrega, String localidad, String cP,
 			TipoPago tipoPago, EnumEstado estado,
-			ArrayList<ServicioCliente> serviciosCliente,
-			ArrayList<Restriccion> restricciones, String zona) {
-		this.idCliente = idCliente;
+			List<ServicioCliente> serviciosCliente,
+			List<Restriccion> restricciones, String zona) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.calle = calle;
