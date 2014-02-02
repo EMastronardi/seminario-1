@@ -13,9 +13,16 @@ public class Restriccion {
 	private String nombre;
 	private String descripcion;
 	private int severidad;
-	
+
 	public Restriccion() {
 		super();
+	}
+
+	public Restriccion(String nombre, String descripcion, int severidad) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.severidad = severidad;
 	}
 
 	public int getIdRestriccion() {
@@ -49,8 +56,5 @@ public class Restriccion {
 	public void setSeveridad(int severidad) {
 		this.severidad = severidad;
 	}
-	
-	
-	
-	
+
 }
