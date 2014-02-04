@@ -7,7 +7,7 @@ import modelo.Estacion;
 import modelo.Ingrediente;
 
 public class IngredienteVO {
-	private int idInggrediente;
+	private int idIngrediente;
 	private String nombre;
 	private int cantidadStock;
 	private String medida;
@@ -17,10 +17,10 @@ public class IngredienteVO {
 	private List<RestriccionVO> restricciones;
 	public IngredienteVO(Ingrediente ingrediente) {
 		super();
-		this.idInggrediente = ingrediente.getIdInggrediente();
+		this.idIngrediente = ingrediente.getIdIngrediente();
 		this.nombre = ingrediente.getNombre();
 		this.cantidadStock = ingrediente.getCantidadStock();
-		this.medida = ingrediente.getMedida();
+		this.medida = ingrediente.getMedida().toString();
 		this.diasCaducidad = ingrediente.getDiasCaducidad();
 		this.freezer = ingrediente.isFreezer();
 		//MAPEAMOS LAS ESTACIONES PARA LAS ESTACIONES VIEW-OBJECT
@@ -39,11 +39,11 @@ public class IngredienteVO {
 		}
 		this.restricciones = restriccionVO;
 	}
-	public int getIdInggrediente() {
-		return idInggrediente;
+	public int getIdIngrediente() {
+		return idIngrediente;
 	}
-	public void setIdInggrediente(int idInggrediente) {
-		this.idInggrediente = idInggrediente;
+	public void setIdIngrediente(int idIngrediente) {
+		this.idIngrediente = idIngrediente;
 	}
 	public String getNombre() {
 		return nombre;
