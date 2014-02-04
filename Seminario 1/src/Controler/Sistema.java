@@ -7,21 +7,23 @@ import modelo.Cliente;
 import modelo.Ingrediente;
 import modelo.Usuario;
 
+import org.apache.catalina.Globals;
+import org.apache.tomcat.jni.Global;
 import org.hibernate.Session;
 
 import auxiliares.Cargador;
-
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
-
 import persistencia.HibernateUtil;
+import persistencia.InitializeSystems;
 import views.ClienteVO;
 import views.IngredienteVO;
-
+import Utils.GlobalsVars;
 public class Sistema {
 	private static Sistema instancia;
-	
-	
+	private Session s; 
 	private Sistema(){
+		s = GlobalsVars.HIBERATE_SESSION;
+		new InitializeSystems();
 		Cargador.cargarDatos();
 	}
 	
@@ -64,7 +66,5 @@ public class Sistema {
 		return ingredientes;
 		
 	}
-	
-	
 	
 }

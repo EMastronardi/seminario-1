@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +19,8 @@ public class Ingrediente {
 	private int idIngrediente;
 	private String nombre;
 	private int cantidadStock;
-	private String medida;
+	@Enumerated(EnumType.STRING)
+	private EnumMedida medida;
 	private int diasCaducidad;
 	private boolean freezer;
 	@ManyToMany
@@ -32,11 +35,11 @@ public class Ingrediente {
 		restricciones = new ArrayList<Restriccion>();
 	}
 	
-	public int getIdInggrediente() {
+	public int getIdIngrediente() {
 		return idIngrediente;
 	}
-	public void setIdInggrediente(int idInggrediente) {
-		this.idIngrediente = idInggrediente;
+	public void setIdIngrediente(int idIngrediente) {
+		this.idIngrediente = idIngrediente;
 	}
 	public String getNombre() {
 		return nombre;
@@ -50,10 +53,10 @@ public class Ingrediente {
 	public void setCantidadStock(int cantidadStock) {
 		this.cantidadStock = cantidadStock;
 	}
-	public String getMedida() {
+	public EnumMedida getMedida() {
 		return medida;
 	}
-	public void setMedida(String medida) {
+	public void setMedida(EnumMedida medida) {
 		this.medida = medida;
 	}
 	public int getDiasCaducidad() {

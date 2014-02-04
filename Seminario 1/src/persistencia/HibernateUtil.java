@@ -33,7 +33,6 @@ public class HibernateUtil {
 			throws HibernateException {
 
 		AnnotationConfiguration ac = new AnnotationConfiguration();
-		ac.addAnnotatedClass(Usuario.class);
 		ac.addAnnotatedClass(Tag.class);
 		ac.addAnnotatedClass(Plan.class);
 		ac.addAnnotatedClass(PlanDiario.class);
