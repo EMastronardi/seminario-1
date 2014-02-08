@@ -11,7 +11,7 @@ import modelo.Restriccion;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import Utils.GlobalsVars;
+import utils.GlobalsVars;
 
 public class InitializeSystems {
 	
