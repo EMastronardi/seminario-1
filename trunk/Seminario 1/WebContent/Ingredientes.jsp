@@ -1,7 +1,7 @@
 <%@page import="modelo.EnumMedida"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Controler.Sistema"%>
+<%@page import="controler.Sistema"%>
 <%@page import="views.IngredienteVO"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -138,7 +138,6 @@
 			 } %>
 			  </tbody>
 		    </table>
-		   
           </div>
 		</p>
       </div>
