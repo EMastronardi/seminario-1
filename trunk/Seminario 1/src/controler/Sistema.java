@@ -1,29 +1,28 @@
-package Controler;
+package controler;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Cliente;
 import modelo.Ingrediente;
+import modelo.Restriccion;
 import modelo.Usuario;
 
-import org.apache.catalina.Globals;
-import org.apache.tomcat.jni.Global;
 import org.hibernate.Session;
 
-import auxiliares.Cargador;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import persistencia.HibernateUtil;
-import persistencia.InitializeSystems;
+import utils.GlobalsVars;
 import views.ClienteVO;
 import views.IngredienteVO;
-import Utils.GlobalsVars;
+import views.RestriccionVO;
+import views.RestriccionVOList;
+import auxiliares.Cargador;
 public class Sistema {
 	private static Sistema instancia;
 	private Session s; 
 	private Sistema(){
 		s = GlobalsVars.HIBERATE_SESSION;
-		new InitializeSystems();
+		//new InitializeSystems();
 		Cargador.cargarDatos();
 	}
 	
@@ -55,7 +54,6 @@ public class Sistema {
 	}
 	public ArrayList<IngredienteVO> getIngredientes(){
 		ArrayList<IngredienteVO> ingredientes = new ArrayList<IngredienteVO>();
-		Session s = HibernateUtil.getCurrent();
 		
 		ArrayList<Ingrediente> ing = (ArrayList<Ingrediente>)s.createQuery("from Ingrediente").list();
 
@@ -66,5 +64,13 @@ public class Sistema {
 		return ingredientes;
 		
 	}
-	
+	public RestriccionVOList getRestriccion(){
+		RestriccionVOList restricciones = new RestriccionVOList();
+		ArrayList<Restriccion> rest = (ArrayList<Restriccion>)s.createQuery("from Restriccion").list();
+		for (Restriccion restriccion : rest) {
+			RestriccionVO restriccionVO = new RestriccionVO(restriccion);
+			restricciones.add(restriccionVO);
+		}
+		return restricciones;
+	}
 }
