@@ -1,7 +1,10 @@
-package persistencia;
+package utilidades;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import modelo.Cliente;
+import modelo.EnumEstado;
 import modelo.EnumMedida;
 import modelo.Estacion;
 import modelo.Ingrediente;
@@ -11,33 +14,30 @@ import modelo.Restriccion;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import utils.GlobalsVars;
+import persistencia.ClientesDAO;
 
 public class InitializeSystems {
-	
+
 	private Session s;
-	private Transaction transac;		
+	private Transaction transac;
+
 	/**
 	 * 
 	 */
 	public InitializeSystems() {
 		/*
-		 * GENERACION DE DATOS BASE PARA LA COCICNA DE SILVIA
-		 * SE GENERAN :
-		 * 		- Restricciones
-		 * 		- Ingredientes
-		 *  	- Clientes
-		 *  	- Platos
-		 *  
+		 * GENERACION DE DATOS BASE PARA LA COCICNA DE SILVIA SE GENERAN : -
+		 * Restricciones - Ingredientes - Clientes - Platos
 		 */
 		s = GlobalsVars.HIBERATE_SESSION;
-		
+
 		transac = s.beginTransaction();
-		try{
-			// Obtenemos Estaciones  
-			ArrayList<Estacion> estaciones = (ArrayList<Estacion>)s.createQuery("from Estacion").list();
+		try {
+			// Obtenemos Estaciones
+			ArrayList<Estacion> estaciones = (ArrayList<Estacion>) s
+					.createQuery("from Estacion").list();
 			ArrayList<Restriccion> restricciones;
-			
+
 			// Creacion de restricciones
 			Restriccion restriccion1 = new Restriccion();
 			restriccion1.setDescripcion("Descrip Restriccion 1");
@@ -73,13 +73,13 @@ public class InitializeSystems {
 			papa.setFreezer(false);
 			papa.setMedida(EnumMedida.Kilo);
 			papa.setNombre("Papa");
-			//Agregamos restricciones.
-			
+			// Agregamos restricciones.
+
 			s.save(papa);
 			s.flush();
-			//restricciones.clear();
-			
-			//TOMATE
+			// restricciones.clear();
+
+			// TOMATE
 			Ingrediente tomate = new Ingrediente();
 			tomate.setCantidadStock(25);
 			tomate.setDiasCaducidad(10);
@@ -89,7 +89,7 @@ public class InitializeSystems {
 			tomate.setNombre("Papa");
 			s.save(tomate);
 			s.flush();
-			
+
 			// POLLO
 			Ingrediente pollo = new Ingrediente();
 			pollo.setCantidadStock(56);
@@ -100,7 +100,7 @@ public class InitializeSystems {
 			pollo.setNombre("Pollo");
 			s.save(pollo);
 			s.flush();
-			
+
 			// CEBOLLA
 			Ingrediente cebolla = new Ingrediente();
 			cebolla.setCantidadStock(10);
@@ -109,46 +109,46 @@ public class InitializeSystems {
 			cebolla.setFreezer(false);
 			cebolla.setMedida(EnumMedida.Kilo);
 			cebolla.setNombre("Cebolla");
-			s.save(cebolla);	
+			s.save(cebolla);
 			s.flush();
-			
+
 			// Arroz
-			Ingrediente arroz= new Ingrediente();
+			Ingrediente arroz = new Ingrediente();
 			arroz.setCantidadStock(250);
 			arroz.setDiasCaducidad(360);
 			arroz.setEstaciones(estaciones);
 			arroz.setFreezer(false);
 			arroz.setMedida(EnumMedida.Kilo);
 			arroz.setNombre("Arroz");
-			s.save(arroz);	
+			s.save(arroz);
 			s.flush();
-			
+
 			// LOMO
-			Ingrediente lomo= new Ingrediente();
+			Ingrediente lomo = new Ingrediente();
 			lomo.setCantidadStock(250);
 			lomo.setDiasCaducidad(360);
 			lomo.setEstaciones(estaciones);
 			lomo.setFreezer(true);
 			lomo.setMedida(EnumMedida.Kilo);
 			lomo.setNombre("Lomo");
-			s.save(lomo);	
+			s.save(lomo);
 			s.flush();
-			
-			//BROCOLI
-			Ingrediente brocoli= new Ingrediente();
+
+			// BROCOLI
+			Ingrediente brocoli = new Ingrediente();
 			brocoli.setCantidadStock(5);
 			brocoli.setDiasCaducidad(10);
 			brocoli.setEstaciones(estaciones);
 			brocoli.setFreezer(true);
 			brocoli.setMedida(EnumMedida.Kilo);
 			brocoli.setNombre("Brocoli");
-			//Agregamos restricciones.
-			
-			s.save(brocoli);	
+			// Agregamos restricciones.
+
+			s.save(brocoli);
 			s.flush();
-			
-			//ACEITE DE OLIVA
-			Ingrediente oliva= new Ingrediente();
+
+			// ACEITE DE OLIVA
+			Ingrediente oliva = new Ingrediente();
 			oliva.setCantidadStock(25);
 			oliva.setDiasCaducidad(90);
 			oliva.setEstaciones(estaciones);
@@ -157,9 +157,9 @@ public class InitializeSystems {
 			oliva.setNombre("Aceite de Oliva");
 			s.save(oliva);
 			s.flush();
-			
-			//ACEITE DE girasol
-			Ingrediente girasol= new Ingrediente();
+
+			// ACEITE DE girasol
+			Ingrediente girasol = new Ingrediente();
 			girasol.setCantidadStock(25);
 			girasol.setDiasCaducidad(90);
 			girasol.setEstaciones(estaciones);
@@ -167,22 +167,22 @@ public class InitializeSystems {
 			girasol.setMedida(EnumMedida.Litro);
 			girasol.setNombre("Aceite de Girasol");
 			s.save(girasol);
-			s.flush();		
-			
-			//LIMON
-			Ingrediente limon= new Ingrediente();
+			s.flush();
+
+			// LIMON
+			Ingrediente limon = new Ingrediente();
 			limon.setCantidadStock(25);
 			limon.setDiasCaducidad(4);
 			limon.setEstaciones(estaciones);
 			limon.setFreezer(false);
 			limon.setMedida(EnumMedida.Kilo);
 			limon.setNombre("Limon");
-			
+
 			s.save(limon);
 			s.flush();
-	
-			//SAL
-			Ingrediente sal= new Ingrediente();
+
+			// SAL
+			Ingrediente sal = new Ingrediente();
 			sal.setCantidadStock(25);
 			sal.setDiasCaducidad(365);
 			sal.setEstaciones(estaciones);
@@ -191,20 +191,20 @@ public class InitializeSystems {
 			sal.setNombre("Sal");
 			s.save(sal);
 			s.flush();
-			
-			//Champi
-			Ingrediente champi= new Ingrediente();
+
+			// Champi
+			Ingrediente champi = new Ingrediente();
 			champi.setCantidadStock(500);
 			champi.setDiasCaducidad(15);
 			champi.setEstaciones(estaciones);
 			champi.setFreezer(false);
 			champi.setMedida(EnumMedida.Gramo);
 			champi.setNombre("Champiñon");
-			s.save(champi);	
+			s.save(champi);
 			s.flush();
-			
-			//Ajo
-			Ingrediente ajo= new Ingrediente();
+
+			// Ajo
+			Ingrediente ajo = new Ingrediente();
 			ajo.setCantidadStock(5);
 			ajo.setDiasCaducidad(15);
 			ajo.setEstaciones(estaciones);
@@ -213,21 +213,20 @@ public class InitializeSystems {
 			ajo.setNombre("Ajo");
 			s.save(ajo);
 			s.flush();
-			
-			
-			//Pure de tomate
-			Ingrediente pureTomate= new Ingrediente();
+
+			// Pure de tomate
+			Ingrediente pureTomate = new Ingrediente();
 			pureTomate.setCantidadStock(15);
 			pureTomate.setDiasCaducidad(60);
 			pureTomate.setEstaciones(estaciones);
 			pureTomate.setFreezer(false);
 			pureTomate.setMedida(EnumMedida.Litro);
 			pureTomate.setNombre("Pure de Tomate");
-			s.save(pureTomate);	
+			s.save(pureTomate);
 			s.flush();
-			
-			//Crema de Leche
-			Ingrediente crema= new Ingrediente();
+
+			// Crema de Leche
+			Ingrediente crema = new Ingrediente();
 			crema.setCantidadStock(15);
 			crema.setDiasCaducidad(5);
 			crema.setEstaciones(estaciones);
@@ -236,20 +235,36 @@ public class InitializeSystems {
 			crema.setNombre("Crema de Leche");
 			s.save(crema);
 			s.flush();
-			
-			//Perejil
-			Ingrediente perejil= new Ingrediente();
+
+			// Perejil
+			Ingrediente perejil = new Ingrediente();
 			perejil.setCantidadStock(300);
 			perejil.setDiasCaducidad(5);
 			perejil.setEstaciones(estaciones);
 			perejil.setFreezer(false);
 			perejil.setMedida(EnumMedida.Gramo);
 			perejil.setNombre("Perejil");
-			s.save(perejil);	
+			s.save(perejil);
 			s.flush();
-			
-			//Creacion de Platos
-			//Lomo Strogonoff Liviano
+
+			// Creacion de Clientes
+			//
+
+			List<Restriccion> listaRestricciones = new ArrayList<Restriccion>();
+			listaRestricciones.add(restriccion1);
+
+			ClientesDAO.crearCliente(new Cliente("Checho", "Molinero",
+					"Calle 1", "111111", "13", "Quilmes", "1878", null,
+					EnumEstado.ESTADO1, null, listaRestricciones, "Centro"));
+
+			listaRestricciones.add(restriccion2);
+
+			ClientesDAO.crearCliente(new Cliente("Chalo", "Camino", "Calle 2",
+					"22222", "13:30", "Quilmes", "1878", null,
+					EnumEstado.ESTADO1, null, listaRestricciones, "Oeste"));
+
+			// Creacion de Platos
+			// Lomo Strogonoff Liviano
 			Plato plato = new Plato();
 			ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
 			ingredientes.add(crema);
@@ -265,12 +280,11 @@ public class InitializeSystems {
 			plato.setReceta("1.	Retirar cualquier rastro de grasa visible que pudiera tener el lomo; cortarlo en cubos de 2cm de lado.<br> 2.	Cortar los champiñones en laminas. Reservar todo.<br>3.	Picar la cebolla y el ajo. Cocinarlos en una olla, con 1 cucharada de caldo, hasta que la cebolla este transparente.<br>4.	Añadir los cubos de lomo y cocinar hasta que cambien de color en toda su superficie.<br>5.	Agregar los champiñones, el resto del caldo, el pure de tomate y la mostaza. Continuar la coccion aproximadamente 20 minutos mas, hasta que la carne este tierna.<br>6.	Incorporar la crema de leche y cocinar 10 minutos mas.<br/>7.Espolvorear con peejil picado y servir caliente, con el arroz blanco como guarnicion.");
 			s.save(plato);
 			transac.commit();
-		}catch(RuntimeException e){
+		} catch (RuntimeException e) {
 			transac.rollback();
 			System.out.println("No se pudo dar de alto los resgistros");
 		}
-		//Creacion de Clientes
-		//
+
 	}
-	
+
 }
