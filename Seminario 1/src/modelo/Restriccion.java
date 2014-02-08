@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+//public class Restriccion implements Comparable<Restriccion> {
 public class Restriccion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,4 +58,26 @@ public class Restriccion {
 		this.severidad = severidad;
 	}
 
+//	@Override
+//	public int compareTo(Restriccion restriccion) {
+//		if (restriccion.getIdRestriccion() == this.idRestriccion){
+//			return 0;
+//		}
+//		else {
+//			return 1;
+//		}
+//	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (Restriccion.class.isInstance(obj)){
+			if (((Restriccion)obj).getIdRestriccion() == this.idRestriccion){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+	
 }

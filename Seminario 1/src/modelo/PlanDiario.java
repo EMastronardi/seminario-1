@@ -27,12 +27,10 @@ public class PlanDiario {
 		items = new ArrayList<ItemMenu>();
 	}
 
-	public PlanDiario(List<Tag> tags, List<Cliente> clientes) {
-		// TODO debo recorrer los clientes para obtener las restricciones que
-		// tienen y matchearlas con las restricciones de los platos.
-		for (Cliente cliente : clientes) {
-			// cliente.obtenerRestricciones();
-		}
+	public PlanDiario(Date time) {
+		// TODO Verificar que la fecha es feriado
+		this();
+		this.fecha = time;
 	}
 
 	public int getIdItemPlan() {

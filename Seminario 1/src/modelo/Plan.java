@@ -15,30 +15,40 @@ public class Plan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPlan;
-	private Date fechaInicio;
-	private Date fecaFin;
+
 	private EnumEstado estado;
 	@OneToMany
 	@JoinColumn(name = "idPlan")
 	private List<PlanDiario> items;
+	
 	public int getIdPlan() {
 		return idPlan;
 	}
+	
 	public void setIdPlan(int idPlan) {
 		this.idPlan = idPlan;
 	}
+	
 	public Date getFechaInicio() {
+		Date fechaInicio = items.get(0).getFecha();
+		for (PlanDiario plan : items) {
+			if (plan.getFecha().before(fechaInicio)){
+				fechaInicio = plan.getFecha();
+			}
+		}
 		return fechaInicio;
 	}
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
+	
+	public Date getFechaFin() {
+		Date fechaFin = items.get(0).getFecha();
+		for (PlanDiario plan : items) {
+			if (plan.getFecha().after(fechaFin)){
+				fechaFin = plan.getFecha();
+			}
+		}
+		return fechaFin;
 	}
-	public Date getFecaFin() {
-		return fecaFin;
-	}
-	public void setFecaFin(Date fecaFin) {
-		this.fecaFin = fecaFin;
-	}
+	
 	public EnumEstado getEstado() {
 		return estado;
 	}
