@@ -11,12 +11,12 @@ import modelo.Usuario;
 import org.hibernate.Session;
 
 import persistencia.HibernateUtil;
+import utils.Cargador;
 import utils.GlobalsVars;
 import views.ClienteVO;
 import views.IngredienteVO;
 import views.RestriccionVO;
 import views.RestriccionVOList;
-import auxiliares.Cargador;
 public class Sistema {
 	private static Sistema instancia;
 	private Session s; 
