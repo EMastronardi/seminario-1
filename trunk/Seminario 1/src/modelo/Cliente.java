@@ -165,4 +165,16 @@ public class Cliente {
 		this.zona = zona;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (Cliente.class.isInstance(obj)){
+			if (((Cliente)obj).getIdCliente() == this.idCliente){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+	
 }
