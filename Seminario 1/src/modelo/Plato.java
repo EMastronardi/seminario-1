@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,7 +21,7 @@ public class Plato {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPlato;
 	private String nombre;
-	@Column(length=1234)
+	@Column(length = 1234)
 	private String receta;
 	@OneToOne
 	private TipoPlato tipoPlato;
@@ -28,17 +29,17 @@ public class Plato {
 	private Tag tag;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idPlato")
-	private List<Ingrediente> ingredientes;
+	private List<ItemIngrediente> ingredientes;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idPlato")
 	private List<Restriccion> restricciones;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idPlato")
 	private List<Tag> tagsSecundarios;
-	
+
 	public Plato() {
 		super();
-		this.ingredientes = new ArrayList<Ingrediente>();
+		this.ingredientes = new ArrayList<ItemIngrediente>();
 		this.restricciones = new ArrayList<Restriccion>();
 		this.tagsSecundarios = new ArrayList<Tag>();
 	}
@@ -83,11 +84,11 @@ public class Plato {
 		this.tag = tag;
 	}
 
-	public List<Ingrediente> getIngredientes() {
+	public List<ItemIngrediente> getIngredientes() {
 		return ingredientes;
 	}
 
-	public void setIngredientes(List<Ingrediente> ingredientes) {
+	public void setIngredientes(List<ItemIngrediente> ingredientes) {
 		this.ingredientes = ingredientes;
 	}
 
@@ -106,8 +107,9 @@ public class Plato {
 	public void setTagsSecundarios(List<Tag> tagsSecundarios) {
 		this.tagsSecundarios = tagsSecundarios;
 	}
-	
-	public void descontar(){
+
+	public void descontar() {
 		// TODO
 	}
+
 }

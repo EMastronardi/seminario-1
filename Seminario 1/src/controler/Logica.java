@@ -7,11 +7,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import modelo.Cliente;
+import modelo.EnumEstado;
+import modelo.Ingrediente;
+import modelo.ItemIngrediente;
 import modelo.ItemMenu;
 import modelo.Menu;
+import modelo.OrdenDeCompra;
 import modelo.Plan;
 import modelo.PlanDiario;
 import modelo.Restriccion;
@@ -143,5 +148,32 @@ public class Logica {
 		tags.add("cerdo");
 		tags.add("verduras");
 		return generarPlanSemanal(tags, new Date());
+	}
+
+	public static OrdenDeCompra generarOrdenDeCompraPorPlan(Plan plan) {
+		OrdenDeCompra oc;
+
+		Map<Ingrediente, Float> items = new HashMap<Ingrediente, Float>();
+
+		for (ItemIngrediente itemIngrediente : plan
+				.obtenerIngredientesNecesarios()) {
+			Ingrediente ingrediente = itemIngrediente.getIngrediente();
+			Float cantidad = itemIngrediente.getCantidad();
+
+			//TODO verificar el stock antes de agregarlo como algo a comprar!
+			
+			if (items.get(ingrediente) == null) {
+				items.put(ingrediente, cantidad);
+			} else {
+
+				items.put(ingrediente, items.get(ingrediente) + cantidad);
+			}
+
+		}
+
+		oc = new OrdenDeCompra(new Date(), plan.getFechaInicio(),
+				EnumEstado.CREADA, items);
+
+		return oc;
 	}
 }
