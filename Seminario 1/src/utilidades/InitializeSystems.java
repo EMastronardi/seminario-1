@@ -18,16 +18,18 @@ import persistencia.ClientesDAO;
 
 public class InitializeSystems {
 
-	private Session s;
-	private Transaction transac;
+	private static Session s;
+	private static Transaction transac;
 
 	/**
+	 * @return 
 	 * 
 	 */
-	public InitializeSystems() {
+	public static void cargador() {
 		/*
-		 * GENERACION DE DATOS BASE PARA LA COCICNA DE SILVIA SE GENERAN : -
-		 * Restricciones - Ingredientes - Clientes - Platos
+		 * GENERACION DE DATOS BASE PARA LA COCICNA DE SILVIA
+		 * SE GENERAN : 
+		 * - Restricciones - Ingredientes - Clientes - Platos
 		 */
 		s = GlobalsVars.HIBERATE_SESSION;
 

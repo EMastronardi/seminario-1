@@ -45,5 +45,13 @@ public class TipoPago {
 		this.nombre = nombre;
 		this.cantodadDias = cantodadDias;
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.nombre;
+	}
+	
+	
 	
 }

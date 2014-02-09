@@ -12,6 +12,7 @@ import org.hibernate.Session;
 
 import persistencia.HibernateUtil;
 import utilidades.GlobalsVars;
+import utilidades.InitializeSystems;
 import views.ClienteVO;
 import views.IngredienteVO;
 import views.RestriccionVO;
@@ -20,9 +21,10 @@ import auxiliares.Cargador;
 public class Sistema {
 	private static Sistema instancia;
 	private Session s; 
+	
 	private Sistema(){
 		s = GlobalsVars.HIBERATE_SESSION;
-		//new InitializeSystems();
+		InitializeSystems.cargador();
 		Cargador.cargarDatos();
 	}
 	
