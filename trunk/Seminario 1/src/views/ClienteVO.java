@@ -59,7 +59,6 @@ public class ClienteVO {
 		this.localidad = c.getLocalidad();
 		this.CP = c.getCP();
 		this.tipoPago = (String) (c == null || (c.getTipoPago() == null) ? "N/A" : c.getTipoPago().toString());
-		//name = ((city == null) || (city.getName() == null) ? "N/A" : city.getName());
 		this.estado = c.getEstado();
 		this.serviciosCliente = new ArrayList<ServicioClienteVO>();
 		for (ServicioCliente serv : c.getServiciosCliente()) {

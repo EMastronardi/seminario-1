@@ -32,7 +32,7 @@ public class IngredienteServlet extends Controlador {
 			jspPage = "/Home.jsp";
 			super.dispatch(jspPage, request, response);
 		}else if("restriccionAjax".equals(action)){
-			RestriccionVOList list =  sistema.getRestriccion();
+			RestriccionVOList list =  sistema.getRestricciones();
 			XStream xstream = new XStream(new DomDriver());
 		    xstream.alias("restriccion", RestriccionVO.class);
 		    xstream.alias("restricciones", RestriccionVOList.class);

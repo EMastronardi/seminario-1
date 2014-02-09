@@ -73,4 +73,13 @@ public class PlanDiario {
 		this.estado = estado;
 	}
 
+	public List<ItemIngrediente> obtenerIngredientesNecesarios() {
+		List<ItemIngrediente> ingredientesNecesarios = new ArrayList<ItemIngrediente>();
+		for (ItemMenu itemMenu : items) {
+			ingredientesNecesarios.addAll(itemMenu
+					.obtenerIngredientesNecesarios());
+		}
+		return ingredientesNecesarios;
+	}
+
 }

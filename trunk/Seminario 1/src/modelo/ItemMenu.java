@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,9 +24,9 @@ public class ItemMenu {
 	@JoinColumn(name = "idMenu")
 	private Menu menu;
 	@ManyToMany
-	@JoinColumn(name="idItemMenu")
+	@JoinColumn(name = "idItemMenu")
 	private List<Cliente> clientes;
-	
+
 	public ItemMenu() {
 		super();
 		clientes = new ArrayList<Cliente>();
@@ -62,14 +63,28 @@ public class ItemMenu {
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
-	
-	public void agregarItems(List<ItemIngrediente> ingredientes){
-		
+
+	public void agregarItems(List<ItemIngrediente> ingredientes) {
+
 	}
-	
-	public void descontar(){
+
+	public void descontar() {
 		// TODO
 	}
-	
-	
+
+	public List<ItemIngrediente> obtenerIngredientesNecesarios() {
+		List<ItemIngrediente> ingredientesNecesarios = new ArrayList<ItemIngrediente>();
+
+		for (Plato plato : menu.getPlatos()) {
+			for (ItemIngrediente item : plato.getIngredientes()) {
+				for (int i = 0; i <= cantidad; i++) {
+					ingredientesNecesarios.add(item);
+				}
+			}
+
+		}
+
+		return ingredientesNecesarios;
+	}
+
 }
