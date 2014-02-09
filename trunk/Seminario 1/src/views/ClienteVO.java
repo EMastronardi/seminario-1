@@ -17,7 +17,7 @@ public class ClienteVO {
 	private String horaEntrega;// WTF
 	private String localidad;
 	private String CP;
-	private TipoPagoVO tipoPago;
+	private String tipoPago;
 	private EnumEstado estado;
 	private List<ServicioClienteVO> serviciosCliente;
 	private List<RestriccionVO> restricciones;
@@ -30,7 +30,7 @@ public class ClienteVO {
 
 	public ClienteVO(int idCliente, String nombre, String apellido,
 			String calle, String telefono, String horaEntrega,
-			String localidad, String cP, TipoPagoVO tipoPago,
+			String localidad, String cP, String tipoPago,
 			EnumEstado estado,
 			ArrayList<ServicioClienteVO> serviciosCliente,
 			ArrayList<RestriccionVO> restricciones, String zona) {
@@ -58,7 +58,8 @@ public class ClienteVO {
 		this.horaEntrega = c.getHoraEntrega();
 		this.localidad = c.getLocalidad();
 		this.CP = c.getCP();
-		this.tipoPago = new TipoPagoVO(c.getTipoPago());
+		this.tipoPago = (String) (c == null || (c.getTipoPago() == null) ? "N/A" : c.getTipoPago().toString());
+		//name = ((city == null) || (city.getName() == null) ? "N/A" : city.getName());
 		this.estado = c.getEstado();
 		this.serviciosCliente = new ArrayList<ServicioClienteVO>();
 		for (ServicioCliente serv : c.getServiciosCliente()) {
@@ -138,11 +139,11 @@ public class ClienteVO {
 		CP = cP;
 	}
 
-	public TipoPagoVO getTipoPago() {
+	public String getTipoPago() {
 		return tipoPago;
 	}
 
-	public void setTipoPago(TipoPagoVO tipoPago) {
+	public void setTipoPago(String tipoPago) {
 		this.tipoPago = tipoPago;
 	}
 
