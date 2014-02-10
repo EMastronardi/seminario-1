@@ -15,8 +15,8 @@ public class Cargador {
 		// TODO Auto-generated method stub
 		Restriccion r1 = new Restriccion("Sal", "No se permite el uso de Sal",
 				10);
-		Restriccion r2 = new Restriccion("Azúcar",
-				"No se permite el uso de Azúcar", 10);
+		Restriccion r2 = new Restriccion("Azï¿½car",
+				"No se permite el uso de Azï¿½car", 10);
 		Restriccion r3 = new Restriccion("Picante",
 				"No se permite el uso de Picantes", 5);
 
@@ -28,13 +28,13 @@ public class Cargador {
 		restricciones.add(r1);
 
 		ClientesDAO.crearCliente(new Cliente("Checho", "Molinero", "Calle 1",
-				"111111", "13", "Quilmes", "1878", null, EnumEstado.ESTADO1,
+				"111111", "13", "Quilmes", "1878", null, EnumEstado.ACTIVO,
 				null, restricciones, "Centro"));
 		
 		restricciones.add(r2);
 		
 		ClientesDAO.crearCliente(new Cliente("Chalo", "Camino", "Calle 2",
-				"22222", "13:30", "Quilmes", "1878", null, EnumEstado.ESTADO1,
+				"22222", "13:30", "Quilmes", "1878", null, EnumEstado.ACTIVO,
 				null, restricciones, "Oeste"));
 	}
 
