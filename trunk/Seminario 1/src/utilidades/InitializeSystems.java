@@ -8,6 +8,7 @@ import modelo.EnumEstado;
 import modelo.EnumMedida;
 import modelo.Estacion;
 import modelo.Ingrediente;
+import modelo.ItemIngrediente;
 import modelo.Plato;
 import modelo.Restriccion;
 
@@ -201,7 +202,7 @@ public class InitializeSystems {
 			champi.setEstaciones(estaciones);
 			champi.setFreezer(false);
 			champi.setMedida(EnumMedida.Gramo);
-			champi.setNombre("Champiñon");
+			champi.setNombre("Champiï¿½on");
 			s.save(champi);
 			s.flush();
 
@@ -257,29 +258,29 @@ public class InitializeSystems {
 
 			ClientesDAO.crearCliente(new Cliente("Checho", "Molinero",
 					"Calle 1", "111111", "13", "Quilmes", "1878", null,
-					EnumEstado.ESTADO1, null, listaRestricciones, "Centro"));
+					EnumEstado.ACTIVO, null, listaRestricciones, "Centro"));
 
 			listaRestricciones.add(restriccion2);
 
 			ClientesDAO.crearCliente(new Cliente("Chalo", "Camino", "Calle 2",
 					"22222", "13:30", "Quilmes", "1878", null,
-					EnumEstado.ESTADO1, null, listaRestricciones, "Oeste"));
+					EnumEstado.ACTIVO, null, listaRestricciones, "Oeste"));
 
 			// Creacion de Platos
 			// Lomo Strogonoff Liviano
 			Plato plato = new Plato();
-			ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
-			ingredientes.add(crema);
-			ingredientes.add(lomo);
-			ingredientes.add(perejil);
-			ingredientes.add(champi);
-			ingredientes.add(pureTomate);
-			ingredientes.add(cebolla);
-			ingredientes.add(crema);
-			ingredientes.add(ajo);
+			List<ItemIngrediente> ingredientes = new ArrayList<ItemIngrediente>();
+			ingredientes.add(new ItemIngrediente(crema,1));
+			ingredientes.add(new ItemIngrediente(lomo,1));
+			ingredientes.add(new ItemIngrediente(perejil,1));
+			ingredientes.add(new ItemIngrediente(champi,1));
+			ingredientes.add(new ItemIngrediente(pureTomate,1));
+			ingredientes.add(new ItemIngrediente(cebolla,1));
+			ingredientes.add(new ItemIngrediente(crema,1));
+			ingredientes.add(new ItemIngrediente(ajo,1));
 			plato.setIngredientes(ingredientes);
 			plato.setNombre("Lomo Strogonoff Liviano");
-			plato.setReceta("1.	Retirar cualquier rastro de grasa visible que pudiera tener el lomo; cortarlo en cubos de 2cm de lado.<br> 2.	Cortar los champiñones en laminas. Reservar todo.<br>3.	Picar la cebolla y el ajo. Cocinarlos en una olla, con 1 cucharada de caldo, hasta que la cebolla este transparente.<br>4.	Añadir los cubos de lomo y cocinar hasta que cambien de color en toda su superficie.<br>5.	Agregar los champiñones, el resto del caldo, el pure de tomate y la mostaza. Continuar la coccion aproximadamente 20 minutos mas, hasta que la carne este tierna.<br>6.	Incorporar la crema de leche y cocinar 10 minutos mas.<br/>7.Espolvorear con peejil picado y servir caliente, con el arroz blanco como guarnicion.");
+			plato.setReceta("1.	Retirar cualquier rastro de grasa visible que pudiera tener el lomo; cortarlo en cubos de 2cm de lado.<br> 2.	Cortar los champiï¿½ones en laminas. Reservar todo.<br>3.	Picar la cebolla y el ajo. Cocinarlos en una olla, con 1 cucharada de caldo, hasta que la cebolla este transparente.<br>4.	Aï¿½adir los cubos de lomo y cocinar hasta que cambien de color en toda su superficie.<br>5.	Agregar los champiï¿½ones, el resto del caldo, el pure de tomate y la mostaza. Continuar la coccion aproximadamente 20 minutos mas, hasta que la carne este tierna.<br>6.	Incorporar la crema de leche y cocinar 10 minutos mas.<br/>7.Espolvorear con peejil picado y servir caliente, con el arroz blanco como guarnicion.");
 			s.save(plato);
 			transac.commit();
 		} catch (RuntimeException e) {
