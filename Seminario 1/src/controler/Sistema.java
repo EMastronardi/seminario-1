@@ -16,6 +16,7 @@ import org.hibernate.Session;
 
 import persistencia.EstacionDAO;
 import persistencia.HibernateUtil;
+import persistencia.IngredienteDAO;
 import persistencia.PlanDAO;
 import utilidades.GlobalsVars;
 import utilidades.InitializeSystems;
@@ -129,14 +130,12 @@ public class Sistema {
 	}
 	public boolean bajaIngrediente(int idIngrediente){
 		try{
-			//Ingrediente ing = IngredienteDAO.getIngredienteById(idIngrediente);
-			//s.delete(ing);
+			Ingrediente ing = IngredienteDAO.getIngredienteById(idIngrediente);
+			s.delete(ing);
 			return true;
 		}catch(Exception e){
 			return false;
 		}
-		
-		
 	}
 
 	public OrdenDeCompraVO generarOrdenDeCompra(int idPlan) {
