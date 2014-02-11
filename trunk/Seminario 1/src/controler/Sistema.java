@@ -24,6 +24,7 @@ import views.ClienteVO;
 import views.EstacionVO;
 import views.IngredienteVO;
 import views.OrdenDeCompraVO;
+import views.PlanVO;
 import views.RestriccionVO;
 import views.RestriccionVOList;
 
@@ -86,6 +87,13 @@ public class Sistema {
 		return ingredientes;
 
 	}
+	
+	public PlanVO obtenerPlanActual(){
+		//TODO debo buscar el último plan que se generó
+		PlanDAO.obtenerPlanActual().getVO();
+		return null;
+	}
+	
 
 	public RestriccionVOList getRestricciones() {
 		RestriccionVOList restricciones = new RestriccionVOList();

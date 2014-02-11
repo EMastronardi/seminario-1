@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import views.PlanDiarioVO;
+import views.PlanVO;
+
 @Entity
 public class Plan {
 	@Id
@@ -75,6 +78,16 @@ public class Plan {
 					.obtenerIngredientesNecesarios());
 		}
 		return ingredientesNecesarios;
+	}
+
+	public PlanVO getVO() {
+		PlanVO plan;
+		List<PlanDiarioVO> items = new ArrayList<PlanDiarioVO>();
+		for (PlanDiario planDiario : this.items) {
+			items.add(planDiario.getVO());
+		}
+		plan = new PlanVO(idPlan,this.getFechaInicio(),this.getFechaFin(),this.getEstado().toString(),items);
+		return plan;
 	}
 
 }

@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
+import views.MenuVO;
+import views.PlatoVO;
+
 @Entity
 public class Menu {
 	@Id
@@ -97,5 +100,15 @@ public class Menu {
 		}
 
 		return restricciones;
+	}
+
+	public MenuVO getVO() {
+		// TODO Auto-generated method stub
+		List<PlatoVO> platos = new ArrayList<PlatoVO>();
+		for (Plato plato : this.platos) {
+			platos.add(plato.getVO());
+		}
+		MenuVO menu = new MenuVO(idMenu, platos, calorias, this.estado.toString());
+		return menu;
 	}
 }

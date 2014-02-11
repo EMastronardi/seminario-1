@@ -2,11 +2,32 @@ package views;
 
 import java.util.List;
 
+import modelo.Menu;
+
 public class ItemMenuVO {
 	private int idItemMenu;
 	private String nombre;
 	private int cantidad;
 	private List<String> clientes;
+	private MenuVO menu;
+	
+	public MenuVO getMenu() {
+		return menu;
+	}
+
+	public void setMenu(MenuVO menu) {
+		this.menu = menu;
+	}
+
+	public ItemMenuVO(int idItemMenu, String nombre, int cantidad,
+			List<String> clientes, MenuVO menu) {
+		super();
+		this.idItemMenu = idItemMenu;
+		this.nombre = nombre;
+		this.cantidad = cantidad;
+		this.clientes = clientes;
+		this.menu = menu;
+	}
 
 	public int getIdItemMenu() {
 		return idItemMenu;
