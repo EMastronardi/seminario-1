@@ -28,16 +28,14 @@ import views.PlanVO;
 import views.RestriccionVO;
 import views.RestriccionVOList;
 
-
-
 public class Sistema {
 	private static Sistema instancia;
 	private Session s;
 
 	private Sistema() {
 		s = GlobalsVars.HIBERATE_SESSION;
-		//InitializeSystems.cargador();
-		//Cargador.cargarDatos();
+		// InitializeSystems.cargador();
+		// Cargador.cargarDatos();
 	}
 
 	public static Sistema getInstance() {
@@ -87,13 +85,16 @@ public class Sistema {
 		return ingredientes;
 
 	}
-	
-	public PlanVO obtenerPlanActual(){
-		//TODO debo buscar el último plan que se generó
-		PlanDAO.obtenerPlanActual().getVO();
+
+	public PlanVO obtenerPlanActual() {
+		// TODO debo buscar el ï¿½ltimo plan que se generï¿½
+		Plan plan = PlanDAO.obtenerPlanActual();
+		if (plan != null) {
+			return new PlanVO(PlanDAO.obtenerPlanActual());
+		}
 		return null;
+
 	}
-	
 
 	public RestriccionVOList getRestricciones() {
 		RestriccionVOList restricciones = new RestriccionVOList();
@@ -105,7 +106,8 @@ public class Sistema {
 		}
 		return restricciones;
 	}
-	public List<EstacionVO> getEstaciones(){
+
+	public List<EstacionVO> getEstaciones() {
 		List<EstacionVO> estacionesVO = new ArrayList<EstacionVO>();
 		List<Estacion> estaciones = EstacionDAO.estaciones();
 		for (Estacion estacion : estaciones) {
@@ -113,35 +115,39 @@ public class Sistema {
 		}
 		return estacionesVO;
 	}
-	public boolean altaIngrediente(String name, int cantidadStock, int diasCaducidad, String medida,  boolean freezer, List<String> estaciones){
-		try{
+
+	public boolean altaIngrediente(String name, int cantidadStock,
+			int diasCaducidad, String medida, boolean freezer,
+			List<String> estaciones) {
+		try {
 			Ingrediente ing = new Ingrediente();
 			ing.setNombre(name);
 			ing.setCantidadStock(cantidadStock);
 			ing.setDiasCaducidad(diasCaducidad);
 			ing.setFreezer(freezer);
-			//EnumMedida medida;
+			// EnumMedida medida;
 			List<Estacion> sysEstaciones = EstacionDAO.estaciones();
-			
+
 			for (Estacion estacion : sysEstaciones) {
-				if(estaciones.contains(estacion.getEstacion())){
+				if (estaciones.contains(estacion.getEstacion())) {
 					ing.addEstacion(estacion);
 				}
 			}
 			ing.setMedida(EnumMedida.valueOf(medida));
-			s.save(ing);	
+			s.save(ing);
 			return true;
-		}catch( Exception e){
+		} catch (Exception e) {
 			System.out.println("No se ha podido persistir el ingrediente");
 			return false;
 		}
 	}
-	public boolean bajaIngrediente(int idIngrediente){
-		try{
+
+	public boolean bajaIngrediente(int idIngrediente) {
+		try {
 			Ingrediente ing = IngredienteDAO.getIngredienteById(idIngrediente);
 			s.delete(ing);
 			return true;
-		}catch(Exception e){
+		} catch (Exception e) {
 			return false;
 		}
 	}
@@ -150,7 +156,7 @@ public class Sistema {
 
 		Plan plan = PlanDAO.obtenerPlanPorId(idPlan);
 		OrdenDeCompra oc = Logica.generarOrdenDeCompraPorPlan(plan);
-		return oc.toVO();
+		return new OrdenDeCompraVO(oc);
 	}
 
 }

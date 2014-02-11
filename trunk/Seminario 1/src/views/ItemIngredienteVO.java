@@ -1,6 +1,7 @@
 package views;
 
 import modelo.Ingrediente;
+import modelo.ItemIngrediente;
 
 public class ItemIngredienteVO {
 	private int idItemIngrediente;
@@ -39,4 +40,8 @@ public class ItemIngredienteVO {
 		this.cantidad = cantidad;
 	}
 
+	public ItemIngredienteVO(ItemIngrediente item){
+		this(item.getIdItemIngrediente(),new IngredienteVO(item.getIngrediente()),item.getCantidad());
+	}
+	
 }

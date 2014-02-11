@@ -1,7 +1,11 @@
 package views;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import modelo.ItemMenu;
+import modelo.PlanDiario;
 
 public class PlanDiarioVO {
 	private int idItemPlan;
@@ -18,6 +22,18 @@ public class PlanDiarioVO {
 		this.feriado = feriado;
 		this.items = items;
 		this.estado = estado;
+	}
+
+	public PlanDiarioVO(PlanDiario planDiario) {
+		List<ItemMenuVO> items = new ArrayList<ItemMenuVO>();
+		this.estado = planDiario.getEstado();
+		this.fecha=planDiario.getFecha();
+		this.feriado = planDiario.isFeriado();
+		this.idItemPlan = planDiario.getIdItemPlan();
+		for (ItemMenu itemMenu : planDiario.getItems()) {
+			items.add(new ItemMenuVO(itemMenu));
+		}
+		this.items = items;
 	}
 
 	public int getIdItemPlan() {

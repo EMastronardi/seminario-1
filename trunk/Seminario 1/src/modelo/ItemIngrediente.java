@@ -13,15 +13,23 @@ import views.ItemIngredienteVO;
 @Entity
 public class ItemIngrediente {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idItemIngrediente;
 	@ManyToOne
-	@JoinColumn(name="idIngrediente")
+	@JoinColumn(name = "idIngrediente")
 	private Ingrediente ingrediente;
 	private float cantidad;
-	
+
 	public ItemIngrediente() {
 		super();
+	}
+
+	public int getIdItemIngrediente() {
+		return idItemIngrediente;
+	}
+
+	public void setIdItemIngrediente(int idItemIngrediente) {
+		this.idItemIngrediente = idItemIngrediente;
 	}
 
 	public ItemIngrediente(Ingrediente ingrediente, float cantidad) {
@@ -44,14 +52,9 @@ public class ItemIngrediente {
 	public void setCantidad(float cantidad) {
 		this.cantidad = cantidad;
 	}
-	
-	public void descontarStock(){
+
+	public void descontarStock() {
 		// TODO
 	}
 
-	public ItemIngredienteVO getVO() {
-		ItemIngredienteVO item = new ItemIngredienteVO(idItemIngrediente,new IngredienteVO(ingrediente),cantidad);
-		
-		return item;
-	}
 }

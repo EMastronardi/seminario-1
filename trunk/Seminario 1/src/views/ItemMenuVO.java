@@ -1,8 +1,10 @@
 package views;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import modelo.Menu;
+import modelo.Cliente;
+import modelo.ItemMenu;
 
 public class ItemMenuVO {
 	private int idItemMenu;
@@ -27,6 +29,18 @@ public class ItemMenuVO {
 		this.cantidad = cantidad;
 		this.clientes = clientes;
 		this.menu = menu;
+	}
+
+	public ItemMenuVO(ItemMenu itemMenu) {
+		List<String> clientes = new ArrayList<String>();
+		this.cantidad = itemMenu.getCantidad();
+		for (Cliente cliente : itemMenu.getClientes()) {
+			clientes.add(cliente.getNombre() + " " + cliente.getApellido());
+		}
+		this.clientes = clientes; 
+		this.idItemMenu = itemMenu.getIdItemMenu();
+		this.menu = new MenuVO(itemMenu.getMenu());
+		this.nombre = itemMenu.getNombre();
 	}
 
 	public int getIdItemMenu() {

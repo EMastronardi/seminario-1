@@ -106,7 +106,7 @@ public class Menu {
 		// TODO Auto-generated method stub
 		List<PlatoVO> platos = new ArrayList<PlatoVO>();
 		for (Plato plato : this.platos) {
-			platos.add(plato.getVO());
+			platos.add(new PlatoVO(plato));
 		}
 		MenuVO menu = new MenuVO(idMenu, platos, calorias, this.estado.toString());
 		return menu;
