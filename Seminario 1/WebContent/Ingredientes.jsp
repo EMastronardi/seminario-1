@@ -1,13 +1,15 @@
 <%@page import="modelo.EnumMedida"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="controler.Sistema"%>
 <%@page import="views.IngredienteVO"%>
-
+<%@page import="views.EstacionVO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <% 
-	ArrayList<IngredienteVO> ingredientes = Sistema.getInstance().getIngredientes();
+	List<IngredienteVO> ingredientes = Sistema.getInstance().getIngredientes();
+	List<EstacionVO> estaciones = Sistema.getInstance().getEstaciones();
 %>	
 <!DOCTYPE html>
 <html lang="en">
@@ -33,11 +35,18 @@
     <![endif]-->
 	<script>
 		var medidas = new Array();
+		var estaciones = new Array();
 		<%
 		int i = 0;
 		for (EnumMedida med : EnumMedida.values()) {
 			  // do what you want
 			  out.println("medidas["+i+"]=\""+med.name()+"\";");
+			  i++;
+			}
+		i = 0;
+		for (EstacionVO est : estaciones) {
+			  // do what you want
+			  out.println("estaciones["+i+"]=\""+est.getEstacion()+"\";");
 			  i++;
 			}
 		%>
@@ -55,7 +64,15 @@
 		   }
 		   table tr td{
 		   		   text-align:center;
-		   } 
+		   }
+		   table.estaciones{
+		   		width: 300px;
+		   		height: 60px;
+		   		
+		   }
+		   table.estaciones tr td{
+		   		text-align: left;
+		   }
 		   div.col-lg-6 button{ float:left}
 		   div.col-lg-8 { float:right}
 		   select {
@@ -83,7 +100,15 @@
         <div class="page-header">
           <h1>Ingredientes</h1>
         </div>
-       
+       <%
+          if(request.getAttribute("return") != null ){
+        	if(request.getAttribute("return").equals("OK")){
+        		out.println("<div class=\"alert alert-success\"><b>El proceso se ha realizado de manera exitosa.</b></div>");
+        	}else{
+        		out.println("<div class=\"alert alert-danger\"><b>El proceso se ha finalizado con error. Vuelva a intentarlo nuevamente.</b></div>");
+        	}
+          }
+          %>
         <p class="lead">
 		   <div class="panel panel-default">
             <!-- Default panel contents -->

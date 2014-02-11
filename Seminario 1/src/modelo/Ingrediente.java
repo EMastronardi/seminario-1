@@ -26,13 +26,9 @@ public class Ingrediente {
 	@ManyToMany
 	@JoinColumn(name = "idIngrediente")
 	private List<Estacion> estaciones;
-	@ManyToMany
-	@JoinColumn(name = "idIngrediente")
-	private List<Restriccion> restricciones;
 	
 	public Ingrediente(){
 		estaciones = new ArrayList<Estacion>();
-		restricciones = new ArrayList<Restriccion>();
 	}
 	
 	public int getIdIngrediente() {
@@ -76,14 +72,8 @@ public class Ingrediente {
 	}
 	public void setEstaciones(ArrayList<Estacion> estaciones) {
 		this.estaciones = estaciones;
+	}	
+	public void addEstacion(Estacion estacion){
+		this.estaciones.add(estacion);
 	}
-	public List<Restriccion> getRestricciones() {
-		return restricciones;
-	}
-	public void setRestricciones(ArrayList<Restriccion> restricciones) {
-		this.restricciones = restricciones;
-	}
-	
-	
-	
 }

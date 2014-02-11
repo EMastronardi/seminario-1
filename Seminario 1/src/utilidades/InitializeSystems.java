@@ -36,6 +36,20 @@ public class InitializeSystems {
 
 		transac = s.beginTransaction();
 		try {
+			
+			//Insertamos Estacones --------------------------------------
+
+			Estacion otonio = new Estacion("Otoño");
+			Estacion invierno = new Estacion("Invierno");
+			Estacion primavera = new Estacion("Primavera");
+			Estacion verano = new Estacion("Verano");	
+			s.save(otonio);
+			s.save(invierno);
+			s.save(primavera);
+			s.save(verano);
+			
+			//------------------------------------------------------------
+			
 			// Obtenemos Estaciones
 			ArrayList<Estacion> estaciones = (ArrayList<Estacion>) s
 					.createQuery("from Estacion").list();
