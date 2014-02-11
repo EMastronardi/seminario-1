@@ -21,6 +21,7 @@ import modelo.Plan;
 import modelo.PlanDiario;
 import modelo.Restriccion;
 import persistencia.ClientesDAO;
+import persistencia.IngredientesDAO;
 import persistencia.MenusDAO;
 import persistencia.RestriccionesDAO;
 
@@ -160,10 +161,11 @@ public class Logica {
 		for (ItemIngrediente itemIngrediente : plan
 				.obtenerIngredientesNecesarios()) {
 			Ingrediente ingrediente = itemIngrediente.getIngrediente();
-			Float cantidad = itemIngrediente.getCantidad();
+			Ingrediente stockDeIngrediente = IngredientesDAO
+					.buscarIngredientePorId(ingrediente.getIdIngrediente());
+			Float cantidad = itemIngrediente.getCantidad()
+					- stockDeIngrediente.getCantidadStock();
 
-			//TODO verificar el stock antes de agregarlo como algo a comprar!
-			
 			if (items.get(ingrediente) == null) {
 				items.put(ingrediente, cantidad);
 			} else {
