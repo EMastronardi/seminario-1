@@ -1,8 +1,10 @@
 package views;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import modelo.ItemIngrediente;
+import modelo.Plato;
 import modelo.Restriccion;
 import modelo.Tag;
 import modelo.TipoPlato;
@@ -83,6 +85,29 @@ public class PlatoVO {
 		this.tag = tag;
 		this.ingredientes = ingredientes;
 		this.restricciones = restricciones;
+	}
+
+	public PlatoVO(Plato plato) {
+
+		
+		List<ItemIngredienteVO> ingredientes = new ArrayList<ItemIngredienteVO>();
+		List<RestriccionVO> restricciones = new ArrayList<RestriccionVO>();
+
+		for (Restriccion restriccion : plato.getRestricciones()) {
+			restricciones.add(new RestriccionVO(restriccion));
+		}
+		for (ItemIngrediente itemIngrediente : plato.getIngredientes()) {
+			ingredientes.add(new ItemIngredienteVO(itemIngrediente));
+		}
+
+		this.setIdPlato(plato.getIdPlato());
+		this.setNombre(plato.getNombre());
+		this.setReceta(plato.getReceta());
+		this.setTipoPlato(plato.getTipoPlato().toString());
+		this.setTag(plato.getTag().toString());
+		this.setIngredientes(ingredientes);
+		this.setRestricciones(restricciones);
+
 	}
 
 }

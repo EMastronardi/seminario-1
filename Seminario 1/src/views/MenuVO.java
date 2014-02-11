@@ -1,6 +1,10 @@
 package views;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import modelo.Menu;
+import modelo.Plato;
 
 public class MenuVO {
 	// TODO
@@ -49,6 +53,18 @@ public class MenuVO {
 		this.platos = platos;
 		this.calorias = calorias;
 		this.estado = estado;
+	}
+
+	public MenuVO(Menu menu) {
+		List<PlatoVO> platosVO = new ArrayList<PlatoVO>();
+		
+		this.calorias = menu.getCalorias();
+		this.estado = menu.getEstado().toString();
+		this.idMenu = menu.getIdMenu();
+		for (Plato plato : menu.getPlatos()) {
+			platosVO.add(new PlatoVO(plato));
+		}
+		this.platos = platosVO;
 	}
 
 }

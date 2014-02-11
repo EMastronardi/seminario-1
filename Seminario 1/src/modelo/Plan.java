@@ -80,14 +80,6 @@ public class Plan {
 		return ingredientesNecesarios;
 	}
 
-	public PlanVO getVO() {
-		PlanVO plan;
-		List<PlanDiarioVO> items = new ArrayList<PlanDiarioVO>();
-		for (PlanDiario planDiario : this.items) {
-			items.add(planDiario.getVO());
-		}
-		plan = new PlanVO(idPlan,this.getFechaInicio(),this.getFechaFin(),this.getEstado().toString(),items);
-		return plan;
-	}
+
 
 }

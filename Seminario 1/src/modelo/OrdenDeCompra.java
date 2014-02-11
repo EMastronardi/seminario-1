@@ -70,9 +70,4 @@ public class OrdenDeCompra {
 		this.items = items;
 	}
 
-	public OrdenDeCompraVO toVO() {
-		// TODO Implementar la conversión a VO de la OrdenDeCompra
-		return null;
-	}
-
 }

@@ -1,9 +1,12 @@
 package views;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import modelo.EnumEstado;
+import modelo.Plan;
+import modelo.PlanDiario;
 
 public class PlanVO {
 	private int idPlan;
@@ -26,6 +29,21 @@ public class PlanVO {
 		this.fechaFin = fechaFin;
 		this.estado = estado;
 		this.items = items;
+	}
+
+
+
+	public PlanVO(Plan plan) {
+		List<PlanDiarioVO> planes = new ArrayList<PlanDiarioVO>();
+		
+		this.estado = plan.getEstado().toString();
+		this.fechaFin = plan.getFechaFin();
+		this.fechaInicio = plan.getFechaInicio();
+		this.idPlan = plan.getIdPlan();
+		for (PlanDiario planDiario : plan.getItems()) {
+			planes.add(new PlanDiarioVO(planDiario));
+		}
+		this.items = planes;
 	}
 
 

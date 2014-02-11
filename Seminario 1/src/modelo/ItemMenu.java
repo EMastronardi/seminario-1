@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import views.ItemMenuVO;
+import views.MenuVO;
 
 @Entity
 public class ItemMenu {
@@ -89,11 +90,21 @@ public class ItemMenu {
 		return ingredientesNecesarios;
 	}
 
-	public ItemMenuVO getVO() {
-		//TODO por ahora no se construye el ItemMenu con los clientes a los que se debe servir
-		ItemMenuVO item = new ItemMenuVO(idItemMenu, nombre, cantidad, null, menu.getVO());
-	
-		return item;
+//	public ItemMenuVO getVO() {
+//		//TODO por ahora no se construye el ItemMenu con los clientes a los que se debe servir
+//		ItemMenuVO item = new ItemMenuVO(idItemMenu, nombre, cantidad, null, new MenuVO(menu));
+//	
+//		return item;
+//	}
+
+	public int getIdItemMenu() {
+		return idItemMenu;
 	}
+
+	public void setIdItemMenu(int idItemMenu) {
+		this.idItemMenu = idItemMenu;
+	}
+
+
 
 }
