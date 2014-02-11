@@ -25,6 +25,14 @@
 					<li><a href="#">Listado sarasa ....</a></li>
 
 				</ul></li>
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown">Planes <b class="caret"></b>
+			</a>
+				<ul class="dropdown-menu">
+					<li><a href="Planes.jsp">Plan Semanal</a></li>
+					<li><a href="#">Listar Planes...</a></li>
+
+				</ul></li>
 		</ul>
 	</div>
 	<!-- /.navbar-collapse -->

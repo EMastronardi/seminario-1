@@ -10,6 +10,16 @@ public class PlanDiarioVO {
 	private List<ItemMenuVO> items;
 	private String estado;
 
+	public PlanDiarioVO(int idItemPlan, Date fecha, boolean feriado,
+			List<ItemMenuVO> items, String estado) {
+		super();
+		this.idItemPlan = idItemPlan;
+		this.fecha = fecha;
+		this.feriado = feriado;
+		this.items = items;
+		this.estado = estado;
+	}
+
 	public int getIdItemPlan() {
 		return idItemPlan;
 	}

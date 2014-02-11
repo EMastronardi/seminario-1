@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import views.IngredienteVO;
+import views.ItemIngredienteVO;
+
 @Entity
 public class ItemIngrediente {
 	@Id
@@ -44,5 +47,11 @@ public class ItemIngrediente {
 	
 	public void descontarStock(){
 		// TODO
+	}
+
+	public ItemIngredienteVO getVO() {
+		ItemIngredienteVO item = new ItemIngredienteVO(idItemIngrediente,new IngredienteVO(ingrediente),cantidad);
+		
+		return item;
 	}
 }

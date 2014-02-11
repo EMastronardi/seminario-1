@@ -15,6 +15,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import views.ItemIngredienteVO;
+import views.PlatoVO;
+import views.RestriccionVO;
+
 @Entity
 public class Plato {
 	@Id
@@ -110,6 +114,20 @@ public class Plato {
 
 	public void descontar() {
 		// TODO
+	}
+
+	public PlatoVO getVO() {
+		
+		List<ItemIngredienteVO> ingredientes = new ArrayList<ItemIngredienteVO>();
+		List<RestriccionVO> restricciones = new ArrayList<RestriccionVO>();
+		for (Restriccion restriccion : this.restricciones) {
+			restricciones.add(new RestriccionVO(restriccion));
+		}
+		for (ItemIngrediente itemIngrediente : this.ingredientes) {
+			ingredientes.add(itemIngrediente.getVO());
+		}
+		PlatoVO plato = new PlatoVO(idPlato,nombre,receta,tipoPlato.toString(),tag.getDescripcion(),ingredientes,restricciones);
+		return plato;
 	}
 
 }

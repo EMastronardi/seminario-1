@@ -1,7 +1,9 @@
 package persistencia;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 
 import modelo.Plan;
 
@@ -13,6 +15,13 @@ public class PlanDAO {
 		Query query = s.createQuery("from Plan p where p.idPlan = :idPlan");
 		query.setInteger(":idPlan", idPlan);
 		return (Plan) query.uniqueResult();
+	}
+
+	public static Plan obtenerPlanActual() {
+		Criteria c = s.createCriteria(Plan.class);
+		c.addOrder(Order.desc("idPlan"));
+		c.setMaxResults(1);
+		return (Plan)c.uniqueResult();
 	}
 
 }

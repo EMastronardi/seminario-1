@@ -8,9 +8,27 @@ import modelo.EnumEstado;
 public class PlanVO {
 	private int idPlan;
 	private Date fechaInicio;
-	private Date fecaFin;
-	private EnumEstado estado;
+	private Date fechaFin;
+	private String estado;
 	private List<PlanDiarioVO> items;
+
+	public PlanVO(){
+		
+	}
+	
+	
+	
+	public PlanVO(int idPlan, Date fechaInicio, Date fechaFin,
+			String estado, List<PlanDiarioVO> items) {
+		super();
+		this.idPlan = idPlan;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.estado = estado;
+		this.items = items;
+	}
+
+
 
 	public int getIdPlan() {
 		return idPlan;
@@ -28,19 +46,19 @@ public class PlanVO {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public Date getFecaFin() {
-		return fecaFin;
+	public Date getFechaFin() {
+		return fechaFin;
 	}
 
-	public void setFecaFin(Date fecaFin) {
-		this.fecaFin = fecaFin;
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 
-	public EnumEstado getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(EnumEstado estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
