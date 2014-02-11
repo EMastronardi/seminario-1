@@ -14,7 +14,9 @@ public class IngredienteVO {
 	private int diasCaducidad;
 	private boolean freezer;
 	private List<EstacionVO> estaciones;
-	private List<RestriccionVO> restricciones;
+	public IngredienteVO() {
+	
+	}
 	public IngredienteVO(Ingrediente ingrediente) {
 		super();
 		this.idIngrediente = ingrediente.getIdIngrediente();
@@ -29,15 +31,7 @@ public class IngredienteVO {
 			EstacionVO vo = new EstacionVO(element);
 			estacionesVO.add(vo);
 		}
-		this.estaciones = estacionesVO;
-		
-		//MAPEAMOS LAS ESTACIONES PARA RESTRCCIONES VIEW-OBJECT
-		ArrayList<RestriccionVO> restriccionVO = new ArrayList<RestriccionVO>();
-		for (RestriccionVO elem : restriccionVO) {
-			RestriccionVO vo = new RestriccionVO();
-			restriccionVO.add(vo);
-		}
-		this.restricciones = restriccionVO;
+		this.estaciones = estacionesVO;	
 	}
 	public int getIdIngrediente() {
 		return idIngrediente;
@@ -81,11 +75,4 @@ public class IngredienteVO {
 	public void setEstaciones(List<EstacionVO> estaciones) {
 		this.estaciones = estaciones;
 	}
-	public List<RestriccionVO> getRestricciones() {
-		return restricciones;
-	}
-	public void setRestricciones(List<RestriccionVO> restricciones) {
-		this.restricciones = restricciones;
-	}
-	
 }

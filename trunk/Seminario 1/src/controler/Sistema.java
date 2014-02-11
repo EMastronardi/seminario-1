@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Cliente;
+import modelo.EnumMedida;
+import modelo.Estacion;
 import modelo.Ingrediente;
 import modelo.OrdenDeCompra;
 import modelo.Plan;
@@ -12,16 +14,19 @@ import modelo.Usuario;
 
 import org.hibernate.Session;
 
+import persistencia.EstacionDAO;
 import persistencia.HibernateUtil;
 import persistencia.PlanDAO;
 import utilidades.GlobalsVars;
 import utilidades.InitializeSystems;
 import views.ClienteVO;
+import views.EstacionVO;
 import views.IngredienteVO;
 import views.OrdenDeCompraVO;
 import views.RestriccionVO;
 import views.RestriccionVOList;
-import auxiliares.Cargador;
+
+
 
 public class Sistema {
 	private static Sistema instancia;
@@ -29,8 +34,8 @@ public class Sistema {
 
 	private Sistema() {
 		s = GlobalsVars.HIBERATE_SESSION;
-		InitializeSystems.cargador();
-		Cargador.cargarDatos();
+		//InitializeSystems.cargador();
+		//Cargador.cargarDatos();
 	}
 
 	public static Sistema getInstance() {
@@ -90,6 +95,48 @@ public class Sistema {
 			restricciones.add(restriccionVO);
 		}
 		return restricciones;
+	}
+	public List<EstacionVO> getEstaciones(){
+		List<EstacionVO> estacionesVO = new ArrayList<EstacionVO>();
+		List<Estacion> estaciones = EstacionDAO.estaciones();
+		for (Estacion estacion : estaciones) {
+			estacionesVO.add(new EstacionVO(estacion));
+		}
+		return estacionesVO;
+	}
+	public boolean altaIngrediente(String name, int cantidadStock, int diasCaducidad, String medida,  boolean freezer, List<String> estaciones){
+		try{
+			Ingrediente ing = new Ingrediente();
+			ing.setNombre(name);
+			ing.setCantidadStock(cantidadStock);
+			ing.setDiasCaducidad(diasCaducidad);
+			ing.setFreezer(freezer);
+			//EnumMedida medida;
+			List<Estacion> sysEstaciones = EstacionDAO.estaciones();
+			
+			for (Estacion estacion : sysEstaciones) {
+				if(estaciones.contains(estacion.getEstacion())){
+					ing.addEstacion(estacion);
+				}
+			}
+			ing.setMedida(EnumMedida.valueOf(medida));
+			s.save(ing);	
+			return true;
+		}catch( Exception e){
+			System.out.println("No se ha podido persistir el ingrediente");
+			return false;
+		}
+	}
+	public boolean bajaIngrediente(int idIngrediente){
+		try{
+			//Ingrediente ing = IngredienteDAO.getIngredienteById(idIngrediente);
+			//s.delete(ing);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+		
+		
 	}
 
 	public OrdenDeCompraVO generarOrdenDeCompra(int idPlan) {

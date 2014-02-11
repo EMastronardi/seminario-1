@@ -5,9 +5,10 @@ function createIngrediente(){
 	for(var i=0; i<medidas.length;i++){
 		options+="<option value='"+medidas[i]+"'>"+medidas[i]+"</option>";
 	}
+
 	bootbox
 	.dialog({
-		message : "<form id='createIngrediente' method='post' action='IngredienteServlet?action=createIngrediente'>"
+		message : "<form id='createIngrediente' method='post' action='IngredienteServlet?action=altaIngrediente'>"
 				+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nombreInput' name=\"nombre\" autofocus>"
 				+ "<br/>"
 				+ "<label>Cantidad en Stock </label><input type=\"text\" class=\"form-control\" id='stockInput' name=\"stock\" autofocus>"
@@ -16,31 +17,24 @@ function createIngrediente(){
 				+ "<br/>"
 				+ "<label>Dias de Caducidad </label><input type=\"text\" class=\"form-control\" id='diasCaducidadInput' name=\"diascaducidad\" autofocus>"
 				+ "<br/>"
-				+ "<input type=\"checkbox\" id='freezerInput' name=\"freezer\" autofocus><label>&nbsp;Freezer </label>"
-				+ "<br/>"
-				+ "<label>Restricciones</label><br/>"
-				+ "<div class=\"panel panel-default\">"       
-				+ "<div class=\"panel-heading\">"
-				+ "	<div class=\"row\">"
-				+ "	 	<div class=\"col-lg-6\">"
-				+ "			<button type=\"button\" id=\"newIngrediente\" class=\"btn btn-default btn-sm\" onclick=\"selectRestriccion();\">"
-				+ "				<span class=\"glyphicon glyphicon-plus\"></span> Agregar Restricci&oacute;n"
-				+ "			</button>"
-				+ "		 </div>"
-				+ "   	</div>"
-				+ "   </div>"
-				+ "<table class=\"table\">"
-				+ "  <thead>"
-				+ "  	<tr>"
-				+ "  		 <th>Seleccionar</th>"
-				+ "  		 <th>Nombre</th>"
-				+ "  		 <th>Descripcion</th>"
-				+ " 		 <th>Severidad</th>"
-				+ " </thead>"
-				+ " <tbody>"
-				+ "  </tbody>"
-				+ "</table>" 
-				+ "</div>"
+				+ "<label>Freezer&nbsp;</label>&nbsp;<input type='radio' name='freezer' value='ok' checked='chekced'>&nbsp;Si&nbsp;<input type='radio' name='freezer' value='no'>&nbsp;No "
+				+ "<br/><br/>"
+				+ "<label>Estaciones </label>"
+				+ "<br/><br/>"
+				+ "<table class=\"estaciones\" align=\"center\">" 
+				+ "<tr>" 
+					+ "<td><input type=\"checkbox\" id='otonioInput' name=\"otinio\" value=\""+estaciones[0]+"\" autofocus><td/>" 
+					+ "<td>"+estaciones[0]+"<td/>" 
+					+ "<td><input type=\"checkbox\" id='inviernoInput' name=\"invierno\" value=\""+estaciones[1]+"\" autofocus><td/>" 
+					+ "<td>"+estaciones[1]+"<td/>" 
+				+ "</tr>" 
+				+ "<tr>" 
+					+ "<td><input type=\"checkbox\" id='primaInput' name=\"primavera\" value=\""+estaciones[2]+"\" autofocus><td/>" 
+					+ "<td>"+estaciones[2]+"<td/>" 
+					+ "<td><input type=\"checkbox\" id='veranoInput' name=\"verano\" name=\"estacion[3]\" value=\""+estaciones[3]+"\" autofocus><td/>" 
+					+ "<td>"+estaciones[3]+"<td/>" 
+				+ "</tr>"
+				+ "</table>"
 				+ "</form>",
 		title : "Agregar Ingrediente",
 		buttons : {
@@ -49,9 +43,8 @@ function createIngrediente(){
 				className : "btn-success",
 				callback : function() {
 					if ($("#nombreInput").val() != ''
-							|| $("#stockInput").val() != ''
-							|| $("#diasCaducidadInput").val() != ''
-							|| $("#freezerInput").val() != '') {
+							&& $("#stockInput").val() != ''
+							&& $("#diasCaducidadInput").val() != '') {
 						$("#createIngrediente").submit();
 					} else {
 						alert("Para dar de alta un Ingrediente debe ingresar todos los campos");
@@ -62,6 +55,9 @@ function createIngrediente(){
 	});
 }
 
+function showAlertMensaje(mesnaje){
+	bootbox.alert(mesnaje, function() {createIngrediente();});
+}
 function selectRestriccion(){
 	//Obtener por ajax todas las restricciones
 	var  value  = "restriccionAjax";

@@ -150,6 +150,8 @@ public class Logica {
 		return generarPlanSemanal(tags, new Date());
 	}
 
+	
+
 	public static OrdenDeCompra generarOrdenDeCompraPorPlan(Plan plan) {
 		OrdenDeCompra oc;
 

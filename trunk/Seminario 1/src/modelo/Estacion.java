@@ -12,6 +12,14 @@ public class Estacion {
 	private int idEstacion;
 	private String estacion;
 
+	public Estacion(){
+		
+	}
+	public Estacion(String name) {
+		// TODO Auto-generated constructor stub
+		this.estacion = name;
+	}
+
 	public int getIdEstacion() {
 		return idEstacion;
 	}
@@ -27,5 +35,15 @@ public class Estacion {
 	public void setEstacion(String estacion) {
 		this.estacion = estacion;
 	}
-
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if(String.class.getInterfaces().equals(obj)){
+			if(this.estacion.equals(obj)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }
