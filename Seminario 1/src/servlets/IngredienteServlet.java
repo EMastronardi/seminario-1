@@ -65,7 +65,7 @@ public class IngredienteServlet extends Controlador {
 			}else{
 				request.setAttribute("return", "NOK");
 			}
-		}else if("bajaIngrediente".equals(action)){
+		}else if("eliminarIngrediente".equals(action)){
 			jspPage = "/Ingredientes.jsp";
 			int idIngrediente = Integer.parseInt(request.getParameter("idIngrediente"));
 			boolean rslt = sistema.bajaIngrediente(idIngrediente);
