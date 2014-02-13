@@ -1,5 +1,6 @@
 
 var xml;
+var idIngredienteChecked;
 function createIngrediente(){
 	var options="";
 	for(var i=0; i<medidas.length;i++){
@@ -134,6 +135,43 @@ function openDialogRestriccion(tableRows){
 		}
 	});
 }
+
+function deleteIngrediente (){	
+	if(idIngredienteChecked != ""){	
+		bootbox.dialog({
+			  message: "<h3>Esta seguro que desea eliminar el Ingrediente ?</h2>"+
+			  "<form id='deleteingrediente' method='post' action='IngredienteServlet?action=eliminarIngrediente'>"+
+				"<input type='hidden' name='idIngrediente' value='"+idIngredienteChecked+"'/>"+
+		        "</form>",
+			  title: "Eliminar Ingrediente",
+			  buttons: {
+			    success: {
+			      label: "Confirmar",
+			      className: "btn-success",
+			      callback: function() {
+			    	  $( "#deleteingrediente" ).submit();
+			      }
+			    },
+		        main: {
+				      label: "Cancelar",
+				      callback: function() {
+				      }
+				}
+			  }
+		});
+	} else {
+		bootbox.alert("Debe seleccionar un Ingrediente!", function() {});
+	}
+}
+
+function unChecked(obj, idingredienteselected){
+	var checks = $( ":checkbox" );
+	for (var i = 0; i<checks.length; i++){
+		if(checks[i] != obj) checks[i].checked = false;
+	}
+	idIngredienteChecked = idingredienteselected;
+}
+
 function addRestriccion(){
 	var checks = $( "#restriccionTable :checkbox" );
 //	for (var i = 0; i<checks.length; i++){
