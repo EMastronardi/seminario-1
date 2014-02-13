@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import views.MenuVO;
@@ -24,6 +25,8 @@ public class Menu {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idMenu")
 	private List<Plato> platos;
+	@OneToOne
+	private Tag tag;
 	private int calorias;
 	private EnumEstado estado;
 	private Date ultimoUso;

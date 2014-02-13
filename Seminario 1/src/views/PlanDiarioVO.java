@@ -13,15 +13,25 @@ public class PlanDiarioVO {
 	private boolean feriado;
 	private List<ItemMenuVO> items;
 	private String estado;
+	private String tag;
 
 	public PlanDiarioVO(int idItemPlan, Date fecha, boolean feriado,
-			List<ItemMenuVO> items, String estado) {
+			List<ItemMenuVO> items, String estado, String tag) {
 		super();
 		this.idItemPlan = idItemPlan;
 		this.fecha = fecha;
 		this.feriado = feriado;
 		this.items = items;
 		this.estado = estado;
+		this.tag = tag;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public PlanDiarioVO(PlanDiario planDiario) {
@@ -34,6 +44,7 @@ public class PlanDiarioVO {
 			items.add(new ItemMenuVO(itemMenu));
 		}
 		this.items = items;
+		this.tag = planDiario.getTag();
 	}
 
 	public int getIdItemPlan() {
@@ -75,5 +86,16 @@ public class PlanDiarioVO {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	@Override
+	public String toString() {
+		StringBuffer descripcion = new StringBuffer("");
+		for (ItemMenuVO item : items) {
+			descripcion.append(" - ").append(item.getNombre());
+		}
+		return descripcion.toString();
+	}
+	
+	
 
 }
