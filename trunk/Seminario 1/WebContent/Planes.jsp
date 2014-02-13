@@ -143,14 +143,7 @@
     </div>
 	<br/>
    <jsp:include page="/Footer.jsp" />
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="bootstrap/js/bootbox.min.js"></script>
+
 	<script src="js/IngredientesABM.js"></script>
   </body>
 </html>
