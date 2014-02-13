@@ -13,9 +13,14 @@ public class IngredienteDAO {
 	private static Session s = GlobalsVars.HIBERATE_SESSION;
 	
 	public static Ingrediente getIngredienteById(int idIngrediente){
-		Query query = s.createQuery("from Ingrediente i where i.idIngrediente = :id");
-		query.setInteger(":id", idIngrediente);
-		return (Ingrediente) query.uniqueResult();
+		Ingrediente ing = (Ingrediente) s.get( Ingrediente.class, idIngrediente);
+		return ing;
+	}
+	public static boolean deleteIngrediente(int id){
+		Query query = s.createQuery("delete Ingrediente  where idIngrediente = :x");
+		query.setParameter("x", id);
+		int result = query.executeUpdate();
+		return true;
 	}
 
 }
