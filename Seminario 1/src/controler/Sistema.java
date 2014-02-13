@@ -135,7 +135,7 @@ public class Sistema {
 				}
 			}
 			ing.setMedida(EnumMedida.valueOf(medida));
-			s.save(ing);
+			IngredienteDAO.addIngrediente(ing);
 			return true;
 		} catch (Exception e) {
 			System.out.println("No se ha podido persistir el ingrediente");
@@ -158,7 +158,14 @@ public class Sistema {
 		OrdenDeCompra oc = Logica.generarOrdenDeCompraPorPlan(plan);
 		return new OrdenDeCompraVO(oc);
 	}
-
+	public IngredienteVO getIngredienteById(int idIngrediente){
+		IngredienteVO result = null;
+		Ingrediente ingaux = IngredienteDAO.getIngredienteById(idIngrediente);
+		if(ingaux!= null){
+			result = new IngredienteVO(ingaux);
+		}
+		return result;
+	}
 	public PlanVO generarPlanSemanal(List<String> tags, Date fecha) {
 
 		PlanVO plan = new PlanVO(Logica.generarPlanSemanal(tags, fecha));
