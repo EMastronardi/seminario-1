@@ -55,7 +55,85 @@ function createIngrediente(){
 		}
 	});
 }
+function editIngrediente(){
+	var  value  = "getIngredienteAjax";
+	$.ajax({
+        type: "POST",
+        url: "IngredienteServlet",
+        data: { action : value , idIngrediente : idIngredienteChecked}
+      }).done(function(xmlStr) {
+    	  console.log(xmlStr);
+    	  xml = $.parseXML(xmlStr),
+    	  $xml = $(xml); 
+    	  var estacionName = $(xml).find('nombre').text();
+    	  var cantidadStock = $(xml).find('cantidadStock').text();
+    	  var estacionMedida = $(xml).find('medida').text();
+    	  var diasCaducidad =  $(xml).find('diasCaducidad').text();
+    	  var freezer =  $(xml).find('freezer').text();
+    	  var estacionesItem = new Array();
+    	  var i = 0;
+    	  $(xml).find('estacionItem').each (function() { 
+  		  	 estacionesItem[i] = $(this).find("estacion").text();
+  		  	 i++;
+    	  });
+    	  showOpenEditIngrediente(estacionName, cantidadStock, estacionMedida , diasCaducidad, freezer, estacionesItem);
+    	});
+}
+function showOpenEditIngrediente(estacionName, cantidadStock, estacionMedida , diasCaducidad, freezer, estacionesItem){
+	var options="";
+	for(var i=0; i<medidas.length;i++){
+		var select = (estacionMedida == medidas[i])?"selected":"";
+		options+="<option value='"+medidas[i]+"'"+select+ " >"+medidas[i]+"</option>";
+	}
 
+	bootbox
+	.dialog({
+		message : "<form id='createIngrediente' method='post' action='IngredienteServlet?action=altaIngrediente'>"
+				+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nombreInput' name=\"nombre\" value=\""+estacionName+"\" autofocus>"
+				+ "<br/>"
+				+ "<label>Cantidad en Stock </label><input type=\"text\" class=\"form-control\" id='stockInput' name=\"stock\" value=\""+cantidadStock+"\" autofocus>"
+				+ "<br/>"
+				+ "<label>Medida </label><select name=\"medida\">"+options+"</select>"
+				+ "<br/>"
+				+ "<label>Dias de Caducidad </label><input type=\"text\" class=\"form-control\" id='diasCaducidadInput' name=\"diascaducidad\" value=\""+diasCaducidad+"\" autofocus>"
+				+ "<br/>"
+				+ "<label>Freezer&nbsp;</label>&nbsp;<input type='radio' name='freezer' value='ok' checked='chekced'>&nbsp;Si&nbsp;<input type='radio' name='freezer' value='no'>&nbsp;No "
+				+ "<br/><br/>"
+				+ "<label>Estaciones </label>"
+				+ "<br/><br/>"
+				+ "<table class=\"estaciones\" align=\"center\">" 
+				+ "<tr>" 
+					+ "<td><input type=\"checkbox\" id='otonioInput' name=\"otinio\" value=\""+estaciones[0]+"\" autofocus><td/>" 
+					+ "<td>"+estaciones[0]+"<td/>" 
+					+ "<td><input type=\"checkbox\" id='inviernoInput' name=\"invierno\" value=\""+estaciones[1]+"\" autofocus><td/>" 
+					+ "<td>"+estaciones[1]+"<td/>" 
+				+ "</tr>" 
+				+ "<tr>" 
+					+ "<td><input type=\"checkbox\" id='primaInput' name=\"primavera\" value=\""+estaciones[2]+"\" autofocus><td/>" 
+					+ "<td>"+estaciones[2]+"<td/>" 
+					+ "<td><input type=\"checkbox\" id='veranoInput' name=\"verano\" name=\"estacion[3]\" value=\""+estaciones[3]+"\" autofocus><td/>" 
+					+ "<td>"+estaciones[3]+"<td/>" 
+				+ "</tr>"
+				+ "</table>"
+				+ "</form>",
+		title : "Agregar Ingrediente",
+		buttons : {
+			success : {
+				label : "Confirmar",
+				className : "btn-success",
+				callback : function() {
+					if ($("#nombreInput").val() != ''
+							&& $("#stockInput").val() != ''
+							&& $("#diasCaducidadInput").val() != '') {
+						$("#createIngrediente").submit();
+					} else {
+						alert("Para dar de alta un Ingrediente debe ingresar todos los campos");
+					}
+				}
+			}
+		}
+	});
+}
 function showAlertMensaje(mesnaje){
 	bootbox.alert(mesnaje, function() {createIngrediente();});
 }
