@@ -10,11 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-
-import views.PlanDiarioVO;
-import views.PlanVO;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="Planes")
 public class Plan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -80,6 +79,9 @@ public class Plan {
 		return ingredientesNecesarios;
 	}
 
-
+	public Plan() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 }
