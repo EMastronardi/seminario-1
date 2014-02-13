@@ -9,3 +9,8 @@
 		</div>
 	</nav>
 </div>
+<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootbox.min.js"></script>
+<script src="js/footable.js" type="text/javascript"></script>
+<script src="js/footable.paginate.js" type="text/javascript"></script>

@@ -103,15 +103,6 @@ table tr td {
 		<!-- End content -->
 		<jsp:include page="/Footer.jsp" />
 
-
-		<!-- Bootstrap core JavaScript
-    ================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="bootstrap/js/bootstrap.min.js"></script>
-		<script src="bootstrap/js/bootbox.min.js"></script>
 		<script type="text/javascript">
 	var idUsuario = "";
 	var usuario = "";
