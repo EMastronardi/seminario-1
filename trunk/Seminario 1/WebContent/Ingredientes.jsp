@@ -64,6 +64,10 @@
 		   table tr td{
 		   		   text-align:center;
 		   }
+		   table tr.information td{
+		   		   text-align:center;
+		   		   cursor:pointer;
+		   }
 		   table.estaciones{
 		   		width: 300px;
 		   		height: 60px;
@@ -157,7 +161,7 @@
 			  </thead>
 			  <tbody>
 			 <% for(IngredienteVO ing : ingredientes){
-				 out.println("<tr>"+
+				 out.println("<tr class='information'>"+
 			 					"<td><input type='checkbox' value='"+ing.getIdIngrediente()+"' onClick=\"unChecked(this,'"+ing.getIdIngrediente()+"')\"/></td>"+
 				 				"<td>"+ ing.getNombre()+"</td>"+
 			 					"<td>"+ ing.getCantidadStock()+"</td>"+
@@ -169,7 +173,7 @@
 			  </tbody>
 			  <tfoot>
 						<tr>
-							<td colspan="5">
+							<td colspan="6">
 								<div class="pagination pagination-centered"></div>
 							</td>
 						</tr>
@@ -203,6 +207,12 @@
 			$( "#deleteIngrediente" ).click(function() {
 				deleteIngrediente();
 			});
+			 $(".information").hover(
+				function() {
+					  $(this).css('background-color', '#e7e7e7')
+				}, function() {
+					  $(this).css('background-color', '')
+			 });
 		});
 	</script>
 	
