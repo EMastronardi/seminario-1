@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import views.EstacionVO;
+import views.IngredienteVO;
 import views.RestriccionVO;
 import views.RestriccionVOList;
 
@@ -55,7 +57,7 @@ public class IngredienteServlet extends Controlador {
 				freezer = true;
 			}
 			List<String> estaciones = new ArrayList<String>();
-			if(request.getParameter("otonio") != null) estaciones.add(request.getParameter("otonio")); 
+			if(request.getParameter("otonio") != null) estaciones.add("Otoño"); 
 			if(request.getParameter("invierno") != null) estaciones.add(request.getParameter("invierno")); 
 			if(request.getParameter("primavera") != null) estaciones.add(request.getParameter("primavera")); 
 			if(request.getParameter("verano") != null) estaciones.add(request.getParameter("verano")); 
@@ -75,6 +77,16 @@ public class IngredienteServlet extends Controlador {
 				request.setAttribute("return", "NOK");
 			}
 			
+		}else if("getIngredienteAjax".equals(action)){
+			IngredienteVO ing =  sistema.getIngredienteById(Integer.parseInt(request.getParameter("idIngrediente")));
+			XStream xstream = new XStream(new DomDriver());
+			xstream.alias("ingrediente", IngredienteVO.class);
+			xstream.alias("estacionItem", EstacionVO.class);
+		    String xml = xstream.toXML(ing);
+		    response.setContentType("text/plain");
+	        response.setCharacterEncoding("UTF-8");
+	        response.getWriter().write(xml);
+	        dispacher = false;
 		}
 		if(dispacher) super.dispatch(jspPage, request, response);
 	}
