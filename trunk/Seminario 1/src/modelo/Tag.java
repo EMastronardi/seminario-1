@@ -12,7 +12,7 @@ public class Tag {
 	private int idTag;
 	private String nombre;
 	private String descripcion;
-	
+
 	public Tag() {
 		super();
 	}
@@ -40,5 +40,11 @@ public class Tag {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
+	@Override
+	public String toString() {
+
+		return nombre;
+	}
+
 }
