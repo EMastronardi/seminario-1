@@ -13,6 +13,7 @@ public class MenuVO {
 	private List<PlatoVO> platos;
 	private int calorias;
 	private String estado;
+	private String tag;
 
 	// private Date ultimoUso;
 	public int getIdMenu() {
@@ -65,6 +66,7 @@ public class MenuVO {
 			platosVO.add(new PlatoVO(plato));
 		}
 		this.platos = platosVO;
+		this.tag = menu.getTag().toString();
 	}
 
 }

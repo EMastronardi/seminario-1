@@ -28,9 +28,18 @@ public class Menu {
 	@OneToOne
 	private Tag tag;
 	private int calorias;
+
+	public Tag getTag() {
+		return tag;
+	}
+
+	public void setTag(Tag tag) {
+		this.tag = tag;
+	}
+
 	private EnumEstado estado;
 	private Date ultimoUso;
-	
+
 	public Date getUltimoUso() {
 		return ultimoUso;
 	}
@@ -105,13 +114,4 @@ public class Menu {
 		return restricciones;
 	}
 
-	public MenuVO getVO() {
-		// TODO Auto-generated method stub
-		List<PlatoVO> platos = new ArrayList<PlatoVO>();
-		for (Plato plato : this.platos) {
-			platos.add(new PlatoVO(plato));
-		}
-		MenuVO menu = new MenuVO(idMenu, platos, calorias, this.estado.toString());
-		return menu;
-	}
 }
