@@ -1,6 +1,7 @@
 package controler;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import modelo.Cliente;
@@ -156,6 +157,12 @@ public class Sistema {
 		Plan plan = PlanDAO.obtenerPlanPorId(idPlan);
 		OrdenDeCompra oc = Logica.generarOrdenDeCompraPorPlan(plan);
 		return new OrdenDeCompraVO(oc);
+	}
+
+	public PlanVO generarPlanSemanal(List<String> tags, Date fecha) {
+
+		PlanVO plan = new PlanVO(Logica.generarPlanSemanal(tags, fecha));
+		return plan;
 	}
 
 }

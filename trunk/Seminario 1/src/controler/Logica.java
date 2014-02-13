@@ -27,7 +27,7 @@ import persistencia.RestriccionesDAO;
 
 public class Logica {
 
-	public Plan generarPlanSemanal(List<String> tags, Date fechaComienzo) {
+	public static Plan generarPlanSemanal(List<String> tags, Date fechaComienzo) {
 		// TODO armado del plan semanal con los planes diarios // Busco los
 		// menús que coinciden con los tags ordenados
 
@@ -47,6 +47,7 @@ public class Logica {
 			fecha.setTime(fechaComienzo);
 
 			PlanDiario planDiario = new PlanDiario(fecha.getTime());
+			planDiario.setTag(tags.get(i));
 
 			// Primer búsqueda: Busco solo 1 menu, que cumple con el tag y es el
 			// que se uso hace mas tiempo

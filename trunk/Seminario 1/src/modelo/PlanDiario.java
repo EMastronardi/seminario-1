@@ -25,6 +25,7 @@ public class PlanDiario {
 	@JoinColumn(name = "idItemPlan")
 	private List<ItemMenu> items;
 	private String estado;
+	private String tag;
 
 	public PlanDiario() {
 		items = new ArrayList<ItemMenu>();
@@ -83,6 +84,15 @@ public class PlanDiario {
 					.obtenerIngredientesNecesarios());
 		}
 		return ingredientesNecesarios;
+	}
+
+	public String getTag() {
+
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 }
