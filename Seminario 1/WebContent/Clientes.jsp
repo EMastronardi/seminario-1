@@ -30,23 +30,49 @@
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
 
-
-<style>
-table tr th {
-	text-align: center;
-}
-
-table tr td {
-	text-align: center;
-}
-</style>
-
+	
+	<style>
+			   table tr th {
+			   		 text-align:center;
+			   }
+			   table tr td{
+			   		   text-align:center;
+			   }
+			   table tr.information td{
+			   		   text-align:center;
+			   		   cursor:pointer;
+			   }
+			   table.estaciones{
+			   		width: 300px;
+			   		height: 60px;
+			   		
+			   }
+			   table.estaciones tr td{
+			   		text-align: left;
+			   }
+			   div.col-lg-6 button{ float:left}
+			   div.col-lg-8 { float:right}
+			   select {
+			   		display: block;
+					width: 100%;
+					height: 34px;
+					padding: 6px 12px;
+					font-size: 14px;
+					line-height: 1.428571429;
+					color: #555555;
+			   }		    
+	</style>
 </head>
 <body>
-	<div id="wrap">
+	<div id="wrap" >
 		<jsp:include page="/Header.jsp" />
-		<!-- Begin page content -->
-		<div class="page-header">
+		<div class="container">
+		<ol class="breadcrumb">
+		  <li><a href="Home.jsp">Inicio</a></li>
+		  <li class="active">Clientes</li>
+		</ol>
+		
+       <div class="page-header">
 			<h1>Clientes</h1>
 		</div>
 		<div class="panel panel-default">
@@ -78,6 +104,7 @@ table tr td {
 						<th>Telefono</th>
 						<th>Hora Entrega</th>
 						<th>Estado</th>
+						<th>Restricciones</th>
 				</thead>
 				<tbody>
 					<%
@@ -94,7 +121,12 @@ table tr td {
 									+ cliente.getLocalidad() + "</td>" + "<td>"
 									+ cliente.getTelefono() + "</td>" + "<td>"
 									+ cliente.getHoraEntrega() + "</td>" + "<td>"
-									+ cliente.getEstado() + "</td>" + "</tr>");
+									+ cliente.getEstado() + "</td>" + "<td>"
+									+"<button type=\"button\" id=\"restricciones"+ cliente.getIdCliente()+ "\" " 
+									+"class=\"btn btn-default btn-sm\">"
+									+" Restricciones"
+									+"</button>"
+									+"</td>" + "</tr>");
 						}
 					%>
 				</tbody>
@@ -109,9 +141,20 @@ table tr td {
 	var password = "";
 	// Handler for .ready() called.
 	$("#newCliente").click(function() {
-		CreateUser();
+		FuncionalidadNoDisponible();
 	});
-
+	$("#updateCliente").click(function() {
+		FuncionalidadNoDisponible();
+	});
+	$("#deleteCliente").click(function() {
+		FuncionalidadNoDisponible();
+	});
+	
+	function FuncionalidadNoDisponible(){
+		bootbox.dialog({
+			message : "<label>Funcionalidad no diponible en prototipo\.</label>"
+		});
+	}
 	function CreateUser() {
 		bootbox
 				.dialog({
@@ -156,78 +199,10 @@ table tr td {
 				});
 		
 	};
-
-
-	/*$("#updateUser").click(function() {
-	updateUser();
-	});
-	$("#deleteUser").click(function() {
-	deleteUser();
-	});*/
-	/*function unChecked(obj, useridSelect, userselect, passelect) {
-		var checks = $(":checkbox");
-		for (var i = 0; i < checks.length; i++) {
-			if (checks[i] != obj)
-				checks[i].checked = false;
-		}
-		idUsuario = useridSelect;
-		usuario = userselect;
-		password = passelect;
-	}
-	 function updateUser() {
-		bootbox
-				.dialog({
-					message : "<form id='updateuser' method='post' action='UsersServlet?action=updateUser'>"
-							+ "<input type='hidden' name='iduser' value='"+idUsuario+"'/>"
-							+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nameinput' name=\"usuario\" value='"+usuario+"' autofocus>"
-							+ "<br/>"
-							+ "<label>Password </label><input type=\"password\" class=\"form-control\" id='passinput' value='"+password+"' name=\"password\">"
-							+ "</form>",
-					title : "Actualizar Usuario",
-					buttons : {
-						success : {
-							label : "Confirmar",
-							className : "btn-success",
-							callback : function() {
-								if ($("#nameinput").val() != ''
-										|| $("#passinput").val() != '') {
-									$("#updateuser").submit();
-								} else {
-									alert("Para dar de alta un usuario debe ingresar todos los campos");
-								}
-							}
-						}
-					}
-				});
-	}
-	function deleteUser() {
-		bootbox
-				.dialog({
-					message : "<h3>Esta seguro que desea eliminar a "
-							+ usuario
-							+ " como usuario del sistema?</h2>"
-							+ "<form id='deleteuser' method='post' action='UsersServlet?action=deleteUser'>"
-							+ "<input type='hidden' name='iduser' value='"+idUsuario+"'/>"
-							+ "</form>",
-					title : "Eliminar Usuario",
-					buttons : {
-						success : {
-							label : "Confirmar",
-							className : "btn-success",
-							callback : function() {
-								$("#deleteuser").submit();
-							}
-						},
-						main : {
-							label : "Cancelar",
-							callback : function() {
-							}
-						}
-					}
-				});
-	} */
+	
 	
 </script>
+	</div>
 	</div>
 </body>
 </html>
