@@ -24,10 +24,13 @@
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-
+	
+	<link href="css/footable.core.css" rel="stylesheet" type="text/css"/>
+	
     <!-- Custom styles for this template -->
     <!--  <link href="css/home.css" rel="stylesheet">-->
-	<script src="https://code.jquery.com/jquery.js"></script>
+	
+	
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../../assets/js/html5shiv.js"></script>
@@ -35,7 +38,7 @@
     <![endif]-->
 	<script>
 		var medidas = new Array();
-		var estaciones = new Array();
+		
 		<%
 		int i = 0;
 		for (EnumMedida med : EnumMedida.values()) {
@@ -43,20 +46,16 @@
 			  out.println("medidas["+i+"]=\""+med.name()+"\";");
 			  i++;
 			}
-		i = 0;
+		%>
+		var estaciones = new Array();
+		<%
+		 i = 0;
 		for (EstacionVO est : estaciones) {
 			  // do what you want
 			  out.println("estaciones["+i+"]=\""+est.getEstacion()+"\";");
 			  i++;
 			}
 		%>
-		$(function() {
-					
-				// Handler for .ready() called.
-				$( "#newIngrediente" ).click(function() {
-						createIngrediente();
-				});
-		});
 	</script>
 	<style>
 		   table tr th {
@@ -123,7 +122,7 @@
 							class="btn btn-default btn-sm">
 							<span class="glyphicon glyphicon-pencil"></span> Editar
 						</button>
-						<button type="button" id="deleteCliente"
+						<button type="button" id="deleteIngrediente"
 							class="btn btn-default btn-sm">
 							<span class="glyphicon glyphicon-trash"></span> Eliminar
 						</button>
@@ -146,7 +145,7 @@
 			    </div>
             <!-- Table -->
      
-            <table class="table">
+            <table class="table footable" data-page-size="8">
               <thead>
 			  	<tr>
 			  		 <th>Check</th>
@@ -155,18 +154,32 @@
 			  		 <th>Medida</th>
 			  		 <th>Dias de Caducidad</th>
 			  		 <th>Freezer</th>
-			  		 <th></th>
 			  </thead>
 			  <tbody>
 			 <% for(IngredienteVO ing : ingredientes){
-				 out.println("<tr><td><input type='checkbox' value='"+ing.getIdIngrediente()+"'/></td><td>"+ ing.getNombre()+"</td><td>"+ ing.getCantidadStock()+"</td><td>"+ ing.getMedida()+"</td><td>"+ ing.getDiasCaducidad()+"</td><td>"+ ing.isFreezer()+"</td>");
+				 out.println("<tr>"+
+			 					"<td><input type='checkbox' value='"+ing.getIdIngrediente()+"' onClick=\"unChecked(this,'"+ing.getIdIngrediente()+"')\"/></td>"+
+				 				"<td>"+ ing.getNombre()+"</td>"+
+			 					"<td>"+ ing.getCantidadStock()+"</td>"+
+				 				"<td>"+ ing.getMedida()+"</td>"+
+			 					"<td>"+ ing.getDiasCaducidad()+"</td>"+
+				 				"<td>"+ ing.isFreezer()+"</td>"+
+			 					"</tr>\n");
 			 } %>
 			  </tbody>
+			  <tfoot>
+						<tr>
+							<td colspan="5">
+								<div class="pagination pagination-centered"></div>
+							</td>
+						</tr>
+					</tfoot>
 		    </table>
           </div>
 		</p>
       </div>
     </div>
+	<br/>
 	<br/>
    <jsp:include page="/Footer.jsp" />
 	<!-- Bootstrap core JavaScript
@@ -177,6 +190,21 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="bootstrap/js/bootbox.min.js"></script>
+	<script src="js/footable.js" type="text/javascript"></script>
+	<script src="js/footable.paginate.js" type="text/javascript"></script>
+	
 	<script src="js/IngredientesABM.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('.footable').footable();
+			$( "#newIngrediente" ).click(function() {
+				createIngrediente();
+			});
+			$( "#deleteIngrediente" ).click(function() {
+				deleteIngrediente();
+			});
+		});
+	</script>
+	
   </body>
 </html>
