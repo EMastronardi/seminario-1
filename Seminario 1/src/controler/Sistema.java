@@ -144,16 +144,15 @@ public class Sistema {
 
 	public boolean bajaIngrediente(int idIngrediente) {
 		try {
-			Ingrediente ing = IngredienteDAO.getIngredienteById(idIngrediente);
-			s.delete(ing);
+			IngredienteDAO.deleteIngrediente(idIngrediente);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
 
 	public OrdenDeCompraVO generarOrdenDeCompra(int idPlan) {
-
 		Plan plan = PlanDAO.obtenerPlanPorId(idPlan);
 		OrdenDeCompra oc = Logica.generarOrdenDeCompraPorPlan(plan);
 		return new OrdenDeCompraVO(oc);
