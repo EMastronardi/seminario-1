@@ -100,10 +100,10 @@ select {
 						class="btn btn-default btn-sm">
 						<span class="glyphicon glyphicon-trash"></span> Eliminar
 					</button>
-					<button type="button" id="restriccionesCliente"
-						class="btn btn-default btn-sm">
-						<span class="glyphicon glyphicon-pencil"></span> Editar Restricciones
-					</button>
+<!-- 					<button type="button" id="restriccionesCliente" -->
+<!-- 						class="btn btn-default btn-sm"> -->
+<!-- 						<span class="glyphicon glyphicon-pencil"></span> Editar Restricciones -->
+<!-- 					</button> -->
 				</div>
 				<!-- Table -->
 				<table class="table">
@@ -119,6 +119,7 @@ select {
 							<th>Telefono</th>
 							<th>Hora Entrega</th>
 							<th>Estado</th>
+							<th>Restricciones</th>
 					</thead>
 					<tbody>
 					<%
@@ -135,15 +136,18 @@ select {
 									+ cliente.getLocalidad() + "</td>" + "<td>"
 									+ cliente.getTelefono() + "</td>" + "<td>"
 									+ cliente.getHoraEntrega() + "</td>" + "<td>"
-									+ cliente.getEstado() + "</td></tr>");
+									+ cliente.getEstado() + "</td>" + "<td>"
+									+ "<button type=\"button\" name=\""+cliente.getIdCliente()+"\" " 
+									+ "id=\"restriccionesCliente"+cliente.getIdCliente()+"\" class=\"btn btn-default btn-sm restriccionesCliente\"><span class=\"glyphicon glyphicon-pencil\"></span> Restricciones"
+									+"</button> </td></tr>");
 						}
 					%>
 					</tbody>
 				</table>
 			</div>
 			<!-- End content -->
-			<jsp:include page="/Footer.jsp" />
-
+			<jsp:include page="/Footer.jsp"  />
+			<script type="text/javascript" src="js/ClienteRestriccionesABM.js"></script>
 			<script type="text/javascript">
 				var idUsuario = "";
 				var usuario = "";
@@ -158,13 +162,22 @@ select {
 				$("#deleteCliente").click(function() {
 					FuncionalidadNoDisponible();
 				});
-				$("#restriccionesCliente").click(function() {
-					selectRestriccionesCliente();
+				$(".restriccionesCliente").click(function(){
+					selectRestriccionesCliente(this.name);
 				});
+// 				$("#restriccionesCliente").click(function() {
+// 					if(idClienteChecked != null && idClienteChecked != "")
+// 						selectRestriccionesCliente(idClienteChecked);
+// 					else
+// 					{
+// 						bootbox.dialog({
+// 							message : "<label>Debe seleccionar un Cliente\.</label>"
+// 						});
+// 					}
+// 				});
 				
 				function FuncionalidadNoDisponible() {
-					bootbox
-							.dialog({
+					bootbox.dialog({
 								message : "<label>Funcionalidad no diponible en prototipo\.</label>"
 							});
 				}
