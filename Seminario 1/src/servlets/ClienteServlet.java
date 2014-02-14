@@ -39,7 +39,7 @@ public class ClienteServlet extends Controlador {
 			jspPage = "/Home.jsp";
 			
 		}else if("restricciones".equals(action)){
-			String idCliente = request.getParameter("idCliente");
+			String idCliente = request.getParameter("cliente");
 			RestriccionVOList list =  sistema.getRestriccionesCliente(idCliente);
 			XStream xstream = new XStream(new DomDriver());
 		    xstream.alias("restriccion", RestriccionVO.class);
