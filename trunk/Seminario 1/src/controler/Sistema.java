@@ -107,7 +107,19 @@ public class Sistema {
 		}
 		return restricciones;
 	}
-
+	
+	public RestriccionVOList getRestriccionesCliente(String idCliente) {
+		RestriccionVOList restricciones = new RestriccionVOList();
+		ArrayList<Restriccion> rest = (ArrayList<Restriccion>) s.createQuery(
+				"select c.restricciones from Cliente c WHERE c.idCliente = "+idCliente).list();
+		for (Restriccion restriccion : rest) {
+			RestriccionVO restriccionVO = new RestriccionVO(restriccion);
+			restricciones.add(restriccionVO);
+		}
+		return restricciones;
+	}
+	
+	
 	public List<EstacionVO> getEstaciones() {
 		List<EstacionVO> estacionesVO = new ArrayList<EstacionVO>();
 		List<Estacion> estaciones = EstacionDAO.estaciones();

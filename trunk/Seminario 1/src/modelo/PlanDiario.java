@@ -20,6 +20,7 @@ public class PlanDiario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idItemPlan;
 	private Date fecha;
+	private String turno;
 	private boolean feriado;
 	@ManyToMany
 	@JoinColumn(name = "idItemPlan")
@@ -47,6 +48,14 @@ public class PlanDiario {
 
 	public Date getFecha() {
 		return fecha;
+	}
+
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
 	}
 
 	public void setFecha(Date fecha) {
