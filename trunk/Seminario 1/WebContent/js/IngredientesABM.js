@@ -55,7 +55,7 @@ function createIngrediente(){
 		}
 	});
 }
-function editIngrediente(){
+function getIngrediente(actioncallback){
 	var  value  = "getIngredienteAjax";
 	$.ajax({
         type: "POST",
@@ -70,25 +70,98 @@ function editIngrediente(){
     	  var estacionMedida = $(xml).find('medida').text();
     	  var diasCaducidad =  $(xml).find('diasCaducidad').text();
     	  var freezer =  $(xml).find('freezer').text();
-    	  var estacionesItem = new Array();
+    	  var estacionesItem = new Array(0, 0, 0, 0);
     	  var i = 0;
+    	  
     	  $(xml).find('estacionItem').each (function() { 
-  		  	 estacionesItem[i] = $(this).find("estacion").text();
-  		  	 i++;
+  		  	 estacionesItem[(parseInt($(this).find("idEstacion").text())-1)] = 1;
     	  });
-    	  showOpenEditIngrediente(estacionName, cantidadStock, estacionMedida , diasCaducidad, freezer, estacionesItem);
+    	  if(actioncallback == "edit"){
+    		  showOpenEditIngrediente(estacionName, cantidadStock, estacionMedida , diasCaducidad, freezer, estacionesItem);  
+    	  }else{
+    		  showOpenDetialsIngrediente(estacionName, cantidadStock, estacionMedida , diasCaducidad, freezer, estacionesItem);
+    	  }
+    	  
     	});
 }
+function  showOpenDetialsIngrediente(estacionName, cantidadStock, estacionMedida , diasCaducidad, freezer, estacionesItem){
+	var options="";
+	for(var i=0; i<medidas.length;i++){
+		var select = (estacionMedida == medidas[i])?"selected":"";
+		options+="<option value='"+medidas[i]+"'"+select+ " >"+medidas[i]+"</option>";
+	}
+	var checked =new Array("","","","");
+	if(estacionesItem[0]==1){ checked[0] = "checked='checked'";}
+	if(estacionesItem[1]==1){ checked[1] = "checked='checked'";}
+	if(estacionesItem[2]==1){ checked[2] = "checked='checked'";}
+	if(estacionesItem[3]==1){ checked[3] = "checked='checked'";}
+	if(freezer == 'true'){
+		var freezerTrue = "checked='checked'";
+		var freezerFalse = "";
+	}else{
+		var freezerFalse = "checked='checked'";
+		var freezerTrue = "";	
+	}
+	bootbox
+	.dialog({
+		message : "<form id='updateFormIngrediente' method='post' action='IngredienteServlet?action=editIngrediente'>"
+				+ "<input type=\"hidden\" id='idInput' name=\"idIngrediente\" value=\""+idIngredienteChecked+"\" autofocus>"
+				+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nombreInput' name=\"nombre\" value=\""+estacionName+"\" autofocus disabled>"
+				+ "<br/>"
+				+ "<label>Cantidad en Stock </label><input type=\"text\" class=\"form-control\" id='stockInput' name=\"stock\" value=\""+cantidadStock+"\" autofocus disabled>"
+				+ "<br/>"
+				+ "<label>Medida </label><select name=\"medida\" disabled>"+options+"</select>"
+				+ "<br/>"
+				+ "<label>Dias de Caducidad </label><input type=\"text\" class=\"form-control\" id='diasCaducidadInput' name=\"diascaducidad\" value=\""+diasCaducidad+"\" autofocus disabled>"
+				+ "<br/>"
+				+ "<label>Freezer&nbsp;</label>&nbsp;<input type='radio' name='freezer' value='ok' checked='chekced' "+freezerTrue+">&nbsp;Si&nbsp;<input type='radio' name='freezer' value='no' disabled "+freezerFalse+">&nbsp;No "
+				+ "<br/><br/>"
+				+ "<label>Estaciones </label>"
+				+ "<br/><br/>"
+				+ "<table class=\"estaciones\" align=\"center\">" 
+				+ "<tr>" 
+					+ "<td><input type=\"checkbox\" id='otonioInput' name=\"otinio\" value=\""+estaciones[0]+"\" "+checked[0]+" autofocus disabled><td/>" 
+					+ "<td>"+estaciones[0]+"<td/>" 
+					+ "<td><input type=\"checkbox\" id='inviernoInput' name=\"invierno\" value=\""+estaciones[1]+"\" "+checked[1]+" autofocus disabled><td/>" 
+					+ "<td>"+estaciones[1]+"<td/>" 
+				+ "</tr>" 
+				+ "<tr>" 
+					+ "<td><input type=\"checkbox\" id='primaInput' name=\"primavera\" value=\""+estaciones[2]+"\" "+checked[2]+"  autofocus disabled><td/>" 
+					+ "<td>"+estaciones[2]+"<td/>" 
+					+ "<td><input type=\"checkbox\" id='veranoInput' name=\"verano\" name=\"estacion[3]\" value=\""+estaciones[3]+"\" "+checked[3]+"  autofocus disabled><td/>" 
+					+ "<td>"+estaciones[3]+"<td/>" 
+				+ "</tr>"
+				+ "</table>"
+				+ "</form>",
+		title : "Ingrediente Detalles",
+		buttons : {
+			success : {
+				label : "OK",
+				className : "btn-confirm",
+				callback : function() {
+				}
+			}
+		}
+	});
+}
+
 function showOpenEditIngrediente(estacionName, cantidadStock, estacionMedida , diasCaducidad, freezer, estacionesItem){
 	var options="";
 	for(var i=0; i<medidas.length;i++){
 		var select = (estacionMedida == medidas[i])?"selected":"";
 		options+="<option value='"+medidas[i]+"'"+select+ " >"+medidas[i]+"</option>";
 	}
-
+	var checked =new Array("","","","");
+	if(estacionesItem[0]==1){ checked[0] = "checked='checked'";}
+	if(estacionesItem[1]==1){ checked[1] = "checked='checked'";}
+	if(estacionesItem[2]==1){ checked[2] = "checked='checked'";}
+	if(estacionesItem[3]==1){ checked[3] = "checked='checked'";}
+	
+	
 	bootbox
 	.dialog({
-		message : "<form id='createIngrediente' method='post' action='IngredienteServlet?action=altaIngrediente'>"
+		message : "<form id='updateFormIngrediente' method='post' action='IngredienteServlet?action=editIngrediente'>"
+				+ "<input type=\"hidden\" id='idInput' name=\"idIngrediente\" value=\""+idIngredienteChecked+"\" autofocus>"
 				+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nombreInput' name=\"nombre\" value=\""+estacionName+"\" autofocus>"
 				+ "<br/>"
 				+ "<label>Cantidad en Stock </label><input type=\"text\" class=\"form-control\" id='stockInput' name=\"stock\" value=\""+cantidadStock+"\" autofocus>"
@@ -103,15 +176,15 @@ function showOpenEditIngrediente(estacionName, cantidadStock, estacionMedida , d
 				+ "<br/><br/>"
 				+ "<table class=\"estaciones\" align=\"center\">" 
 				+ "<tr>" 
-					+ "<td><input type=\"checkbox\" id='otonioInput' name=\"otinio\" value=\""+estaciones[0]+"\" autofocus><td/>" 
+					+ "<td><input type=\"checkbox\" id='otonioInput' name=\"otinio\" value=\""+estaciones[0]+"\" "+checked[0]+" autofocus><td/>" 
 					+ "<td>"+estaciones[0]+"<td/>" 
-					+ "<td><input type=\"checkbox\" id='inviernoInput' name=\"invierno\" value=\""+estaciones[1]+"\" autofocus><td/>" 
+					+ "<td><input type=\"checkbox\" id='inviernoInput' name=\"invierno\" value=\""+estaciones[1]+"\" "+checked[1]+" autofocus><td/>" 
 					+ "<td>"+estaciones[1]+"<td/>" 
 				+ "</tr>" 
 				+ "<tr>" 
-					+ "<td><input type=\"checkbox\" id='primaInput' name=\"primavera\" value=\""+estaciones[2]+"\" autofocus><td/>" 
+					+ "<td><input type=\"checkbox\" id='primaInput' name=\"primavera\" value=\""+estaciones[2]+"\" "+checked[2]+"  autofocus><td/>" 
 					+ "<td>"+estaciones[2]+"<td/>" 
-					+ "<td><input type=\"checkbox\" id='veranoInput' name=\"verano\" name=\"estacion[3]\" value=\""+estaciones[3]+"\" autofocus><td/>" 
+					+ "<td><input type=\"checkbox\" id='veranoInput' name=\"verano\" name=\"estacion[3]\" value=\""+estaciones[3]+"\" "+checked[3]+"  autofocus><td/>" 
 					+ "<td>"+estaciones[3]+"<td/>" 
 				+ "</tr>"
 				+ "</table>"
@@ -125,7 +198,7 @@ function showOpenEditIngrediente(estacionName, cantidadStock, estacionMedida , d
 					if ($("#nombreInput").val() != ''
 							&& $("#stockInput").val() != ''
 							&& $("#diasCaducidadInput").val() != '') {
-						$("#createIngrediente").submit();
+						$("#updateFormIngrediente").submit();
 					} else {
 						alert("Para dar de alta un Ingrediente debe ingresar todos los campos");
 					}
