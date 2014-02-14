@@ -39,4 +39,14 @@
     <servlet-name>planServlet</servlet-name>
     <url-pattern>/planServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClienteServlet</display-name>
+    <servlet-name>ClienteServlet</servlet-name>
+    <servlet-class>servlets.ClienteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClienteServlet</servlet-name>
+    <url-pattern>/ClienteServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
