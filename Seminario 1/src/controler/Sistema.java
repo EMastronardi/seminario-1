@@ -164,7 +164,33 @@ public class Sistema {
 			return false;
 		}
 	}
-
+	
+	public boolean editIngrediente(int id, String name, int cantidadStock,
+			int diasCaducidad, String medida, boolean freezer,
+			List<String> estaciones){
+		try{
+			Ingrediente ing = IngredienteDAO.getIngredienteById(id);
+			ing.setIdIngrediente(id);
+			ing.setNombre(name);
+			ing.setCantidadStock(cantidadStock);
+			ing.setDiasCaducidad(diasCaducidad);
+			ing.setFreezer(freezer);
+			// EnumMedida medida;
+			List<Estacion> sysEstaciones = EstacionDAO.estaciones();
+			ing.setEstaciones(new ArrayList<Estacion>());	
+			for (Estacion estacion : sysEstaciones) {
+				if (estaciones.contains(estacion.getEstacion())) {
+					ing.addEstacion(estacion);
+				}
+			}
+			ing.setMedida(EnumMedida.valueOf(medida));
+			IngredienteDAO.editIngrediente(ing);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
 	public OrdenDeCompraVO generarOrdenDeCompra(int idPlan) {
 		Plan plan = PlanDAO.obtenerPlanPorId(idPlan);
 		OrdenDeCompra oc = Logica.generarOrdenDeCompraPorPlan(plan);
@@ -183,5 +209,5 @@ public class Sistema {
 		PlanVO plan = new PlanVO(Logica.generarPlanSemanal(tags, fecha));
 		return plan;
 	}
-
+	
 }

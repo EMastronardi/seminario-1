@@ -122,7 +122,7 @@
 						<button type="button" id="newIngrediente" class="btn btn-default btn-sm">
 							<span class="glyphicon glyphicon-star"></span> Nuevo Ingrediente
 						</button>
-						<button type="button" id="updateCliente"
+						<button type="button" id="updateIngrediente"
 							class="btn btn-default btn-sm">
 							<span class="glyphicon glyphicon-pencil"></span> Editar
 						</button>
@@ -163,11 +163,11 @@
 			 <% for(IngredienteVO ing : ingredientes){
 				 out.println("<tr class='information'>"+
 			 					"<td><input type='checkbox' value='"+ing.getIdIngrediente()+"' onClick=\"unChecked(this,'"+ing.getIdIngrediente()+"')\"/></td>"+
-				 				"<td>"+ ing.getNombre()+"</td>"+
-			 					"<td>"+ ing.getCantidadStock()+"</td>"+
-				 				"<td>"+ ing.getMedida()+"</td>"+
-			 					"<td>"+ ing.getDiasCaducidad()+"</td>"+
-				 				"<td>"+ ing.isFreezer()+"</td>"+
+				 				"<td class='cellclass'>"+ ing.getNombre()+"</td>"+
+			 					"<td class='cellclass'>"+ ing.getCantidadStock()+"</td>"+
+				 				"<td class='cellclass'>"+ ing.getMedida()+"</td>"+
+			 					"<td class='cellclass'>"+ ing.getDiasCaducidad()+"</td>"+
+				 				"<td class='cellclass'>"+ ing.isFreezer()+"</td>"+
 			 					"</tr>\n");
 			 } %>
 			  </tbody>
@@ -194,10 +194,19 @@
 			$( "#newIngrediente" ).click(function() {
 				createIngrediente();
 			});
+			$( "#updateIngrediente" ).click(function() {
+				getIngrediente("edit");
+			});
 			$( "#deleteIngrediente" ).click(function() {
 				deleteIngrediente();
 			});
-			 $(".information").hover(
+			$(".cellclass").click(function() {
+				$(this).parent().find(":checkbox").trigger('click');
+				getIngrediente("view");	
+				$(this).parent().find(":checkbox").trigger('click');	
+			});
+			
+			$(".information").hover(
 				function() {
 					  $(this).css('background-color', '#e7e7e7')
 				}, function() {

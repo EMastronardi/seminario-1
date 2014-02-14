@@ -25,5 +25,9 @@ public class IngredienteDAO {
 		query.setParameter("x", id);
 		int result = query.executeUpdate();
 	}
-	
+	public static boolean editIngrediente(Ingrediente ing)throws Exception{
+		s.merge(ing);
+		s.flush();
+		return true;
+	}
 }

@@ -87,6 +87,28 @@ public class IngredienteServlet extends Controlador {
 	        response.setCharacterEncoding("UTF-8");
 	        response.getWriter().write(xml);
 	        dispacher = false;
+		}else if("editIngrediente".equals(action)){
+			jspPage = "/Ingredientes.jsp";
+			int id = Integer.parseInt(request.getParameter("idIngrediente"));
+			String name = request.getParameter("nombre");
+			int cantidadStock = Integer.parseInt(request.getParameter("stock"));
+			int diasCaducidad = Integer.parseInt(request.getParameter("diascaducidad"));
+			String medida = request.getParameter("medida");
+			boolean freezer = false;
+			if(request.getParameter("freezer").equals("ok")){
+				freezer = true;
+			}
+			List<String> estaciones = new ArrayList<String>();
+			if(request.getParameter("otonio") != null) estaciones.add("Otoño"); 
+			if(request.getParameter("invierno") != null) estaciones.add(request.getParameter("invierno")); 
+			if(request.getParameter("primavera") != null) estaciones.add(request.getParameter("primavera")); 
+			if(request.getParameter("verano") != null) estaciones.add(request.getParameter("verano")); 
+			boolean rslt = sistema.editIngrediente(id, name, cantidadStock, diasCaducidad, medida, freezer, estaciones);
+			if(rslt){
+				request.setAttribute("return", "OK");
+			}else{
+				request.setAttribute("return", "NOK");
+			}
 		}
 		if(dispacher) super.dispatch(jspPage, request, response);
 	}
