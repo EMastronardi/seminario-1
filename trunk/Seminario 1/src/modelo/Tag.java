@@ -17,6 +17,11 @@ public class Tag {
 		super();
 	}
 
+	public Tag(String nombre, String descripcion) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+	}
+
 	public int getIdTag() {
 		return idTag;
 	}

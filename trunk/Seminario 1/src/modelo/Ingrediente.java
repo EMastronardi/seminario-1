@@ -28,6 +28,17 @@ public class Ingrediente {
 	@JoinColumn(name = "idIngrediente")
 	private List<Estacion> estaciones;
 	
+	public Ingrediente(String nombre, int cantidadStock, EnumMedida medida,
+			int diasCaducidad, boolean freezer, List<Estacion> estaciones) {
+		this();
+		this.nombre = nombre;
+		this.cantidadStock = cantidadStock;
+		this.medida = medida;
+		this.diasCaducidad = diasCaducidad;
+		this.freezer = freezer;
+		this.estaciones = estaciones;
+	}
+
 	public Ingrediente(){
 		estaciones = new ArrayList<Estacion>();
 	}
