@@ -10,6 +10,7 @@ import modelo.Estacion;
 import modelo.Ingrediente;
 import modelo.OrdenDeCompra;
 import modelo.Plan;
+import modelo.Plato;
 import modelo.Restriccion;
 import modelo.Usuario;
 
@@ -26,6 +27,7 @@ import views.EstacionVO;
 import views.IngredienteVO;
 import views.OrdenDeCompraVO;
 import views.PlanVO;
+import views.PlatoVO;
 import views.RestriccionVO;
 import views.RestriccionVOList;
 
@@ -58,10 +60,17 @@ public class Sistema {
 			return false;
 	}
 
+	public ArrayList<PlatoVO> getPlatos(){
+		ArrayList<PlatoVO> platos = new ArrayList<PlatoVO>();
+		ArrayList<Plato> plat = (ArrayList<Plato>) s.createQuery("from Plato").list();
+		for (Plato plato : plat) {
+			PlatoVO pvo = new PlatoVO(plato);
+			platos.add(pvo);
+		}
+		return platos;
+	}
 	public ArrayList<ClienteVO> getClientesVO() {
 		ArrayList<ClienteVO> clientes = new ArrayList<ClienteVO>();
-		Session s = HibernateUtil.getCurrent();
-
 		ArrayList<Cliente> clis = (ArrayList<Cliente>) s.createQuery(
 				"from Cliente").list();
 

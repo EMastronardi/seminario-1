@@ -20,7 +20,8 @@
 
 <!-- Bootstrap core CSS -->
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-
+<link href="css/footable.core.css" rel="stylesheet" type="text/css"/>
+	
 <!-- Custom styles for this template -->
 
 
@@ -149,6 +150,7 @@ select {
 			<jsp:include page="/Footer.jsp"  />
 			<script type="text/javascript" src="js/ClienteRestriccionesABM.js"></script>
 			<script type="text/javascript">
+			
 				var idUsuario = "";
 				var usuario = "";
 				var password = "";
