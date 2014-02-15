@@ -30,7 +30,7 @@ public class Plato {
 	private EnumTipoPlato tipoPlato;
 	@OneToOne
 	private Tag tag;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idPlato")
 	private List<ItemIngrediente> ingredientes;
 	@ManyToMany(cascade = CascadeType.ALL)

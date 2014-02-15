@@ -136,6 +136,12 @@ public class Sistema {
 		return restricciones;
 	}
 	
+	public PlatoVO getPlatoVO(String idPlato) {
+		Plato p = (Plato) s.createQuery(
+				"from Plato p WHERE p.idPlato= "+idPlato).uniqueResult();
+		PlatoVO pvo = new PlatoVO(p);
+		return pvo;
+	}
 	
 	public List<EstacionVO> getEstaciones() {
 		List<EstacionVO> estacionesVO = new ArrayList<EstacionVO>();
