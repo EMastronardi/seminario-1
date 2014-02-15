@@ -1,43 +1,29 @@
 
 var xml;
 var idIngredienteChecked;
-function createIngrediente(){
+function createMenu(){
 	var options="";
-	for(var i=0; i<medidas.length;i++){
-		options+="<option value='"+medidas[i]+"'>"+medidas[i]+"</option>";
+	for(var i=0; i<tags.length;i++){
+		options+="<option value='"+tags[i]['id']+"'>"+tags[i]['nombre']+"</option>";
 	}
 
 	bootbox
 	.dialog({
-		message : "<form id='createIngrediente' method='post' action='IngredienteServlet?action=altaIngrediente'>"
-				+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nombreInput' name=\"nombre\" autofocus>"
+		message : "<form id='createMenu' method='post' action='MenuServlet?action=altaMenu'>"
+				+ "<label>Ensalada </label><input type=\"text\" class=\"form-control\" id='ensaladaInput' name=\"ensalada\" autofocus>"
 				+ "<br/>"
-				+ "<label>Cantidad en Stock </label><input type=\"text\" class=\"form-control\" id='stockInput' name=\"stock\" autofocus>"
+				+ "<label>Plato Principal </label><input type=\"text\" class=\"form-control\" id='principalInput' name=\"principal\" autofocus>"
 				+ "<br/>"
-				+ "<label>Medida </label><select name=\"medida\">"+options+"</select>"
+				+ "<label>Postre </label><input type=\"text\" class=\"form-control\" id='postreInput' name=\"postre\" autofocus>"
 				+ "<br/>"
-				+ "<label>Dias de Caducidad </label><input type=\"text\" class=\"form-control\" id='diasCaducidadInput' name=\"diascaducidad\" autofocus>"
+				+ "<label>Tag</label><select name=\"medida\">"+options+"</select>"
 				+ "<br/>"
-				+ "<label>Freezer&nbsp;</label>&nbsp;<input type='radio' name='freezer' value='ok' checked='chekced'>&nbsp;Si&nbsp;<input type='radio' name='freezer' value='no'>&nbsp;No "
-				+ "<br/><br/>"
-				+ "<label>Estaciones </label>"
-				+ "<br/><br/>"
-				+ "<table class=\"estaciones\" align=\"center\">" 
-				+ "<tr>" 
-					+ "<td><input type=\"checkbox\" id='otonioInput' name=\"otinio\" value=\""+estaciones[0]+"\" autofocus><td/>" 
-					+ "<td>"+estaciones[0]+"<td/>" 
-					+ "<td><input type=\"checkbox\" id='inviernoInput' name=\"invierno\" value=\""+estaciones[1]+"\" autofocus><td/>" 
-					+ "<td>"+estaciones[1]+"<td/>" 
-				+ "</tr>" 
-				+ "<tr>" 
-					+ "<td><input type=\"checkbox\" id='primaInput' name=\"primavera\" value=\""+estaciones[2]+"\" autofocus><td/>" 
-					+ "<td>"+estaciones[2]+"<td/>" 
-					+ "<td><input type=\"checkbox\" id='veranoInput' name=\"verano\" name=\"estacion[3]\" value=\""+estaciones[3]+"\" autofocus><td/>" 
-					+ "<td>"+estaciones[3]+"<td/>" 
-				+ "</tr>"
-				+ "</table>"
+				+ "<label>Calorias </label><input type=\"text\" class=\"form-control\" id='diasCaducidadInput' name=\"diascaducidad\" autofocus>"
+				+ "<br/>"
+				+ "<label>Estado&nbsp;</label>&nbsp;<input type='radio' name='freezer' value='ok' checked='chekced'>&nbsp;Activo&nbsp;<input type='radio' name='freezer' value='no'>&nbsp;Inactivo "
+				+ "<br/>"
 				+ "</form>",
-		title : "Agregar Ingrediente",
+		title : "Agregar Menu",
 		buttons : {
 			success : {
 				label : "Confirmar",
@@ -48,7 +34,7 @@ function createIngrediente(){
 							&& $("#diasCaducidadInput").val() != '') {
 						$("#createIngrediente").submit();
 					} else {
-						alert("Para dar de alta un Ingrediente debe ingresar todos los campos");
+						alert("Para dar de alta un Menu debe ingresar todos los campos");
 					}
 				}
 			}
