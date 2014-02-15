@@ -1212,8 +1212,8 @@ public class InitializeSystems {
 			s.flush();
 
 			Menu menu3 = new Menu();
-			menu2.setCalorias(1500);
-			menu2.setEstado(EnumEstado.ACTIVO);
+			menu3.setCalorias(1500);
+			menu3.setEstado(EnumEstado.ACTIVO);
 			List<Plato> platos3 = new ArrayList<Plato>();
 			platos3.add(tortilladeespinaca);
 			platos3.add(platoArvejas);
