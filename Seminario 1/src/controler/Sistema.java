@@ -4,7 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import modelo.Cliente;
 import modelo.EnumEstado;
@@ -187,7 +189,14 @@ public class Sistema {
 			return false;
 		}
 	}
-	
+	public Map<Integer,String> getTags(){
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		List<Tag> tags = TagDAO.getAllTags();
+		for (Tag tag : tags) {
+			result.put(tag.getIdTag(), tag.getNombre());
+		}
+		return result;
+	}
 	public boolean editIngrediente(int id, String name, int cantidadStock,
 			int diasCaducidad, String medida, boolean freezer,
 			List<String> estaciones){
