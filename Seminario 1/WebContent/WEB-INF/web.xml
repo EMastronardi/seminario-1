@@ -49,4 +49,14 @@
     <servlet-name>ClienteServlet</servlet-name>
     <url-pattern>/ClienteServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PlatoServlet</display-name>
+    <servlet-name>PlatoServlet</servlet-name>
+    <servlet-class>servlets.PlatoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlatoServlet</servlet-name>
+    <url-pattern>/PlatoServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
