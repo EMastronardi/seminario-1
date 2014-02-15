@@ -1,8 +1,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="controler.Sistema"%>
-<%@page import="views.ClienteVO"%>
+<%@page import="views.PlatoVO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<% 
+	ArrayList<PlatoVO> platos = Sistema.getInstance().getPlatos();
+	
+%>	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +30,6 @@
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
 
-
 <style>
 table tr th {
 	text-align: center;
@@ -35,27 +38,63 @@ table tr th {
 table tr td {
 	text-align: center;
 }
-</style>
 
+table tr.information td {
+	text-align: center;
+	cursor: pointer;
+}
+
+table.estaciones {
+	width: 300px;
+	height: 60px;
+}
+
+table.estaciones tr td {
+	text-align: left;
+}
+
+div.col-lg-6 button {
+	float: left
+}
+
+div.col-lg-8 {
+	float: right
+}
+
+select {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555555;
+}
+</style>
 </head>
 <body>
 	<div id="wrap">
 		<jsp:include page="/Header.jsp" />
-		<!-- Begin page content -->
-		<div class="page-header">
-			<h1>Platos</h1>
-		</div>
+		<div class="container">
+			<ol class="breadcrumb">
+				<li><a href="Home.jsp">Inicio</a></li>
+				<li class="active">Platos</li>
+			</ol>
+
+			<div class="page-header">
+				<h1>Platos</h1>
+			</div>
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading">
-				<button type="button" id="newCliente" class="btn btn-default btn-sm">
+				<button type="button" id="newPlato" class="btn btn-default btn-sm">
 					<span class="glyphicon glyphicon-star"></span> Nuevo Plato
 				</button>
-				<button type="button" id="updateCliente"
+				<button type="button" id="updatePlato"
 					class="btn btn-default btn-sm">
 					<span class="glyphicon glyphicon-pencil"></span> Editar
 				</button>
-				<button type="button" id="deleteCliente"
+				<button type="button" id="deletePlato"
 					class="btn btn-default btn-sm">
 					<span class="glyphicon glyphicon-trash"></span> Eliminar
 				</button>
@@ -67,16 +106,36 @@ table tr td {
 						<th>Check</th>
 						<th>ID</th>
 						<th>Nombre</th>
-						<th>Apellido</th>
-						<th>Calle</th>
-						<th>CP</th>
-						<th>Localidad</th>
-						<th>Telefono</th>
-						<th>Hora Entrega</th>
-						<th>Estado</th>
+						<th>Tipo</th>
+						<th>Tag</th>
+						<th>Tags Secundarios</th>
+						<th>Ingredientes</th>
+						<th>Restricciones</th>
+						<th>Receta</th>
 				</thead>
 				<tbody>
-				
+				<%
+						for (PlatoVO p : platos) {
+							out.println("<tr><td><input type='checkbox' value='"
+									+ p.getIdPlato()
+									+ "' onClick=\"unChecked(this,'"
+									+ p.getIdPlato() + "' )\"/></td>" + "<td>"
+									+ p.getIdPlato() + "</td>" + "<td>"
+									+ p.getNombre() + "</td>" + "<td>"
+									+ p.getTipoPlato() + "</td>" + "<td>"
+									+ p.getTag() + "</td>" + "<td>"
+									+ p.getTagsSecundarios() + "</td>" + "<td>"
+									+ "<button type=\"button\" name=\""+p.getIdPlato()+"\" " 
+									+ "id=\"restriccionesCliente"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm restriccionesCliente\"><span class=\"glyphicon glyphicon-pencil\"></span>Ver Ingredientes</button> </td>"
+									+"<td>"
+									+ "<button type=\"button\" name=\""+p.getIdPlato()+"\" " 
+									+ "id=\"restriccionesCliente"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm restriccionesCliente\"><span class=\"glyphicon glyphicon-pencil\"></span>Ver Restricciones</button> </td>"
+									+"<td>"
+									+ "<button type=\"button\" name=\""+p.getIdPlato()+"\" " 
+									+ "id=\"restriccionesCliente"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm restriccionesCliente\"><span class=\"glyphicon glyphicon-pencil\"></span>Ver Receta</button> </td>"
+									+"</tr>");
+						}
+					%>
 				</tbody>
 			</table>
 		</div>
@@ -88,11 +147,11 @@ table tr td {
 	var usuario = "";
 	var password = "";
 	// Handler for .ready() called.
-	$("#newCliente").click(function() {
-		CreateUser();
+	$("#newPlato").click(function() {
+		CreatePlato();
 	});
 
-	function CreateUser() {
+	function CreatePlato() {
 		bootbox
 				.dialog({
 					message : "<form id='createCliente' method='post' action='ClienteServlet?action=createUser'>"
@@ -208,6 +267,7 @@ table tr td {
 	} */
 	
 </script>
+	</div>
 	</div>
 </body>
 </html>

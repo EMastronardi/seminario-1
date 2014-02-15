@@ -21,64 +21,73 @@ function selectRestriccionesCliente(idCliente){
     		  			+"</tr>";
     		  	i++;
     	  });
+    	  console.log(tdStr.toString());
     	  openDialogRestriccion(tdStr.toString());
       });
 }
 function openDialogRestriccion(tableRows){
 	
-	bootbox
-	.dialog({
-		message :"<div class=\"panel panel-default\">"       
+	bootbox.dialog({
+		message :
+			"<div class=\"panel panel-default\">"
 			+ "<div class=\"panel-heading\">"
 			+ "	<div class=\"row\">"
 			+ "	 	<div class=\"col-lg-6\">"
-			+ "       	<form method=\"post\"  action='IngredientesServlet?action=search' id=\"theform\">"
-			+ "			  <div class=\"col-lg-8\">"
+			+"<button type=\"button\" id=\"newRestriccion\""
+			+"	class=\"btn btn-default btn-sm\">"
+			+"	<span class=\"glyphicon glyphicon-star\"></span> Agregar</button>"
+			+"<button type=\"button\" id=\"deleteRestriccion\""
+			+"	class=\"btn btn-default btn-sm\">"
+			+"	<span class=\"glyphicon glyphicon-trash\"></span>Eliminar</button>"
+			+"</div>"
+			+ "	 	<div class=\"col-lg-6\">"
+			+"<form method=\"post\"  action='ClienteServlet?action=search' id=\"theform\">"
 			+ "			    <div class=\"input-group\">"
 			+ "			      <input type=\"text\" class=\"form-control\" id=\"valorinput\" name=\"valor\" value=\"\" />"
 			+ "			      <span class=\"input-group-btn\">"
 			+ "			        <button class=\"btn btn-default\" type=\"submit\">Buscar!</button>"
 			+ "			      </span>"
 			+ "			    </div>"
-			+ "			  </div>"
 			+ "		    </form>"
-			+ "		 </div>"
-			+ "   	</div>"
-			+ "   </div>"
-			+ "<table class=\"table\" id=\"restriccionTable2\">"
+			+ "		</div>"
+			+ "	</div>"
+			+ "</div>"
+			+ "<table class=\"table footable\" data-page-size=\"4\" id=\"restriccionTable2\">"
 			+ "  <thead>"
 			+ "  	<tr>"
 			+ "  		 <th>Seleccionar</th>"
 			+ "  		 <th>Nombre</th>"
 			+ "  		 <th>Descripcion</th>"
 			+ " 		 <th>Severidad</th>"
-			+"</tr>"
+			+"		</tr>"
 			+ " </thead>"
 			+ " <tbody>"
-			+ tableRows+
+			+tableRows.toString()
 			+ " </tbody>"
-			+ "</table>" 
-			+ "</div>"
-			+ "<ul class=\"pagination\">"
-			+ "<li><a href=\"#\">&laquo;</a></li>"
-			+ "<li><a href=\"#\">1</a></li>"
-			+ "<li><a href=\"#\">2</a></li>"
-			+ "<li><a href=\"#\">3</a></li>"
-			+ "<li><a href=\"#\">&raquo;</a></li>"
-			+ "</ul>",
+			+" <tfoot><tr><td colspan=\"6\"><div class=\"pagination pagination-centered\"></div></td></tr></tfoot>"
+			+ "</table>"
+			+ "</div>",
 		title : "Restricciones",
 		buttons : {
 			success : {
 				label : "Confirmar",
 				className : "btn-success",
 				callback : function() {
-					//addRestriccion();
-					alert("callback");
+					FuncionalidadNoDisponible();
 				}
 			}
 		}
 	});
+	$('.footable').footable();
+	$("#newRestriccion").click(function(){
+		FuncionalidadNoDisponible();
+	});
+	$("#deleteRestriccion").click(function(){
+		FuncionalidadNoDisponible();
+	});
 }
+
+
 function unChecked(obj, idClienteSelected){
 	var checks = $( ":checkbox" );
 	for (var i = 0; i<checks.length; i++){
@@ -86,3 +95,5 @@ function unChecked(obj, idClienteSelected){
 	}
 	idClienteChecked = idClienteSelected;
 }
+
+
