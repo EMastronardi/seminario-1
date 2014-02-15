@@ -108,10 +108,8 @@ select {
 						<th>Nombre</th>
 						<th>Tipo</th>
 						<th>Tag</th>
-						<th>Tags Secundarios</th>
-						<th>Ingredientes</th>
-						<th>Restricciones</th>
 						<th>Receta</th>
+						<th>Restricciones</th>
 				</thead>
 				<tbody>
 				<%
@@ -124,15 +122,11 @@ select {
 									+ p.getNombre() + "</td>" + "<td>"
 									+ p.getTipoPlato() + "</td>" + "<td>"
 									+ p.getTag() + "</td>" + "<td>"
-									+ p.getTagsSecundarios() + "</td>" + "<td>"
 									+ "<button type=\"button\" name=\""+p.getIdPlato()+"\" " 
-									+ "id=\"restriccionesCliente"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm restriccionesCliente\"><span class=\"glyphicon glyphicon-pencil\"></span>Ver Ingredientes</button> </td>"
+									+ "id=\"recetaPlato"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm recetaPlato\"><span class=\"glyphicon glyphicon-pencil\"></span> Ver Receta</button> </td>"
 									+"<td>"
 									+ "<button type=\"button\" name=\""+p.getIdPlato()+"\" " 
-									+ "id=\"restriccionesCliente"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm restriccionesCliente\"><span class=\"glyphicon glyphicon-pencil\"></span>Ver Restricciones</button> </td>"
-									+"<td>"
-									+ "<button type=\"button\" name=\""+p.getIdPlato()+"\" " 
-									+ "id=\"restriccionesCliente"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm restriccionesCliente\"><span class=\"glyphicon glyphicon-pencil\"></span>Ver Receta</button> </td>"
+									+ "id=\"restriccionesPlato"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm restriccionesPlato\"><span class=\"glyphicon glyphicon-pencil\"></span> Ver Restricciones</button> </td>"
 									+"</tr>");
 						}
 					%>
@@ -141,8 +135,18 @@ select {
 		</div>
 		<!-- End content -->
 		<jsp:include page="/Footer.jsp" />
-
+		<script type="text/javascript" src="js/PlatosABM.js"></script>
 		<script type="text/javascript">
+var medidas = new Array();
+		
+		<%
+		int i = 0;
+		for (EnumTipoPlato med : EnumTipoPlato.values()) {
+			  // do what you want
+			  out.println("medidas["+i+"]=\""+med.name()+"\";");
+			  i++;
+			}
+		%>
 	var idUsuario = "";
 	var usuario = "";
 	var password = "";
@@ -150,14 +154,19 @@ select {
 	$("#newPlato").click(function() {
 		CreatePlato();
 	});
-
+	$(".recetaPlato").click(function(){
+		selectRecetaPlato(this.name);
+	});
+	$(".restriccionesPlato").click(function(){
+		selectRestriccionesPlato(this.name);
+	});
 	function CreatePlato() {
 		bootbox
 				.dialog({
-					message : "<form id='createCliente' method='post' action='ClienteServlet?action=createUser'>"
+					message : "<form id='createPlato' method='post' action='PlatonteServlet?action=createPlato'>"
 							+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nombreInput' name=\"nombre\" autofocus>"
 							+ "<br/>"
-							+ "<label>Apellido </label><input type=\"text\" class=\"form-control\" id='apellidoInput' name=\"apellido\" autofocus>"
+							+ "<label>Tipo </label><input type=\"text\" class=\"form-control\" id='tipoInput' name=\"apellido\" autofocus>"
 							+ "<br/>"
 							+ "<label>Calle </label><input type=\"text\" class=\"form-control\" id='calleInput' name=\"calle\" autofocus>"
 							+ "<br/>"
@@ -185,15 +194,14 @@ select {
 										|| $("#telefonoInput").val() != ''
 										|| $("#horaEntregaInput").val() != ''
 										|| $("#estadoInput").val() != '') {
-									$("#createCliente").submit();
+									$("#createPlato").submit();
 								} else {
-									alert("Para dar de alta un Cliente debe ingresar todos los campos");
+									alert("Para dar de alta un Plato debe ingresar todos los campos");
 								}
 							}
 						}
 					}
 				});
-		
 	};
 
 
