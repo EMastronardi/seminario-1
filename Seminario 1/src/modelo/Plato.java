@@ -25,7 +25,7 @@ public class Plato {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPlato;
 	private String nombre;
-	@Column(length = 1234)
+	@Column(length = 2560)
 	private String receta;
 	private EnumTipoPlato tipoPlato;
 	@OneToOne
@@ -46,6 +46,23 @@ public class Plato {
 		this.restricciones = new ArrayList<Restriccion>();
 		this.tagsSecundarios = new ArrayList<Tag>();
 	}
+	
+	public Plato(String nombre, String receta, EnumTipoPlato tipoPlato, Tag tag){
+//			List<ItemIngrediente> ingredientes,
+//			List<Restriccion> restricciones, List<Tag> tagsSecundarios) {
+		this.nombre = nombre;
+		this.receta = receta;
+		this.tipoPlato = tipoPlato;
+		this.tag = tag;
+//		this.ingredientes = ingredientes;
+//		this.restricciones = restricciones;
+//		this.tagsSecundarios = tagsSecundarios;
+		this.ingredientes = new ArrayList<ItemIngrediente>();
+		this.restricciones = new ArrayList<Restriccion>();
+		this.tagsSecundarios = new ArrayList<Tag>();
+	}
+
+
 
 	public int getIdPlato() {
 		return idPlato;
