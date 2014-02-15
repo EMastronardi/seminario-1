@@ -1,8 +1,10 @@
+<%@page import="java.util.Iterator"%>
 <%@page import="java.util.Locale"%>
 <%@page import="modelo.EnumMedida"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 <%@page import="controler.Sistema"%>
 <%@page import="views.IngredienteVO"%>
 <%@page import="views.PlanDiarioVO"%>
@@ -14,6 +16,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%
 	List<MenuVO> menusVO = Sistema.getInstance().getMenus();
+	Map<Integer, String> tags = Sistema.getInstance().getTags();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +36,30 @@
 	
     <!-- Custom styles for this template -->
     <!--  <link href="css/home.css" rel="stylesheet">-->
-	
+	<script>
+		var tags = new Array();
+		var tag = new Array();
+		<%
+		int i = 0;
+		Iterator itera = tags.entrySet().iterator();
+		while(itera.hasNext()) {
+			Map.Entry me = (Map.Entry)itera.next();
+			out.println("tag['id']=\""+me.getKey()+"\";");
+			out.println("tag['value']=\""+me.getValue()+"\";");
+			out.println("tags["+i+"]=tag;");
+			i++;
+		}
+		%>
+		var estaciones = new Array();
+		<%
+		 i = 0;
+		for (EstacionVO est : estaciones) {
+			  // do what you want
+			  out.println("estaciones["+i+"]=\""+est.getEstacion()+"\";");
+			  i++;
+			}
+		%>
+	</script>
 	
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

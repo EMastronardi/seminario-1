@@ -16,11 +16,11 @@ function createMenu(){
 				+ "<br/>"
 				+ "<label>Postre </label><input type=\"text\" class=\"form-control\" id='postreInput' name=\"postre\" autofocus>"
 				+ "<br/>"
-				+ "<label>Tag</label><select name=\"medida\">"+options+"</select>"
+				+ "<label>Tag</label><select name=\"tag\">"+options+"</select>"
 				+ "<br/>"
-				+ "<label>Calorias </label><input type=\"text\" class=\"form-control\" id='diasCaducidadInput' name=\"diascaducidad\" autofocus>"
+				+ "<label>Calorias </label><input type=\"text\" class=\"form-control\" id='caloriasInput' name=\"calorias\" autofocus>"
 				+ "<br/>"
-				+ "<label>Estado&nbsp;</label>&nbsp;<input type='radio' name='freezer' value='ok' checked='chekced'>&nbsp;Activo&nbsp;<input type='radio' name='freezer' value='no'>&nbsp;Inactivo "
+				+ "<label>Estado&nbsp;</label>&nbsp;<input type='radio' name='status' value='ok' checked='chekced'>&nbsp;Activo&nbsp;<input type='radio' name='status' value='no'>&nbsp;Inactivo "
 				+ "<br/>"
 				+ "</form>",
 		title : "Agregar Menu",
@@ -29,10 +29,10 @@ function createMenu(){
 				label : "Confirmar",
 				className : "btn-success",
 				callback : function() {
-					if ($("#nombreInput").val() != ''
-							&& $("#stockInput").val() != ''
-							&& $("#diasCaducidadInput").val() != '') {
-						$("#createIngrediente").submit();
+					if ($("#ensaladaInput").val() != ''
+							&& $("#principalInput").val() != ''
+							&& $("#postreInput").val() != '') {
+						//$("#createIngrediente").submit();
 					} else {
 						alert("Para dar de alta un Menu debe ingresar todos los campos");
 					}
