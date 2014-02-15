@@ -15,7 +15,6 @@ public class PlatoVO {
 	private String receta;
 	private String tipoPlato;
 	private String tag;
-	private String tagsSecundarios;
 	private List<ItemIngredienteVO> ingredientes;
 	private List<RestriccionVO> restricciones;
 
@@ -59,14 +58,7 @@ public class PlatoVO {
 		this.tag = tag;
 	}
 
-	public String getTagsSecundarios() {
-		return tagsSecundarios;
-	}
-
-	public void setTagsSecundarios(String tagsSecundarios) {
-		this.tagsSecundarios = tagsSecundarios;
-	}
-
+	
 	public List<ItemIngredienteVO> getIngredientes() {
 		return ingredientes;
 	}
@@ -121,11 +113,6 @@ public class PlatoVO {
 			this.setTag("Sin Tag");
 		this.setIngredientes(ingredientes);
 		this.setRestricciones(restricciones);
-		String tagsSec = "";
-		for (Tag t : plato.getTagsSecundarios()) {
-			tagsSec += t.getNombre() + " - ";
-		}
-		this.setTagsSecundarios(tagsSec);
 	}
 
 }
