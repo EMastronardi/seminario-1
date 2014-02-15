@@ -1,10 +1,14 @@
+<%@page import="modelo.EnumTipoPlato"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="controler.Sistema"%>
 <%@page import="views.PlatoVO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <% 
 	ArrayList<PlatoVO> platos = Sistema.getInstance().getPlatos();
+	Map<Integer,String> tags = Sistema.getInstance().getTags();
 	
 %>	
 <!DOCTYPE html>
@@ -137,15 +141,25 @@ select {
 		<jsp:include page="/Footer.jsp" />
 		<script type="text/javascript" src="js/PlatosABM.js"></script>
 		<script type="text/javascript">
-var medidas = new Array();
-		
+		var tipoPlato = new Array();
+		var tags = new Array();
+		var stringTags = "";
 		<%
 		int i = 0;
-		for (EnumTipoPlato med : EnumTipoPlato.values()) {
+		for (EnumTipoPlato tp : EnumTipoPlato.values()) {
 			  // do what you want
-			  out.println("medidas["+i+"]=\""+med.name()+"\";");
+			  out.println("tipoPlato["+i+"]=\""+tp.name()+"\";");
 			  i++;
 			}
+		%>
+
+		<% 
+		int j = 0;
+		Iterator itera = tags.entrySet().iterator();
+		while(itera.hasNext()){
+			
+		}
+		
 		%>
 	var idUsuario = "";
 	var usuario = "";
@@ -161,12 +175,16 @@ var medidas = new Array();
 		selectRestriccionesPlato(this.name);
 	});
 	function CreatePlato() {
+		var options="";
+		for(var i=0; i<tipoPlato.length;i++){
+			options+="<option value='"+tipoPlato[i]+"'>"+tipoPlato[i]+"</option>";
+		}
 		bootbox
 				.dialog({
 					message : "<form id='createPlato' method='post' action='PlatonteServlet?action=createPlato'>"
 							+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nombreInput' name=\"nombre\" autofocus>"
 							+ "<br/>"
-							+ "<label>Tipo </label><input type=\"text\" class=\"form-control\" id='tipoInput' name=\"apellido\" autofocus>"
+							+ "<label>Tipo </label><select name=\"tipo\">"+options+"</select>"
 							+ "<br/>"
 							+ "<label>Calle </label><input type=\"text\" class=\"form-control\" id='calleInput' name=\"calle\" autofocus>"
 							+ "<br/>"
