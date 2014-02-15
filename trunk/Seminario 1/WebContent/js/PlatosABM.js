@@ -71,3 +71,130 @@ function openDialogReceta(tableRows){
 		FuncionalidadNoDisponible();
 	});
 }
+
+$("#newPlato").click(function() {
+	CreatePlato();
+});
+$(".recetaPlato").click(function(){
+	selectRecetaPlato(this.name);
+});
+$(".restriccionesPlato").click(function(){
+	selectRestriccionesPlato(this.name);
+});
+function CreatePlato() {
+	var options="";
+	for(var i=0; i<tipoPlato.length;i++){
+		options+="<option value='"+tipoPlato[i]+"'>"+tipoPlato[i]+"</option>";
+	}
+	var optionsTags="";
+	for(var i=0; i<tags.length;i++){
+		optionsTags+="<option value='"+tags[i]['id']+"'>"+tags[i]['value']+"</option>";
+	}
+	
+	bootbox
+			.dialog({
+				message : "<form id='createPlato' method='post' action='PlatonteServlet?action=createPlato'>"
+						+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nombreInput' name=\"nombre\" autofocus>"
+						+ "<br/>"
+						+ "<label>Tipo </label><select name=\"tipo\">"+options+"</select>"
+						+ "<br/>"
+						+ "<label>Tag</label><select name=\"tag\">"+optionsTags+"</select>"
+						+ "<br/>"
+						+ "<label>Receta </label><input type=\"text\" class=\"form-control\" id='recetaInput' name=\"receta\" autofocus>"
+						+ "<br/>"
+						+ "<label>Restricciones </label><input type=\"text\" class=\"form-control\" id='cpInput' name=\"cp\" autofocus>"
+						+ "<br/>"
+						+ "</form>",
+				title : "Agregar Plato",
+				buttons : {
+					success : {
+						label : "Confirmar",
+						className : "btn-success",
+						callback : function() {
+							if ($("#nombreInput").val() != ''
+									|| $("#nombreInput").val() != ''
+									|| $("#recetaInput").val() != ''
+									|| $("#cpInput").val() != ''
+									|| $("#localidadInput").val() != ''
+									|| $("#telefonoInput").val() != ''
+									|| $("#horaEntregaInput").val() != ''
+									|| $("#estadoInput").val() != '') {
+								$("#createPlato").submit();
+							} else {
+								alert("Para dar de alta un Plato debe ingresar todos los campos");
+							}
+						}
+					}
+				}
+			});
+};
+
+
+/*$("#updateUser").click(function() {
+updateUser();
+});
+$("#deleteUser").click(function() {
+deleteUser();
+});*/
+/*function unChecked(obj, useridSelect, userselect, passelect) {
+	var checks = $(":checkbox");
+	for (var i = 0; i < checks.length; i++) {
+		if (checks[i] != obj)
+			checks[i].checked = false;
+	}
+	idUsuario = useridSelect;
+	usuario = userselect;
+	password = passelect;
+}
+ function updateUser() {
+	bootbox
+			.dialog({
+				message : "<form id='updateuser' method='post' action='UsersServlet?action=updateUser'>"
+						+ "<input type='hidden' name='iduser' value='"+idUsuario+"'/>"
+						+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nameinput' name=\"usuario\" value='"+usuario+"' autofocus>"
+						+ "<br/>"
+						+ "<label>Password </label><input type=\"password\" class=\"form-control\" id='passinput' value='"+password+"' name=\"password\">"
+						+ "</form>",
+				title : "Actualizar Usuario",
+				buttons : {
+					success : {
+						label : "Confirmar",
+						className : "btn-success",
+						callback : function() {
+							if ($("#nameinput").val() != ''
+									|| $("#passinput").val() != '') {
+								$("#updateuser").submit();
+							} else {
+								alert("Para dar de alta un usuario debe ingresar todos los campos");
+							}
+						}
+					}
+				}
+			});
+}
+function deleteUser() {
+	bootbox
+			.dialog({
+				message : "<h3>Esta seguro que desea eliminar a "
+						+ usuario
+						+ " como usuario del sistema?</h2>"
+						+ "<form id='deleteuser' method='post' action='UsersServlet?action=deleteUser'>"
+						+ "<input type='hidden' name='iduser' value='"+idUsuario+"'/>"
+						+ "</form>",
+				title : "Eliminar Usuario",
+				buttons : {
+					success : {
+						label : "Confirmar",
+						className : "btn-success",
+						callback : function() {
+							$("#deleteuser").submit();
+						}
+					},
+					main : {
+						label : "Cancelar",
+						callback : function() {
+						}
+					}
+				}
+			});
+} */

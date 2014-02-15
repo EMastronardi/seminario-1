@@ -8,8 +8,7 @@
 	pageEncoding="ISO-8859-1"%>
 <% 
 	ArrayList<PlatoVO> platos = Sistema.getInstance().getPlatos();
-	Map<Integer,String> tags = Sistema.getInstance().getTags();
-	
+	Map<Integer, String> tags = Sistema.getInstance().getTags();
 %>	
 <!DOCTYPE html>
 <html lang="en">
@@ -143,7 +142,8 @@ select {
 		<script type="text/javascript">
 		var tipoPlato = new Array();
 		var tags = new Array();
-		var stringTags = "";
+		var tag = new Array();
+		
 		<%
 		int i = 0;
 		for (EnumTipoPlato tp : EnumTipoPlato.values()) {
@@ -153,144 +153,19 @@ select {
 			}
 		%>
 
-		<% 
+		<%
 		int j = 0;
 		Iterator itera = tags.entrySet().iterator();
-		while(itera.hasNext()){
-			
+		while(itera.hasNext()) {
+			Map.Entry me = (Map.Entry)itera.next();
+			out.println("tag['id']=\""+me.getKey()+"\";");
+			out.println("tag['value']=\""+me.getValue()+"\";");
+			out.println("tags["+j+"]=tag;");
+			j++;
 		}
 		
 		%>
-	var idUsuario = "";
-	var usuario = "";
-	var password = "";
-	// Handler for .ready() called.
-	$("#newPlato").click(function() {
-		CreatePlato();
-	});
-	$(".recetaPlato").click(function(){
-		selectRecetaPlato(this.name);
-	});
-	$(".restriccionesPlato").click(function(){
-		selectRestriccionesPlato(this.name);
-	});
-	function CreatePlato() {
-		var options="";
-		for(var i=0; i<tipoPlato.length;i++){
-			options+="<option value='"+tipoPlato[i]+"'>"+tipoPlato[i]+"</option>";
-		}
-		bootbox
-				.dialog({
-					message : "<form id='createPlato' method='post' action='PlatonteServlet?action=createPlato'>"
-							+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nombreInput' name=\"nombre\" autofocus>"
-							+ "<br/>"
-							+ "<label>Tipo </label><select name=\"tipo\">"+options+"</select>"
-							+ "<br/>"
-							+ "<label>Calle </label><input type=\"text\" class=\"form-control\" id='calleInput' name=\"calle\" autofocus>"
-							+ "<br/>"
-							+ "<label>CP </label><input type=\"text\" class=\"form-control\" id='cpInput' name=\"cp\" autofocus>"
-							+ "<br/>"
-							+ "<label>Localidad </label><input type=\"text\" class=\"form-control\" id='localidadInput' name=\"localidad\" autofocus>"
-							+ "<br/>"
-							+ "<label>Telefono </label><input type=\"text\" class=\"form-control\" id='telefonoInput' name=\"telefono\" autofocus>"
-							+ "<br/>"
-							+ "<label>Hora Entrega </label><input type=\"text\" class=\"form-control\" id='horaEntregaInput' name=\"horaEntrega\" autofocus>"
-							+ "<br/>"
-							+ "<label>Estado </label><input type=\"text\" class=\"form-control\" id='estadoInput' name=\"estado\" autofocus>"
-							+ "<br/>" + "</form>",
-					title : "Agregar Cliente",
-					buttons : {
-						success : {
-							label : "Confirmar",
-							className : "btn-success",
-							callback : function() {
-								if ($("#nombreInput").val() != ''
-										|| $("#apellidoInput").val() != ''
-										|| $("#calleInput").val() != ''
-										|| $("#cpInput").val() != ''
-										|| $("#localidadInput").val() != ''
-										|| $("#telefonoInput").val() != ''
-										|| $("#horaEntregaInput").val() != ''
-										|| $("#estadoInput").val() != '') {
-									$("#createPlato").submit();
-								} else {
-									alert("Para dar de alta un Plato debe ingresar todos los campos");
-								}
-							}
-						}
-					}
-				});
-	};
 
-
-	/*$("#updateUser").click(function() {
-	updateUser();
-	});
-	$("#deleteUser").click(function() {
-	deleteUser();
-	});*/
-	/*function unChecked(obj, useridSelect, userselect, passelect) {
-		var checks = $(":checkbox");
-		for (var i = 0; i < checks.length; i++) {
-			if (checks[i] != obj)
-				checks[i].checked = false;
-		}
-		idUsuario = useridSelect;
-		usuario = userselect;
-		password = passelect;
-	}
-	 function updateUser() {
-		bootbox
-				.dialog({
-					message : "<form id='updateuser' method='post' action='UsersServlet?action=updateUser'>"
-							+ "<input type='hidden' name='iduser' value='"+idUsuario+"'/>"
-							+ "<label>Nombre </label><input type=\"text\" class=\"form-control\" id='nameinput' name=\"usuario\" value='"+usuario+"' autofocus>"
-							+ "<br/>"
-							+ "<label>Password </label><input type=\"password\" class=\"form-control\" id='passinput' value='"+password+"' name=\"password\">"
-							+ "</form>",
-					title : "Actualizar Usuario",
-					buttons : {
-						success : {
-							label : "Confirmar",
-							className : "btn-success",
-							callback : function() {
-								if ($("#nameinput").val() != ''
-										|| $("#passinput").val() != '') {
-									$("#updateuser").submit();
-								} else {
-									alert("Para dar de alta un usuario debe ingresar todos los campos");
-								}
-							}
-						}
-					}
-				});
-	}
-	function deleteUser() {
-		bootbox
-				.dialog({
-					message : "<h3>Esta seguro que desea eliminar a "
-							+ usuario
-							+ " como usuario del sistema?</h2>"
-							+ "<form id='deleteuser' method='post' action='UsersServlet?action=deleteUser'>"
-							+ "<input type='hidden' name='iduser' value='"+idUsuario+"'/>"
-							+ "</form>",
-					title : "Eliminar Usuario",
-					buttons : {
-						success : {
-							label : "Confirmar",
-							className : "btn-success",
-							callback : function() {
-								$("#deleteuser").submit();
-							}
-						},
-						main : {
-							label : "Cancelar",
-							callback : function() {
-							}
-						}
-					}
-				});
-	} */
 	
 </script>
 	</div>
