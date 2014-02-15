@@ -112,7 +112,7 @@ public class PlatoVO {
 		this.setNombre(plato.getNombre());
 		this.setReceta(plato.getReceta());
 		if (plato.getTipoPlato() != null)
-			this.setTipoPlato(plato.getTipoPlato().getNombre());
+			this.setTipoPlato(plato.getTipoPlato().toString());
 		else
 			this.setTipoPlato("Sin Tipo");
 		if (plato.getTag() != null)

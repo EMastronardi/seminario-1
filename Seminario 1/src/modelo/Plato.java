@@ -27,8 +27,7 @@ public class Plato {
 	private String nombre;
 	@Column(length = 1234)
 	private String receta;
-	@OneToOne
-	private TipoPlato tipoPlato;
+	private EnumTipoPlato tipoPlato;
 	@OneToOne
 	private Tag tag;
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -72,11 +71,11 @@ public class Plato {
 		this.receta = receta;
 	}
 
-	public TipoPlato getTipoPlato() {
+	public EnumTipoPlato getTipoPlato() {
 		return tipoPlato;
 	}
 
-	public void setTipoPlato(TipoPlato tipoPlato) {
+	public void setTipoPlato(EnumTipoPlato tipoPlato) {
 		this.tipoPlato = tipoPlato;
 	}
 

@@ -1,17 +1,22 @@
 package controler;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import modelo.Cliente;
+import modelo.EnumEstado;
 import modelo.EnumMedida;
 import modelo.Estacion;
 import modelo.Ingrediente;
+import modelo.Menu;
 import modelo.OrdenDeCompra;
 import modelo.Plan;
 import modelo.Plato;
 import modelo.Restriccion;
+import modelo.Tag;
 import modelo.Usuario;
 
 import org.hibernate.Session;
@@ -19,12 +24,15 @@ import org.hibernate.Session;
 import persistencia.EstacionDAO;
 import persistencia.HibernateUtil;
 import persistencia.IngredienteDAO;
+import persistencia.MenusDAO;
 import persistencia.PlanDAO;
+import persistencia.PlatosDAO;
+import persistencia.TagDAO;
 import utilidades.GlobalsVars;
-import utilidades.InitializeSystems;
 import views.ClienteVO;
 import views.EstacionVO;
 import views.IngredienteVO;
+import views.MenuVO;
 import views.OrdenDeCompraVO;
 import views.PlanVO;
 import views.PlatoVO;
@@ -218,5 +226,61 @@ public class Sistema {
 		PlanVO plan = new PlanVO(Logica.generarPlanSemanal(tags, fecha));
 		return plan;
 	}
-	
+	public List<MenuVO> getMenus(){
+		List<MenuVO> retorno = new ArrayList<MenuVO>();
+		List<Menu> menus = MenusDAO.getAllMenus();
+		for (Menu menu : menus) {
+			MenuVO menuvo = new MenuVO(menu);
+			retorno.add(menuvo);
+		}
+		return retorno;
+	}
+	public boolean altaMenu(List<Integer> platosId, int idTag, int calorias, boolean estado){
+		try{
+			Menu menu = new Menu();
+			menu.setCalorias(calorias);
+			Tag tag = TagDAO.getTagById(idTag);
+			menu.setTag(tag);
+			EnumEstado status = (estado)?EnumEstado.ACTIVO:EnumEstado.INACTIVO;
+			menu.setEstado(status);
+			List<Plato> platos = PlatosDAO.getPlatosById(platosId);
+			menu.setPlatos(platos);
+			DateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+		    String startDate = "1900-01-01";
+			menu.setUltimoUso(parser.parse(startDate));
+			MenusDAO.addMenu(menu);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
+	public boolean bajaMenu(int idMenu){
+		try{
+			MenusDAO.deleteMenu(idMenu);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public boolean editMenu(List<Integer> platosId, int idTag, int calorias, boolean estado){
+		try{
+			Menu menu = new Menu();
+			menu.setCalorias(calorias);
+			Tag tag = TagDAO.getTagById(idTag);
+			menu.setTag(tag);
+			EnumEstado status = (estado)?EnumEstado.ACTIVO:EnumEstado.INACTIVO;
+			menu.setEstado(status);
+			List<Plato> platos = PlatosDAO.getPlatosById(platosId);
+			menu.setPlatos(platos);
+			MenusDAO.editMenu(menu);
+			return true;			
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

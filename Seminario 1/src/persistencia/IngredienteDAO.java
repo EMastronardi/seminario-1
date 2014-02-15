@@ -23,11 +23,16 @@ public class IngredienteDAO {
 	public static void deleteIngrediente(int id) throws Exception{
 		Query query = s.createQuery("delete Ingrediente  where idIngrediente = :x");
 		query.setParameter("x", id);
-		int result = query.executeUpdate();
+		query.executeUpdate();
 	}
 	public static boolean editIngrediente(Ingrediente ing)throws Exception{
 		s.merge(ing);
 		s.flush();
 		return true;
+	}
+	public static Ingrediente buscarIngredientePorId(int idIngrediente) {
+		Ingrediente ingrediente;
+		ingrediente = (Ingrediente) s.load(Ingrediente.class,idIngrediente);
+		return ingrediente;
 	}
 }
