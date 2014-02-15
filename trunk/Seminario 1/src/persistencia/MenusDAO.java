@@ -13,6 +13,27 @@ public class MenusDAO {
 	
 	static Session s = HibernateUtil.getCurrent();
 
+	public static List<Menu> getAllMenus(){
+		List<Menu> menus = (ArrayList<Menu>)s.createQuery("from Menu").list();
+		return menus;
+	}
+	
+	public static void addMenu(Menu menu) throws Exception{
+		s.save(menu);
+		s.flush();
+	}
+	
+	public static void editMenu(Menu menu)throws Exception{
+		s.merge(menu);
+		s.flush();
+	}
+	
+	public static void deleteMenu(int menuId)throws Exception{
+		Query query = s.createQuery("delete Menu where idMenu = :x");
+		query.setParameter("x", menuId);
+		query.executeUpdate();
+	}
+	
 	public static List<Menu> buscarMenusPorTag(String tag) {
 		// TODO Auto-generated method stub
 		Query q =  s.createQuery("from Menu m where m.tag = :tag");

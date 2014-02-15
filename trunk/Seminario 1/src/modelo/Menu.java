@@ -28,7 +28,21 @@ public class Menu {
 	@OneToOne
 	private Tag tag;
 	private int calorias;
-
+	@Transient
+	private List<Restriccion> restricciones;
+	private EnumEstado estado;
+	private Date ultimoUso;
+	
+	public Menu(){
+		platos = new ArrayList<Plato>();
+		restricciones = new ArrayList<Restriccion>();
+	}
+	public Menu(List<Plato> platos, Tag tag, int calorias){
+		restricciones = new ArrayList<Restriccion>();
+		this.platos = platos;
+		this.tag = tag;
+		this.calorias = calorias;
+	}
 	public Tag getTag() {
 		return tag;
 	}
@@ -36,9 +50,6 @@ public class Menu {
 	public void setTag(Tag tag) {
 		this.tag = tag;
 	}
-
-	private EnumEstado estado;
-	private Date ultimoUso;
 
 	public Date getUltimoUso() {
 		return ultimoUso;
@@ -52,9 +63,7 @@ public class Menu {
 		this.restricciones = restricciones;
 	}
 
-	@Transient
-	private List<Restriccion> restricciones;
-
+	
 	public int getIdMenu() {
 		return idMenu;
 	}
