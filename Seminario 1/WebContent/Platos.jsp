@@ -103,7 +103,8 @@ select {
 				</button>
 			</div>
 			<!-- Table -->
-			<table class="table">
+			<table class="table footable" data-page-size="4" data-limit-navigation="3" id="platosTable">
+			
 				<thead>
 					<tr>
 						<th>Check</th>
@@ -111,7 +112,7 @@ select {
 						<th>Nombre</th>
 						<th>Tipo</th>
 						<th>Tag</th>
-						<th>Receta</th>
+						<th>Ingredientes y Receta</th>
 						<th>Restricciones</th>
 				</thead>
 				<tbody>
@@ -126,20 +127,23 @@ select {
 									+ p.getTipoPlato() + "</td>" + "<td>"
 									+ p.getTag() + "</td>" + "<td>"
 									+ "<button type=\"button\" name=\""+p.getIdPlato()+"\" " 
-									+ "id=\"recetaPlato"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm recetaPlato\"><span class=\"glyphicon glyphicon-pencil\"></span> Ver Receta</button> </td>"
+									+ "id=\"recetaPlato"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm recetaPlato\"><span class=\"glyphicon glyphicon-pencil\"></span> Ver </button> </td>"
 									+"<td>"
 									+ "<button type=\"button\" name=\""+p.getIdPlato()+"\" " 
-									+ "id=\"restriccionesPlato"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm restriccionesPlato\"><span class=\"glyphicon glyphicon-pencil\"></span> Ver Restricciones</button> </td>"
+									+ "id=\"restriccionesPlato"+p.getIdPlato()+"\" class=\"btn btn-default btn-sm restriccionesPlato\"><span class=\"glyphicon glyphicon-pencil\"></span> Ver </button> </td>"
 									+"</tr>");
 						}
 					%>
 				</tbody>
+				<tfoot><tr><td colspan="6"><div class="pagination pagination-centered hide-if-no-paging"></div></td></tr></tfoot>
+		
 			</table>
 		</div>
 		<!-- End content -->
 		<jsp:include page="/Footer.jsp" />
 		<script type="text/javascript" src="js/PlatosABM.js"></script>
 		<script type="text/javascript">
+		$('.footable').footable();
 		var tipoPlato = new Array();
 		var tags = new Array();
 		var tag = new Array();
@@ -166,7 +170,8 @@ select {
 		
 		%>
 
-	
+		
+		
 </script>
 	</div>
 	</div>

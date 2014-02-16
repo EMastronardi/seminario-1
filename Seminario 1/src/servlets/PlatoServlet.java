@@ -1,22 +1,17 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import views.IngredienteVO;
 import views.PlatoVO;
-import views.RestriccionVO;
-import views.RestriccionVOList;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-
-import controler.Sistema;
 
 public class PlatoServlet extends Controlador {
 	/**
@@ -50,6 +45,17 @@ public class PlatoServlet extends Controlador {
 	        response.setCharacterEncoding("UTF-8");
 	        response.getWriter().write(xml);
 	        dispacher = false;
+		}else if("ingredientes".equals(action)){
+			List<IngredienteVO>ings = sistema.getIngredientesVO();
+			XStream xstream = new XStream(new DomDriver());
+			xstream.alias("ingrediente", IngredienteVO.class);
+
+		    String xml = xstream.toXML(ings);
+		    response.setContentType("text/plain");
+	        response.setCharacterEncoding("UTF-8");
+	        response.getWriter().write(xml);
+	        dispacher = false;
+			
 		}
 		
         if(dispacher) super.dispatch(jspPage, request, response);
