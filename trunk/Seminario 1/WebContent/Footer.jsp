@@ -14,3 +14,4 @@
 <script src="bootstrap/js/bootbox.min.js"></script>
 <script src="js/footable.js" type="text/javascript"></script>
 <script src="js/footable.paginate.js" type="text/javascript"></script>
+<script src="js/Utils.js" type="text/javascript"></script>

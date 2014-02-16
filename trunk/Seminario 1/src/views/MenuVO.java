@@ -18,21 +18,22 @@ public class MenuVO {
 
 	public PlatoVO getEnsalada(){
 		for (PlatoVO plato : platos) {
-			if(plato.getTipoPlato().equals(EnumTipoPlato.Ensalada)) 
+			
+			if(plato.getTipoPlato().equals(EnumTipoPlato.Ensalada.toString())) 
 				return plato;
 		}
 		return null;
 	}
 	public PlatoVO getPrincipal(){
 		for (PlatoVO plato : platos) {
-			if(plato.getTipoPlato().equals(EnumTipoPlato.Principal)) 
+			if(plato.getTipoPlato().equals(EnumTipoPlato.Principal.toString())) 
 				return plato;
 		}
 		return null;
 	}
 	public PlatoVO getPostre(){
 		for (PlatoVO plato : platos) {
-			if(plato.getTipoPlato().equals(EnumTipoPlato.Postre)) 
+			if(plato.getTipoPlato().equals(EnumTipoPlato.Postre.toString())) 
 				return plato;
 		}
 		return null;
