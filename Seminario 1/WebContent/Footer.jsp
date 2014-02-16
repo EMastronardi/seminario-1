@@ -15,3 +15,4 @@
 <script src="js/footable.js" type="text/javascript"></script>
 <script src="js/footable.paginate.js" type="text/javascript"></script>
 <script src="js/Utils.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jsDatePick.min.1.3.js"></script>
