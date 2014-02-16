@@ -45,7 +45,7 @@ public class MenusDAO {
 	public static Menu buscarMejorMenuPorTag(String tag) {
 		// TODO Auto-generated method stub
 		Query q =  s.createQuery("from Menu m "
-				+ " where m.tag = :tag"
+				+ " where m.tag.idTag = :tag"
 				+ " order by m.ultimoUso");
 		q.setString(":tag", tag);
 		Menu menu = (Menu) q.uniqueResult();

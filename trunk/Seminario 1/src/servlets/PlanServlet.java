@@ -41,10 +41,20 @@ public class PlanServlet extends Controlador {
 		} else if ("generarPlan".equals(action)) {
 			jspPage = "/Planes.jsp";
 			List<String> tags = new ArrayList<String>();
-			String fecha = request.getParameter("fecha");
-			Date date;
+			String fechaI = null, fechaF = null;
+			if(request.getParameter("fechaInicio") != null)
+				fechaI = request.getParameter("fechaInicio");
+			else
+				fechaI = "";
+			if(request.getParameter("fechaInicio") != null)
+					fechaF = request.getParameter("fechaFin");
+			else
+				fechaF = "";
+			Date fechaInicio;
+			Date fechaFin;
 			try {
-				date = new SimpleDateFormat("dd mm yyyy").parse(fecha);
+				fechaInicio = new SimpleDateFormat("dd-MM-yyyy").parse(fechaI);
+				fechaFin = new SimpleDateFormat("dd-MM-yyyy").parse(fechaF);
 
 				// Id del tag en cada uno de estos
 				if (request.getParameter("tagLunesAlm") != null)
@@ -68,7 +78,7 @@ public class PlanServlet extends Controlador {
 				if (request.getParameter("tagViernesCen") != null)
 					tags.add(request.getParameter("tagViernesCen"));
 
-				Sistema.getInstance().generarPlanSemanal(tags, date);
+				Sistema.getInstance().generarPlanSemanal(tags,fechaInicio, fechaFin);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

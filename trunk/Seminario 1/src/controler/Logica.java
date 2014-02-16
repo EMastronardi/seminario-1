@@ -20,14 +20,16 @@ import modelo.OrdenDeCompra;
 import modelo.Plan;
 import modelo.PlanDiario;
 import modelo.Restriccion;
+import modelo.Tag;
 import persistencia.ClientesDAO;
 import persistencia.IngredienteDAO;
 import persistencia.MenusDAO;
 import persistencia.RestriccionesDAO;
+import persistencia.TagDAO;
 
 public class Logica {
 
-	public static Plan generarPlanSemanal(List<String> tags, Date fechaComienzo) {
+	public static Plan generarPlanSemanal(List<String> tags, Date fechaComienzo, Date FechaFin) {
 		// TODO armado del plan semanal con los planes diarios // Busco los
 		// menús que coinciden con los tags ordenados
 
@@ -35,6 +37,23 @@ public class Logica {
 
 		// Map<Date, PlanDiario> planesDiarios = new HashMap<Date,
 		// PlanDiario>();
+		Map<Date, ArrayList<Tag>> mapaPlan = new HashMap<Date, ArrayList<Tag>>();
+		
+		Calendar start = Calendar.getInstance();
+		start.setTime(fechaComienzo);
+		Calendar end = Calendar.getInstance();
+		end.setTime(FechaFin);
+		int j = 0;
+		for (Date date = start.getTime(); !start.after(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
+		    ArrayList<Tag> tagsDiarios = new ArrayList<Tag>();
+		    Tag a = TagDAO.getTagById(Integer.parseInt(tags.get(j)));
+		    Tag b = TagDAO.getTagById(Integer.parseInt(tags.get(++j)));
+			tagsDiarios.add(a);
+			tagsDiarios.add(b);
+		    mapaPlan.put(date, tagsDiarios);
+		    j++;
+		}
+		
 		List<PlanDiario> planesDiarios = new ArrayList<PlanDiario>();
 
 		for (int i = 0; i <= 7; i++) { // cada día de la semana, empieza el
@@ -149,7 +168,7 @@ public class Logica {
 		tags.add("pollo");
 		tags.add("cerdo");
 		tags.add("verduras");
-		return generarPlanSemanal(tags, new Date());
+		return generarPlanSemanal(tags, new Date(), new Date());
 	}
 
 	

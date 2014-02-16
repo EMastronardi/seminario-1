@@ -31,13 +31,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>planServlet</display-name>
-    <servlet-name>planServlet</servlet-name>
+    <display-name>PlanServlet</display-name>
+    <servlet-name>PlanServlet</servlet-name>
     <servlet-class>servlets.PlanServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>planServlet</servlet-name>
-    <url-pattern>/planServlet</url-pattern>
+    <servlet-name>PlanServlet</servlet-name>
+    <url-pattern>/PlanServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
