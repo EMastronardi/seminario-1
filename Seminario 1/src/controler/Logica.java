@@ -46,7 +46,7 @@ public class Logica {
 			Calendar fecha = Calendar.getInstance();
 			fecha.setTime(fechaComienzo);
 
-			PlanDiario planDiario = new PlanDiario(fecha.getTime());
+			PlanDiario planDiario = new PlanDiario(fecha.getTime());//aca estaria mal la fecha
 			planDiario.setTag(tags.get(i));
 
 			// Primer búsqueda: Busco solo 1 menu, que cumple con el tag y es el
