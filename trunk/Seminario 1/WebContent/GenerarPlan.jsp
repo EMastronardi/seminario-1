@@ -1,6 +1,8 @@
 <%@page import="modelo.EnumMedida"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="controler.Sistema"%>
 <%@page import="views.IngredienteVO"%>
@@ -8,6 +10,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <% 
+	Map<Integer, String> tags = Sistema.getInstance().getTags();
 %>	
 <!DOCTYPE html>
 <html lang="en">
@@ -89,13 +92,13 @@
         	<div class="panel panel-default">
             <!-- Default panel contents -->
 	            <div class="panel-heading">
-	            <form action="PlanServlet?action=generatePlan" method="post" name="formGeneratePlan">
+	            <form action="PlanServlet?action=generarPlan" method="post" id="idFormGeneratePlan" name="formGeneratePlan">
 	            	<div class="row"> 
 					  <div class="col-lg-6">
 					  	<h3>Ingrese la fecha de inicio del plan</h3>
 					    <div class="input-group">
 						  <span class="input-group-addon">Fecha</span>
-						  <input type="text" class="form-control" placeholder="dd-mm-aaaa" id="idInputDate">
+						  <input type="text" class="form-control" placeholder="dd-mm-aaaa" name="fecha" id="idInputDate">
 						</div>
 					    <br/>
 					    <button type="button" class="btn btn-default btn-md" id="idButtonConfirm">
@@ -115,6 +118,21 @@
 	<br/>
    <jsp:include page="/Footer.jsp" />
 	<script type="text/javascript">
+		var tags = new Array();
+		var tag = new Array();
+		<%
+		int j = 0;
+		Iterator itera = tags.entrySet().iterator();
+		while(itera.hasNext()) {
+			Map.Entry me = (Map.Entry)itera.next();
+			out.println("var tag"+j+"= new Array();");
+			out.println("tag"+j+"['id']=\""+me.getKey()+"\";");
+			out.println("tag"+j+"['value']=\""+me.getValue()+"\";");
+			out.println("tags['"+j+"']=tag"+j+";");
+			j++;
+		}
+		
+		%>
 		$(function () {
 			var now = new Date();
 			var days = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
@@ -148,37 +166,45 @@
 				if(now > dateSelected){
 					bootbox.alert("<h3>No puede ingresar un dia anterior a la fecha actual</h3>");
 					//alert("No puede ingresar un dia anterior al dia de la fecha");
-				}else{
+				}else{ //controlar que no sea ni domingo ni sabado!!!!
 					document.getElementById("idInputDate").value = obj.day + "-" + obj.month + "-" + obj.year;
 				}
 			});
 			
 			$("#idButtonConfirm").click(function() {
-				console.log("list");
+				var options="<option>Selecccionar un TAG</option>";
+				for(var i=0; i<tags.length;i++){
+					options+="<option value='"+tags[i]['id']+"'>"+tags[i]['value']+"</option>";
+				}
 				var obj = g_globalObject.getSelectedDay();
 				var iterate = new Date();
 				iterate.setFullYear(obj.year,obj.month-1,obj.day);
-				var html="<h4 class=\"glyphicon-star\">Listado de tag por Dias</h4>";
+				var html="<h4><span class=\"glyphicon glyphicon-tags\"></span>&nbsp;&nbsp;&nbsp;Listado de tag por Dias</h4><br/>";
 				console.log(iterate.getDay());
 				while(iterate.getDay() < 6){
 						html+="<div class=\"row\">"
 					  			+ "<div class=\"col-lg-6\">"
 					    		+	"<div class=\"input-group\">"
 					      		+ 		"<span class=\"input-group-addon\">Tag - "+days[iterate.getDay()]+" Almuerzo</span>"
-					      		+		"<input type=\"text\" class=\"form-control\">"
+					      		+		"<select name=\"tag"+days[iterate.getDay()]+"Alm\">"+options+"</select>"
 					  			+ 	"</div><!-- /input-group -->"
 					  			+ "</div><!-- /.col-lg-6 -->"
 					  			+ "<div class=\"col-lg-6\">"
 					    		+	"<div class=\"input-group\">"
 					      		+ 		"<span class=\"input-group-addon\">Tag - "+days[iterate.getDay()]+" Cena</span>"
-					      		+		"<input type=\"text\" class=\"form-control\">"
+					      		+		"<select name=\"tag"+days[iterate.getDay()]+"Cen\">"+options+"</select>"
 					  			+ 	"</div><!-- /input-group -->"
 					  			+ "</div><!-- /.col-lg-6 -->"
 					  			+"</div><br/>";
 					  			iterate.setDate(iterate.getDate()+1); 
 					  			
 				}
+				
+				html+="<button type=\"button\" class=\"btn btn-default btn-md\" id=\"idButtonGenerate\"><span class=\"glyphicon glyphicon-flash\"></span> Generar Plan!</button>"
 				$( "#dayList").html(html);
+			});
+			$("#idButtonGenerate").click(function() {
+				$("#idFormGeneratePlan").submit();
 			});
 		});
 	</script>
