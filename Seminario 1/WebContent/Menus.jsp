@@ -50,15 +50,6 @@
 			i++;
 		}
 		%>
-		var estaciones = new Array();
-		<%
-		 i = 0;
-		for (EstacionVO est : estaciones) {
-			  // do what you want
-			  out.println("estaciones["+i+"]=\""+est.getEstacion()+"\";");
-			  i++;
-			}
-		%>
 	</script>
 	
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -175,9 +166,9 @@
 									+ menu.getIdMenu()
 									+ "' onClick=\"unChecked(this,'"
 									+ menu.getIdMenu() + "' )\"/></td>" + "<td class='cellclass'>"
-									+ menu.getEnsalada()+ "</td>" + "<td class='cellclass'>"
-									+ menu.getPrincipal() + "</td>" + "<td class='cellclass'>"
-									+ menu.getPostre() + "</td>" + "<td class='cellclass'>"
+									+ menu.getEnsalada().getNombre()+ "</td>" + "<td class='cellclass'>"
+									+ menu.getPrincipal().getNombre() + "</td>" + "<td class='cellclass'>"
+									+ menu.getPostre().getNombre() + "</td>" + "<td class='cellclass'>"
 									+ menu.getTag() + "</td>" + "<td class='cellclass'>"
 									+ menu.getCalorias() + "</td>" + "<td class='cellclass'>"
 									+ menu.getEstado() + "</td></tr>");
@@ -208,14 +199,14 @@
 				createMenu();
 			});
 			$( "#updateMenu" ).click(function() {
-				getMenu("edit");
+				showOpenEditMenu();
 			});
 			$( "#deleteMenu" ).click(function() {
 				deleteMenu();
 			});
 			$(".cellclass").click(function() {
 				$(this).parent().find(":checkbox").trigger('click');
-				getIngrediente("view");	
+				showOpenDetialsIngrediente();
 				$(this).parent().find(":checkbox").trigger('click');	
 			});
 			
