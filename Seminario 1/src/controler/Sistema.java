@@ -244,9 +244,9 @@ public class Sistema {
 		return result;
 	}
 
-	public PlanVO generarPlanSemanal(List<String> tags, Date fecha) {
+	public PlanVO generarPlanSemanal(List<String> tags, Date fechaInicio, Date fechaFin) {
 
-		PlanVO plan = new PlanVO(Logica.generarPlanSemanal(tags, fecha));
+		PlanVO plan = new PlanVO(Logica.generarPlanSemanal(tags, fechaInicio, fechaFin));
 		return plan;
 	}
 
