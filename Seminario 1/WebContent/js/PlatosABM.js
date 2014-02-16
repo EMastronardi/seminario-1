@@ -1,5 +1,5 @@
 function selectRecetaPlato(idPlato){
-	//Obtener por ajax todas las restricciones para un cliente
+	//Obtener por ajax la receta e ingredientes para un plato
 	var  value  = "receta";
 	var id = idPlato;
 	$.ajax({
@@ -10,6 +10,11 @@ function selectRecetaPlato(idPlato){
     	  xml = $.parseXML(xmlStr),
     	  $xml = $(xml);
     	  var tdStr="";
+    	  var rows = "";
+    	  $(xml).find('views\\.ItemIngredienteVO').each (function() { 
+    		  	rows+= "<tr><td>"+$(this).find('nombre').text()+"</td><td>" + $(this).find('cantidad').text() +" " + $(this).find('medida').text() +"</td></tr>";
+    		  	
+      	  });
     	  tdStr +=
     		  "<ul class=\"nav nav-tabs\" id=\"myTab\">"
     		  +"<li class=\"active\"><a href=\"#receta\">Receta</a></li>"
@@ -18,27 +23,73 @@ function selectRecetaPlato(idPlato){
     	  			+"<div class=\"tab-pane active\" id=\"receta\">" 
     	  			+"<div class=\"modal-body\">"
     	  			+"<h6><label>" + $(xml).find('receta').text() + "</label></h6></div></div>" ;
+    	 
     	  tdStr +="<div class=\"tab-pane\" id=\"ingredientes\">"
-    		  	+"<div class=\"modal-body\">"
-    		  	+ "<table class=\"table footable\" data-page-size=\"4\" data-limit-navigation=\"3\" id=\"restriccionTable2\">"
-    			+ "  <thead>"
-    			+ "  	<tr>"
-    			+ "  		 <th>Nombre</th>"
-    			+ "  		 <th>Cantidad</th>"
-    			+"		</tr>"
-    			+ " </thead>"
-    			+ " <tbody>";
-    	  $(xml).find('ingrediente').each (function() { 
-  		  	tdStr+= "<tr><td>"+$(this).find('nombre').text()+"</td><td>" + $(this).find('cantidadStock').text() +"</td></tr>";
-  		  	
-    	  });
-    	  tdStr+="</tbody></table></div></div></div>";
+    		+  "<div class=\"panel panel-default\">"
+  			+ "<div class=\"panel-heading\">"
+  			+ "	<div class=\"row\">"
+  			+ "	 	<div class=\"col-lg-6\">"
+  			+"<button type=\"button\" id=\"newRestriccion\""
+  			+"	class=\"btn btn-default btn-sm\">"
+  			+"	<span class=\"glyphicon glyphicon-star\"></span> Agregar</button>"
+  			+"<button type=\"button\" id=\"deleteRestriccion\""
+  			+"	class=\"btn btn-default btn-sm\">"
+  			+"	<span class=\"glyphicon glyphicon-trash\"></span>Eliminar</button>"
+  			+"</div>"
+  			+ "	 	<div class=\"col-lg-6\">"
+  			+"<form method=\"post\"  action='PlatoServlet?action=search' id=\"theform\">"
+  			+ "			    <div class=\"input-group\">"
+  			+ "			      <input type=\"text\" class=\"form-control\" id=\"valorinput\" name=\"valor\" value=\"\" />"
+  			+ "			      <span class=\"input-group-btn\">"
+  			+ "			        <button class=\"btn btn-default\" type=\"submit\">Buscar!</button>"
+  			+ "			      </span>"
+  			+ "			    </div>"
+  			+ "		    </form>"
+  			+ "		</div>"
+  			+ "	</div>"
+  			+ "</div>"
+  			+ "<table class=\"table footable\" data-page-size=\"4\" id=\"restriccionTable2\">"
+  			+ "  <thead>"
+  			+ "  	<tr>"
+  			+ "			<th>Nombre</th>"
+    		+ "  		<th>Cantidad</th>"
+  			+"		</tr>"
+  			+ " </thead>"
+  			+ " <tbody>"
+  			+rows
+  			+ " </tbody>"
+  			+" <tfoot><tr><td colspan=\"6\"><div class=\"pagination pagination-centered\"></div></td></tr></tfoot>"
+  			+ "</table>"
+  			+ "</div>"
+    		+"</div>";
+    	  tdStr+="</div>";
     	  
     	  openDialogReceta(tdStr.toString());
+    	  $('.footable').footable();
       });
-
+	
 }
 
+function selectRestriccionesPlato(idPlato){
+	var  value  = "restriccionesPlato";
+	var id = idPlato;
+	$.ajax({
+        type: "POST",
+        url: "PlatoServlet",
+        data: { action : value, plato : id }
+      }).done(function(xmlStr) {
+    	  xml = $.parseXML(xmlStr),
+    	  $xml = $(xml);
+    	  var rows = "";
+    	  
+    	  $(xml).find('restriccion').each (function() { 
+    		  	rows+= "<tr><td>"+$(this).find('idRestriccion').text()+"</td><td>"+$(this).find('nombre').text()+"</td><td>"+$(this).find('descripcion').text()+"</td>";
+    		  	
+      	  });
+    	 openDialogRestricciones(rows);
+      });
+	
+}
 function openDialogReceta(tableRows){
 	
 	bootbox.dialog({
@@ -49,7 +100,7 @@ function openDialogReceta(tableRows){
 			+tableRows.toString()
 			
 			+ "</div>",
-		title : "Receta e Ingredientes",
+		title : "Ingredientes y Receta",
 		buttons : {
 			success : {
 				label : "Confirmar",
@@ -71,7 +122,66 @@ function openDialogReceta(tableRows){
 		FuncionalidadNoDisponible();
 	});
 }
-
+function openDialogRestricciones(tableRows){
+	bootbox.dialog({
+		message :
+			"<div class=\"panel panel-default\">"
+			+ "<div class=\"panel-heading\">"
+			+ "	<div class=\"row\">"
+			+ "	 	<div class=\"col-lg-6\">"
+			+"<button type=\"button\" id=\"newRestriccion\""
+			+"	class=\"btn btn-default btn-sm\">"
+			+"	<span class=\"glyphicon glyphicon-star\"></span> Agregar</button>"
+			+"<button type=\"button\" id=\"deleteRestriccion\""
+			+"	class=\"btn btn-default btn-sm\">"
+			+"	<span class=\"glyphicon glyphicon-trash\"></span>Eliminar</button>"
+			+"</div>"
+			+ "	 	<div class=\"col-lg-6\">"
+			+"<form method=\"post\"  action='ClienteServlet?action=search' id=\"theform\">"
+			+ "			    <div class=\"input-group\">"
+			+ "			      <input type=\"text\" class=\"form-control\" id=\"valorinput\" name=\"valor\" value=\"\" />"
+			+ "			      <span class=\"input-group-btn\">"
+			+ "			        <button class=\"btn btn-default\" type=\"submit\">Buscar!</button>"
+			+ "			      </span>"
+			+ "			    </div>"
+			+ "		    </form>"
+			+ "		</div>"
+			+ "	</div>"
+			+ "</div>"
+			+ "<table class=\"table footable\" data-page-size=\"4\" id=\"restriccionTable2\">"
+			+ "  <thead>"
+			+ "  	<tr>"
+			+ "  		 <th>Seleccionar</th>"
+			+ "  		 <th>Nombre</th>"
+			+ "  		 <th>Descripcion</th>"
+			//+ " 		 <th>Severidad</th>"
+			+"		</tr>"
+			+ " </thead>"
+			+ " <tbody>"
+			+tableRows.toString()
+			+ " </tbody>"
+			+" <tfoot><tr><td colspan=\"6\"><div class=\"pagination pagination-centered\"></div></td></tr></tfoot>"
+			+ "</table>"
+			+ "</div>",
+		title : "Restricciones",
+		buttons : {
+			success : {
+				label : "Confirmar",
+				className : "btn-success",
+				callback : function() {
+					FuncionalidadNoDisponible();
+				}
+			}
+		}
+	});
+	$('.footable').footable();
+	$("#newRestriccion").click(function(){
+		FuncionalidadNoDisponible();
+	});
+	$("#deleteRestriccion").click(function(){
+		FuncionalidadNoDisponible();
+	});
+}
 $("#newPlato").click(function() {
 	CreatePlato();
 });
@@ -82,7 +192,6 @@ $(".restriccionesPlato").click(function(){
 	selectRestriccionesPlato(this.name);
 });
 function CreatePlato() {
-	var ings =  selectIngredientes();
 	var options="";
 	for(var i=0; i<tipoPlato.length;i++){
 		options+="<option value='"+tipoPlato[i]+"'>"+tipoPlato[i]+"</option>";
@@ -103,23 +212,6 @@ function CreatePlato() {
 						+ "<br/>"
 						+ "<label>Receta </label><textarea id='recetaInput' name='receta' class=\"form-control\" rows=\"3\" autofocus></textarea>"
 						+ "<br/>"
-						+ "<label>Ingredientes </label>"
-						+ "<table class=\"table footable\" data-page-size=\"3\" data-limit-navigation=\"3\"  id=\"ingredientesTable\">"
-		    			+ "  <thead>"
-		    			+ "  	<tr>"
-		    			+ "  		 <th>Seleccionar</th>"	
-		    			+ "  		 <th>Nombre</th>"
-		    			+ "  		 <th>Cantidad</th>"
-		    			+"		</tr>"
-		    			+ " </thead>"
-		    			+ " <tbody>"
-		    			+ings
-		    			+ " </tbody>"
-		    			+" <tfoot><tr><td colspan=\"6\"><div class=\"pagination pagination-centered hide-if-no-paging\"></div></td></tr></tfoot>"
-		    			+ "</table>"
-		    			
-						+ "<label>Restricciones </label><input type=\"text\" class=\"form-control\" id='cpInput' name=\"cp\" autofocus>"
-						+ "<br/>"
 						+ "</form>",
 				title : "Agregar Plato",
 				buttons : {
@@ -129,13 +221,8 @@ function CreatePlato() {
 						callback : function() {
 							if ($("#nombreInput").val() != ''
 									|| $("#nombreInput").val() != ''
-									|| $("#recetaInput").val() != ''
-									|| $("#cpInput").val() != ''
-									|| $("#localidadInput").val() != ''
-									|| $("#telefonoInput").val() != ''
-									|| $("#horaEntregaInput").val() != ''
-									|| $("#estadoInput").val() != '') {
-								$("#createPlato").submit();
+									|| $("#recetaInput").val() != '') {
+								FuncionalidadNoDisponible();
 							} else {
 								alert("Para dar de alta un Plato debe ingresar todos los campos");
 							}

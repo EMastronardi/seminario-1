@@ -44,9 +44,10 @@
 		Iterator itera = tags.entrySet().iterator();
 		while(itera.hasNext()) {
 			Map.Entry me = (Map.Entry)itera.next();
-			out.println("tag['id']=\""+me.getKey()+"\";");
-			out.println("tag['value']=\""+me.getValue()+"\";");
-			out.println("tags["+i+"]=tag;");
+			out.println("var tag"+i+"= new Array();");
+			out.println("tag"+i+"['id']=\""+me.getKey()+"\";");
+			out.println("tag"+i+"['value']=\""+me.getValue()+"\";");
+			out.println("tags['"+i+"']=tag"+i+";");
 			i++;
 		}
 		%>
