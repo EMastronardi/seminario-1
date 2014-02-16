@@ -20,7 +20,7 @@ function selectRecetaPlato(idPlato){
     	  			+"<h6><label>" + $(xml).find('receta').text() + "</label></h6></div></div>" ;
     	  tdStr +="<div class=\"tab-pane\" id=\"ingredientes\">"
     		  	+"<div class=\"modal-body\">"
-    		  	+ "<table class=\"table footable\" data-page-size=\"4\" id=\"restriccionTable2\">"
+    		  	+ "<table class=\"table footable\" data-page-size=\"4\" data-limit-navigation=\"3\" id=\"restriccionTable2\">"
     			+ "  <thead>"
     			+ "  	<tr>"
     			+ "  		 <th>Nombre</th>"
@@ -82,6 +82,7 @@ $(".restriccionesPlato").click(function(){
 	selectRestriccionesPlato(this.name);
 });
 function CreatePlato() {
+	var ings =  selectIngredientes();
 	var options="";
 	for(var i=0; i<tipoPlato.length;i++){
 		options+="<option value='"+tipoPlato[i]+"'>"+tipoPlato[i]+"</option>";
@@ -100,8 +101,23 @@ function CreatePlato() {
 						+ "<br/>"
 						+ "<label>Tag</label><select name=\"tag\">"+optionsTags+"</select>"
 						+ "<br/>"
-						+ "<label>Receta </label><input type=\"text\" class=\"form-control\" id='recetaInput' name=\"receta\" autofocus>"
+						+ "<label>Receta </label><textarea id='recetaInput' name='receta' class=\"form-control\" rows=\"3\" autofocus></textarea>"
 						+ "<br/>"
+						+ "<label>Ingredientes </label>"
+						+ "<table class=\"table footable\" data-page-size=\"3\" data-limit-navigation=\"3\"  id=\"ingredientesTable\">"
+		    			+ "  <thead>"
+		    			+ "  	<tr>"
+		    			+ "  		 <th>Seleccionar</th>"	
+		    			+ "  		 <th>Nombre</th>"
+		    			+ "  		 <th>Cantidad</th>"
+		    			+"		</tr>"
+		    			+ " </thead>"
+		    			+ " <tbody>"
+		    			+ings
+		    			+ " </tbody>"
+		    			+" <tfoot><tr><td colspan=\"6\"><div class=\"pagination pagination-centered hide-if-no-paging\"></div></td></tr></tfoot>"
+		    			+ "</table>"
+		    			
 						+ "<label>Restricciones </label><input type=\"text\" class=\"form-control\" id='cpInput' name=\"cp\" autofocus>"
 						+ "<br/>"
 						+ "</form>",
@@ -127,8 +143,39 @@ function CreatePlato() {
 					}
 				}
 			});
+	$('.footable').footable();
+	
 };
 
+function selectIngredientes(){
+	//Obtener por ajax todos los ingredientes
+	var  value  = "ingredientes";
+	var ingsStr = "";
+	$.ajax({
+        type: "POST",
+        url: "PlatoServlet",
+        async: false,
+        data: { action : value}
+      }).done(function(xmlStr) {
+    	  xml = $.parseXML(xmlStr),
+    	  $xml = $(xml);
+    	 
+    	  var i = 0;
+    	  $(xml).find('ingrediente').each (function() { 
+    		  ingsStr+= "<tr>"
+  		  		+ "<td><input type='checkbox' name='ingrediente"+i.toString()+"' value='OK' /></td>" 
+  		  		+ "<td>"+$(this).find('nombre').text()+"</td><td><input type='text'></td>" 
+  		  		+ "</tr>";
+  		  	
+    	  });
+    	  //ingsStr+="</tbody></table></div></div></div>";
+
+    	  
+    	  //openDialogReceta(tdStr.toString());
+      });
+	return ingsStr;
+
+}
 
 /*$("#updateUser").click(function() {
 updateUser();

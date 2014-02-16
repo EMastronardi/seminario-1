@@ -70,15 +70,17 @@ public class Sistema {
 			return false;
 	}
 
-	public ArrayList<PlatoVO> getPlatos(){
+	public ArrayList<PlatoVO> getPlatos() {
 		ArrayList<PlatoVO> platos = new ArrayList<PlatoVO>();
-		ArrayList<Plato> plat = (ArrayList<Plato>) s.createQuery("from Plato").list();
+		ArrayList<Plato> plat = (ArrayList<Plato>) s.createQuery("from Plato")
+				.list();
 		for (Plato plato : plat) {
 			PlatoVO pvo = new PlatoVO(plato);
 			platos.add(pvo);
 		}
 		return platos;
 	}
+
 	public ArrayList<ClienteVO> getClientesVO() {
 		ArrayList<ClienteVO> clientes = new ArrayList<ClienteVO>();
 		ArrayList<Cliente> clis = (ArrayList<Cliente>) s.createQuery(
@@ -126,25 +128,26 @@ public class Sistema {
 		}
 		return restricciones;
 	}
-	
+
 	public RestriccionVOList getRestriccionesCliente(String idCliente) {
 		RestriccionVOList restricciones = new RestriccionVOList();
 		ArrayList<Restriccion> rest = (ArrayList<Restriccion>) s.createQuery(
-				"select c.restricciones from Cliente c WHERE c.idCliente = "+idCliente).list();
+				"select c.restricciones from Cliente c WHERE c.idCliente = "
+						+ idCliente).list();
 		for (Restriccion restriccion : rest) {
 			RestriccionVO restriccionVO = new RestriccionVO(restriccion);
 			restricciones.add(restriccionVO);
 		}
 		return restricciones;
 	}
-	
+
 	public PlatoVO getPlatoVO(String idPlato) {
 		Plato p = (Plato) s.createQuery(
-				"from Plato p WHERE p.idPlato= "+idPlato).uniqueResult();
+				"from Plato p WHERE p.idPlato= " + idPlato).uniqueResult();
 		PlatoVO pvo = new PlatoVO(p);
 		return pvo;
 	}
-	
+
 	public List<EstacionVO> getEstaciones() {
 		List<EstacionVO> estacionesVO = new ArrayList<EstacionVO>();
 		List<Estacion> estaciones = EstacionDAO.estaciones();
@@ -189,7 +192,8 @@ public class Sistema {
 			return false;
 		}
 	}
-	public Map<Integer,String> getTags(){
+
+	public Map<Integer, String> getTags() {
 		Map<Integer, String> result = new HashMap<Integer, String>();
 		List<Tag> tags = TagDAO.getAllTags();
 		for (Tag tag : tags) {
@@ -197,10 +201,11 @@ public class Sistema {
 		}
 		return result;
 	}
+
 	public boolean editIngrediente(int id, String name, int cantidadStock,
 			int diasCaducidad, String medida, boolean freezer,
-			List<String> estaciones){
-		try{
+			List<String> estaciones) {
+		try {
 			Ingrediente ing = IngredienteDAO.getIngredienteById(id);
 			ing.setIdIngrediente(id);
 			ing.setNombre(name);
@@ -209,7 +214,7 @@ public class Sistema {
 			ing.setFreezer(freezer);
 			// EnumMedida medida;
 			List<Estacion> sysEstaciones = EstacionDAO.estaciones();
-			ing.setEstaciones(new ArrayList<Estacion>());	
+			ing.setEstaciones(new ArrayList<Estacion>());
 			for (Estacion estacion : sysEstaciones) {
 				if (estaciones.contains(estacion.getEstacion())) {
 					ing.addEstacion(estacion);
@@ -218,30 +223,34 @@ public class Sistema {
 			ing.setMedida(EnumMedida.valueOf(medida));
 			IngredienteDAO.editIngrediente(ing);
 			return true;
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
+
 	public OrdenDeCompraVO generarOrdenDeCompra(int idPlan) {
 		Plan plan = PlanDAO.obtenerPlanPorId(idPlan);
 		OrdenDeCompra oc = Logica.generarOrdenDeCompraPorPlan(plan);
 		return new OrdenDeCompraVO(oc);
 	}
-	public IngredienteVO getIngredienteById(int idIngrediente){
+
+	public IngredienteVO getIngredienteById(int idIngrediente) {
 		IngredienteVO result = null;
 		Ingrediente ingaux = IngredienteDAO.getIngredienteById(idIngrediente);
-		if(ingaux!= null){
+		if (ingaux != null) {
 			result = new IngredienteVO(ingaux);
 		}
 		return result;
 	}
+
 	public PlanVO generarPlanSemanal(List<String> tags, Date fecha) {
 
 		PlanVO plan = new PlanVO(Logica.generarPlanSemanal(tags, fecha));
 		return plan;
 	}
-	public List<MenuVO> getMenus(){
+
+	public List<MenuVO> getMenus() {
 		List<MenuVO> retorno = new ArrayList<MenuVO>();
 		List<Menu> menus = MenusDAO.getAllMenus();
 		for (Menu menu : menus) {
@@ -250,52 +259,70 @@ public class Sistema {
 		}
 		return retorno;
 	}
-	public boolean altaMenu(List<Integer> platosId, int idTag, int calorias, boolean estado){
-		try{
+
+	public boolean altaMenu(List<Integer> platosId, int idTag, int calorias,
+			boolean estado) {
+		try {
 			Menu menu = new Menu();
 			menu.setCalorias(calorias);
 			Tag tag = TagDAO.getTagById(idTag);
 			menu.setTag(tag);
-			EnumEstado status = (estado)?EnumEstado.ACTIVO:EnumEstado.INACTIVO;
+			EnumEstado status = (estado) ? EnumEstado.ACTIVO
+					: EnumEstado.INACTIVO;
 			menu.setEstado(status);
 			List<Plato> platos = PlatosDAO.getPlatosById(platosId);
 			menu.setPlatos(platos);
 			DateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
-		    String startDate = "1900-01-01";
+			String startDate = "1900-01-01";
 			menu.setUltimoUso(parser.parse(startDate));
 			MenusDAO.addMenu(menu);
 			return true;
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		
-		
+
 	}
-	public boolean bajaMenu(int idMenu){
-		try{
+
+	public boolean bajaMenu(int idMenu) {
+		try {
 			MenusDAO.deleteMenu(idMenu);
 			return true;
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
-	public boolean editMenu(List<Integer> platosId, int idTag, int calorias, boolean estado){
-		try{
+
+	public boolean editMenu(List<Integer> platosId, int idTag, int calorias,
+			boolean estado) {
+		try {
 			Menu menu = new Menu();
 			menu.setCalorias(calorias);
 			Tag tag = TagDAO.getTagById(idTag);
 			menu.setTag(tag);
-			EnumEstado status = (estado)?EnumEstado.ACTIVO:EnumEstado.INACTIVO;
+			EnumEstado status = (estado) ? EnumEstado.ACTIVO
+					: EnumEstado.INACTIVO;
 			menu.setEstado(status);
 			List<Plato> platos = PlatosDAO.getPlatosById(platosId);
 			menu.setPlatos(platos);
 			MenusDAO.editMenu(menu);
-			return true;			
-		}catch(Exception e){
+			return true;
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	public List<IngredienteVO> getIngredientesVO() {
+
+		ArrayList<IngredienteVO> ingVOList = new ArrayList<IngredienteVO>();
+		ArrayList<Ingrediente> rest = (ArrayList<Ingrediente>) s.createQuery(
+				"from Ingrediente").list();
+		for (Ingrediente ing : rest) {
+			IngredienteVO ingredienteVO = new IngredienteVO(ing);
+			ingVOList.add(ingredienteVO);
+		}
+		return ingVOList;
 	}
 }
