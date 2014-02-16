@@ -203,9 +203,9 @@
 				
 				html+="<button type=\"button\" class=\"btn btn-default btn-md\" id=\"idButtonGenerate\"><span class=\"glyphicon glyphicon-flash\"></span> Generar Plan!</button>"
 				$( "#dayList").html(html);
-			});
-			$("#idButtonGenerate").click(function() {
-				$("#idFormGeneratePlan").submit();
+				$("#idButtonGenerate").click(function() {
+					$("#idFormGeneratePlan").submit();
+				});
 			});
 			
 		});
