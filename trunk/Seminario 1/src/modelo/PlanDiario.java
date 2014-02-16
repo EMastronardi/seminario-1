@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class PlanDiario {
 	private Date fecha;
 	private String turno;
 	private boolean feriado;
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idItemPlan")
 	private List<ItemMenu> items;
 	private String estado;

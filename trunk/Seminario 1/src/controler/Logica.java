@@ -29,7 +29,8 @@ import persistencia.TagDAO;
 
 public class Logica {
 
-	public static Plan generarPlanSemanal(List<String> tags, Date fechaComienzo, Date FechaFin) {
+	public static Plan generarPlanSemanal(List<String> tags,
+			Date fechaComienzo, Date FechaFin) {
 		// TODO armado del plan semanal con los planes diarios // Busco los
 		// menús que coinciden con los tags ordenados
 
@@ -38,91 +39,105 @@ public class Logica {
 		// Map<Date, PlanDiario> planesDiarios = new HashMap<Date,
 		// PlanDiario>();
 		Map<Date, ArrayList<Tag>> mapaPlan = new HashMap<Date, ArrayList<Tag>>();
-		
+
 		Calendar start = Calendar.getInstance();
 		start.setTime(fechaComienzo);
 		Calendar end = Calendar.getInstance();
 		end.setTime(FechaFin);
 		int j = 0;
-		for (Date date = start.getTime(); !start.after(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
-		    ArrayList<Tag> tagsDiarios = new ArrayList<Tag>();
-		    Tag a = TagDAO.getTagById(Integer.parseInt(tags.get(j)));
-		    Tag b = TagDAO.getTagById(Integer.parseInt(tags.get(++j)));
+		for (Date date = start.getTime(); !start.after(end); start.add(
+				Calendar.DATE, 1), date = start.getTime()) {
+			ArrayList<Tag> tagsDiarios = new ArrayList<Tag>();
+			Tag a = TagDAO.getTagById(Integer.parseInt(tags.get(j)));
+			Tag b = TagDAO.getTagById(Integer.parseInt(tags.get(++j)));
 			tagsDiarios.add(a);
 			tagsDiarios.add(b);
-		    mapaPlan.put(date, tagsDiarios);
-		    j++;
+			mapaPlan.put(date, tagsDiarios);
+			j++;
 		}
-		
+
 		List<PlanDiario> planesDiarios = new ArrayList<PlanDiario>();
+		Iterator itera = mapaPlan.entrySet().iterator();
+		int i = 0;
+		while (itera.hasNext()) {
+			Map.Entry me = (Map.Entry) itera.next();
+			// me.getKey() -- FECHA
+			// me.getValue() --ArrayList<Tag>
+			// for (int i = 0; i <= 7; i++) { // cada día de la semana, empieza
+			// el
+			// lunes
+			for (Tag t : (ArrayList<Tag>) me.getValue()) {
 
-		for (int i = 0; i <= 7; i++) { // cada día de la semana, empieza el
-										// lunes
+				List<Cliente> clientes = ClientesDAO.obtenerClientes();
+				List<Menu> menus = new ArrayList<Menu>();
 
-			List<Cliente> clientes = ClientesDAO.obtenerClientes();
-			List<Menu> menus = new ArrayList<Menu>();
+				Calendar fecha = Calendar.getInstance();
+				fecha.setTime((Date) me.getKey());
 
-			Calendar fecha = Calendar.getInstance();
-			fecha.setTime(fechaComienzo);
+				PlanDiario planDiario = new PlanDiario(fecha.getTime());
+				planDiario.setTag(t.getNombre());
 
-			PlanDiario planDiario = new PlanDiario(fecha.getTime());//aca estaria mal la fecha
-			planDiario.setTag(tags.get(i));
+				// Primer búsqueda: Busco solo 1 menu, que cumple con el tag y
+				// es el
+				// que se uso hace mas tiempo
 
-			// Primer búsqueda: Busco solo 1 menu, que cumple con el tag y es el
-			// que se uso hace mas tiempo
+				// Obtenemos Los menus por prioridades definidas.
+				Menu menuPrimeraPrioridad = MenusDAO.buscarMejorMenuPorTag(t); // Tag Fecha de uso
+				List<Menu> menuSegundaPrioridad = MenusDAO
+						.buscarMenusPorSegundaPri(t); // Tag Restriccion
+				List<Menu> menuTerceraPrioridad = MenusDAO
+						.buscarMejorMenuPorTerceraPri(); // Restriccion
 
-			// Obtenemos Los menus por prioridades definidas.
-			Menu menuPrimeraPrioridad = MenusDAO.buscarMejorMenuPorTag(tags
-					.get(i)); // Tag Fecha de uso
-			List<Menu> menuSegundaPrioridad = MenusDAO
-					.buscarMenusPorSecundaPri(); // Tag Restriccion
-			List<Menu> menuTerceraPrioridad = MenusDAO
-					.buscarMejorMenuPorTerceraPri(); // Restriccion
+				// Agregamos las distintas Listas de menu a nuestra lista de
+				// posibles menus para incorporar al plan
+				if (menuPrimeraPrioridad != null)
+					menus.add(menuPrimeraPrioridad);
+				if (menuSegundaPrioridad != null)
+					menus.addAll(menuSegundaPrioridad);
+				if (menuTerceraPrioridad != null)
+					menus.addAll(menuTerceraPrioridad);
 
-			// Agregamos las distintas Listas de menu a nuestra lista de
-			// posibles menus para incorporar al plan
-			menus.add(menuPrimeraPrioridad);
-			menus.addAll(menuSegundaPrioridad);
-			menus.addAll(menuTerceraPrioridad);
+				Iterator<Menu> iterator = menus.iterator();
+				Menu menu;
 
-			Iterator<Menu> iterator = menus.iterator();
-			Menu menu;
+				while (clientes.size() > 0 && iterator.hasNext()) {
+					menu = iterator.next();
+					ItemMenu itemMenu = new ItemMenu();
+					List<Cliente> clientesAux = new ArrayList<Cliente>();
+					clientesAux.addAll(clientes);
+					for (Cliente cliente : clientes) {
+						if (menu.cumpleRestricciones(cliente.getRestricciones())) {
+							itemMenu.getClientes().add(cliente);
+							itemMenu.setCantidad(itemMenu.getCantidad() + 1);
+							clientesAux.remove(cliente);
+						}
 
-			while (clientes.size() > 0 && iterator.hasNext()) {
-				menu = iterator.next();
-				ItemMenu itemMenu = new ItemMenu();
-				for (Cliente cliente : clientes) {
-					if (menu.cumpleRestricciones(cliente.getRestricciones())) {
-						itemMenu.getClientes().add(cliente);
-						itemMenu.setCantidad(itemMenu.getCantidad() + 1);
-						clientes.remove(cliente);
 					}
+					clientes = clientesAux;
 
+					if (itemMenu.getClientes().size() > 0) {
+						itemMenu.setMenu(menu);
+						menu.setUltimoUso(fecha.getTime());
+						planDiario.getItems().add(itemMenu);
+					}
+				}
+				/*
+				 * COMPROBAMOS QUE NO HAYA QUEDADO NINGUN CLIENTE POR AFUERA DE
+				 * LOS MENUS INCORPORADOS A NUESTRO PLAN EN CASO DE QUE TENGAMOS
+				 * CLIENTES AFUERA DE NUESTRO PLAN GENERAMOS MENSAJE AL USUARIO
+				 */
+				if (clientes.size() > 0) {
+					System.out
+							.println("Los clientes que se listan a continuacion se encuentras sin plan:");
+					for (Cliente cliente : clientes) {
+						System.out.println(cliente.getNombre() + " "
+								+ cliente.getApellido());
+					}
 				}
 
-				if (itemMenu.getClientes().size() > 0) {
-					itemMenu.setMenu(menu);
-					menu.setUltimoUso(fecha.getTime());
-					planDiario.getItems().add(itemMenu);
-				}
+				planesDiarios.add(planDiario);
 			}
-			/*
-			 * COMPROBAMOS QUE NO HAYA QUEDADO NINGUN CLIENTE POR AFUERA DE LOS
-			 * MENUS INCORPORADOS A NUESTRO PLAN EN CASO DE QUE TENGAMOS
-			 * CLIENTES AFUERA DE NUESTRO PLAN GENERAMOS MENSAJE AL USUARIO
-			 */
-			if (clientes.size() > 0) {
-				System.out
-						.println("Los clientes que se listan a continuacion se encuentras sin plan:");
-				for (Cliente cliente : clientes) {
-					System.out.println(cliente.getNombre() + " "
-							+ cliente.getApellido());
-				}
-			}
-			fecha.add(fecha.DATE, 1);
-			planesDiarios.add(planDiario);
 		}
-
 		plan.setItems(planesDiarios);
 
 		return plan;
@@ -170,8 +185,6 @@ public class Logica {
 		tags.add("verduras");
 		return generarPlanSemanal(tags, new Date(), new Date());
 	}
-
-	
 
 	public static OrdenDeCompra generarOrdenDeCompraPorPlan(Plan plan) {
 		OrdenDeCompra oc;
