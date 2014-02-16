@@ -6,6 +6,7 @@ import java.util.List;
 import modelo.Tag;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import utilidades.GlobalsVars;
 public class TagDAO {
@@ -16,6 +17,10 @@ public class TagDAO {
 	}
 	public static List<Tag> getAllTags(){
 		List<Tag> tags = (ArrayList<Tag>)s.createQuery("from Tag").list();
+		return tags;
+	}
+	public static List<Tag> getTagsByIds(List<Integer> tagsId){
+		List<Tag> tags = (ArrayList<Tag>)s.createCriteria(Tag.class).add( Restrictions.in( "idTag", tagsId)).list();
 		return tags;
 	}
 }
