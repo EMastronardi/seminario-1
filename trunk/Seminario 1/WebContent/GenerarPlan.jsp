@@ -197,7 +197,7 @@
 					  			+ 	"</div><!-- /input-group -->"
 					  			+ "</div><!-- /.col-lg-6 -->"
 					  			+"</div><br/>";					  			 
-					  			$("#idFechaFin").val(iterate.getDate()+"-"+now.getMonth()+"-"+now.getFullYear());
+					  			$("#idFechaFin").val(iterate.getDate()+"-"+(now.getMonth()+1)+"-"+now.getFullYear());
 					  			iterate.setDate(iterate.getDate()+1);
 				}
 				
