@@ -39,7 +39,7 @@ public class PlanServlet extends Controlador {
 			jspPage = "/Home.jsp";
 
 		} else if ("generarPlan".equals(action)) {
-			jspPage = "/Planes.jsp";
+			jspPage = "/GenerarPlan.jsp";
 			List<String> tags = new ArrayList<String>();
 			String fechaI = null, fechaF = null;
 			if(request.getParameter("fechaInicio") != null)
