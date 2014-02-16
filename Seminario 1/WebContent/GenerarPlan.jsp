@@ -98,12 +98,13 @@
 					  	<h3>Ingrese la fecha de inicio del plan</h3>
 					    <div class="input-group">
 						  <span class="input-group-addon">Fecha</span>
-						  <input type="text" class="form-control" placeholder="dd-mm-aaaa" name="fecha" id="idInputDate">
+						  <input type="text" class="form-control" placeholder="dd-mm-aaaa" name="fechaInicio" id="idInputDate">
 						</div>
 					    <br/>
 					    <button type="button" class="btn btn-default btn-md" id="idButtonConfirm">
 						  <span class="glyphicon glyphicon-ok"></span> Confirmar!
 						</button>
+						<input type="hidden" name="fechaFin" id="idFechaFin" value="">
 					  </div><!-- /.col-lg-6 -->
 					</div><!-- /.row -->
 					<hr/>
@@ -195,9 +196,9 @@
 					      		+		"<select name=\"tag"+days[iterate.getDay()]+"Cen\">"+options+"</select>"
 					  			+ 	"</div><!-- /input-group -->"
 					  			+ "</div><!-- /.col-lg-6 -->"
-					  			+"</div><br/>";
-					  			iterate.setDate(iterate.getDate()+1); 
-					  			
+					  			+"</div><br/>";					  			 
+					  			$("#idFechaFin").val(iterate.getDate()+"-"+now.getMonth()+"-"+now.getFullYear());
+					  			iterate.setDate(iterate.getDate()+1);
 				}
 				
 				html+="<button type=\"button\" class=\"btn btn-default btn-md\" id=\"idButtonGenerate\"><span class=\"glyphicon glyphicon-flash\"></span> Generar Plan!</button>"
@@ -206,6 +207,7 @@
 			$("#idButtonGenerate").click(function() {
 				$("#idFormGeneratePlan").submit();
 			});
+			
 		});
 	</script>
 	
