@@ -17,7 +17,7 @@ function selectRestriccionesCliente(idCliente){
     		  			+ "<td><input type='checkbox' name='restriccion"+i.toString()+"' value='OK' /></td>" 
     		  			+ "<td>"+$(this).find('nombre').text()+"</td>"
     		  			+ "<td>"+$(this).find('descripcion').text()+"</td>"
-    		  			+ "<td>"+$(this).find('severidad').text()+"</td>" 
+    		  			//+ "<td>"+$(this).find('severidad').text()+"</td>" 
     		  			+"</tr>";
     		  	i++;
     	  });
@@ -58,7 +58,7 @@ function openDialogRestriccion(tableRows){
 			+ "  		 <th>Seleccionar</th>"
 			+ "  		 <th>Nombre</th>"
 			+ "  		 <th>Descripcion</th>"
-			+ " 		 <th>Severidad</th>"
+			//+ " 		 <th>Severidad</th>"
 			+"		</tr>"
 			+ " </thead>"
 			+ " <tbody>"

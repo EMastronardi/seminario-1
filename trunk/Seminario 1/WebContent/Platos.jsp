@@ -162,14 +162,15 @@ select {
 		Iterator itera = tags.entrySet().iterator();
 		while(itera.hasNext()) {
 			Map.Entry me = (Map.Entry)itera.next();
-			out.println("tag['id']=\""+me.getKey()+"\";");
-			out.println("tag['value']=\""+me.getValue()+"\";");
-			out.println("tags["+j+"]=tag;");
+			out.println("var tag"+j+"= new Array();");
+			out.println("tag"+j+"['id']=\""+me.getKey()+"\";");
+			out.println("tag"+j+"['value']=\""+me.getValue()+"\";");
+			out.println("tags['"+j+"']=tag"+j+";");
 			j++;
 		}
 		
 		%>
-
+		console.log(tags);
 		
 		
 </script>

@@ -325,4 +325,15 @@ public class Sistema {
 		}
 		return ingVOList;
 	}
+
+	public List<RestriccionVO> getRestriccionesVO(String idPlato) {
+		ArrayList<RestriccionVO> resVOList = new ArrayList<RestriccionVO>();
+		ArrayList<Restriccion> rest = (ArrayList<Restriccion>) s.createQuery("select p.restricciones from Plato p where p.idPlato = "+ idPlato).list();
+		for (Restriccion r : rest) {
+			RestriccionVO rvo = new RestriccionVO(r);
+			resVOList.add(rvo);
+		}
+		
+		return resVOList;
+	}
 }

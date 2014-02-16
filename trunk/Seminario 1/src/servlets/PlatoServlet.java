@@ -7,8 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import persistencia.RestriccionesDAO;
 import views.IngredienteVO;
 import views.PlatoVO;
+import views.RestriccionVO;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -46,6 +48,7 @@ public class PlatoServlet extends Controlador {
 	        response.getWriter().write(xml);
 	        dispacher = false;
 		}else if("ingredientes".equals(action)){
+			
 			List<IngredienteVO>ings = sistema.getIngredientesVO();
 			XStream xstream = new XStream(new DomDriver());
 			xstream.alias("ingrediente", IngredienteVO.class);
@@ -56,6 +59,18 @@ public class PlatoServlet extends Controlador {
 	        response.getWriter().write(xml);
 	        dispacher = false;
 			
+		}else if("restriccionesPlato".equals(action)){
+			String idPlato = request.getParameter("plato");
+			
+			List<RestriccionVO> restris = sistema.getRestriccionesVO(idPlato);
+			XStream xstream = new XStream(new DomDriver());
+			xstream.alias("restriccion", RestriccionVO.class);
+
+		    String xml = xstream.toXML(restris);
+		    response.setContentType("text/plain");
+	        response.setCharacterEncoding("UTF-8");
+	        response.getWriter().write(xml);
+	        dispacher = false;
 		}
 		
         if(dispacher) super.dispatch(jspPage, request, response);
