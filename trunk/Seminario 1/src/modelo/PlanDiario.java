@@ -26,7 +26,7 @@ public class PlanDiario {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idItemPlan")
 	private List<ItemMenu> items;
-	private String estado;
+	private EnumEstado estado;
 	private String tag;
 
 	public PlanDiario() {
@@ -79,11 +79,11 @@ public class PlanDiario {
 		this.items = items;
 	}
 
-	public String getEstado() {
+	public EnumEstado getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(EnumEstado estado) {
 		this.estado = estado;
 	}
 

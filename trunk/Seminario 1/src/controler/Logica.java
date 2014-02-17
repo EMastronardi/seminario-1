@@ -30,7 +30,7 @@ import persistencia.TagDAO;
 public class Logica {
 
 	public static Plan generarPlanSemanal(List<String> tags,
-			Date fechaComienzo, Date FechaFin) {
+			Date fechaComienzo, Date FechaFin)throws Exception {
 		// TODO armado del plan semanal con los planes diarios // Busco los
 		// menús que coinciden con los tags ordenados
 
@@ -139,7 +139,6 @@ public class Logica {
 			}
 		}
 		plan.setItems(planesDiarios);
-
 		return plan;
 	}
 
@@ -175,7 +174,7 @@ public class Logica {
 		}
 		return mapaClientes;
 	}
-
+/*
 	public Plan generarPlanSemanal() {
 		ArrayList<String> tags = new ArrayList<String>();
 		tags.add("carne");
@@ -185,7 +184,7 @@ public class Logica {
 		tags.add("verduras");
 		return generarPlanSemanal(tags, new Date(), new Date());
 	}
-
+*/
 	public static OrdenDeCompra generarOrdenDeCompraPorPlan(Plan plan) {
 		OrdenDeCompra oc;
 

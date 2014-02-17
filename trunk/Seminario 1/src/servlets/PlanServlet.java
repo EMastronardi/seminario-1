@@ -78,7 +78,14 @@ public class PlanServlet extends Controlador {
 				if (request.getParameter("tagViernesCen") != null)
 					tags.add(request.getParameter("tagViernesCen"));
 
-				Sistema.getInstance().generarPlanSemanal(tags,fechaInicio, fechaFin);
+				int retorno = Sistema.getInstance().generarPlanSemanal(tags,fechaInicio, fechaFin);
+				if(retorno > 0){
+					jspPage = "/ViewPlanGenerado.jsp";
+					request.setAttribute("return", "OK");
+					request.setAttribute("idPlan", retorno);
+				}else{
+					request.setAttribute("return", "NOK");
+				}
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
