@@ -36,7 +36,7 @@ public class PlanDiarioVO {
 
 	public PlanDiarioVO(PlanDiario planDiario) {
 		List<ItemMenuVO> items = new ArrayList<ItemMenuVO>();
-		this.estado = planDiario.getEstado();
+		this.estado = planDiario.getEstado().toString();
 		this.fecha=planDiario.getFecha();
 		this.feriado = planDiario.isFeriado();
 		this.idItemPlan = planDiario.getIdItemPlan();

@@ -244,12 +244,16 @@ public class Sistema {
 		return result;
 	}
 
-	public boolean generarPlanSemanal(List<String> tags, Date fechaInicio, Date fechaFin) {
-		Plan plan = Logica.generarPlanSemanal(tags, fechaInicio, fechaFin);
-		s.save(plan);
-		s.flush();
-		//PlanVO [; = new PlanVO(plan);
-		return true;
+	public int generarPlanSemanal(List<String> tags, Date fechaInicio, Date fechaFin) {
+		try{
+			Plan plan = Logica.generarPlanSemanal(tags, fechaInicio, fechaFin);
+			s.save(plan);
+			s.flush();
+			return plan.getIdPlan();
+		}catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
 	}
 
 	public List<MenuVO> getMenus() {
@@ -337,5 +341,10 @@ public class Sistema {
 		}
 		
 		return resVOList;
+	}
+	public PlanVO getPlanById(int idPlan){
+		Plan pl = PlanDAO.obtenerPlanPorId(idPlan);
+		PlanVO plan = new PlanVO(pl);
+		return plan;
 	}
 }
