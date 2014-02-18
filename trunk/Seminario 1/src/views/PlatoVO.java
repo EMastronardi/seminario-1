@@ -7,7 +7,6 @@ import modelo.ItemIngrediente;
 import modelo.Plato;
 import modelo.Restriccion;
 import modelo.Tag;
-import modelo.TipoPlato;
 
 public class PlatoVO {
 	private int idPlato;

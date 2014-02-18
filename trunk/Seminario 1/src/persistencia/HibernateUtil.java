@@ -14,7 +14,6 @@ import modelo.Servicio;
 import modelo.ServicioCliente;
 import modelo.Tag;
 import modelo.TipoPago;
-import modelo.TipoPlato;
 import modelo.Usuario;
 
 import org.hibernate.HibernateException;
@@ -40,7 +39,7 @@ public class HibernateUtil {
 		ac.addAnnotatedClass(ItemMenu.class);
 		ac.addAnnotatedClass(Plato.class);
 		ac.addAnnotatedClass(Tag.class);
-		ac.addAnnotatedClass(TipoPlato.class);
+		//ac.addAnnotatedClass(TipoPlato.class);
 		ac.addAnnotatedClass(Restriccion.class);
 		ac.addAnnotatedClass(ItemIngrediente.class);
 		ac.addAnnotatedClass(Ingrediente.class);

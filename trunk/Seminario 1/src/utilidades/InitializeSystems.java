@@ -92,186 +92,7 @@ public class InitializeSystems {
 			/*
 			 * Creacion de Ingredientes
 			 */
-			// Ingrediente papa = new Ingrediente();
-			// papa.setCantidadStock(25);
-			// papa.setDiasCaducidad(10);
-			// papa.setEstaciones(estaciones);
-			// papa.setFreezer(false);
-			// papa.setMedida(EnumMedida.Kilo);
-			// papa.setNombre("Papa");
-			// // Agregamos restricciones.
-			//
-			// s.save(papa);
-			// s.flush();
-			// // restricciones.clear();
-			//
-			// // TOMATE
-			// Ingrediente tomate = new Ingrediente();
-			// tomate.setCantidadStock(25);
-			// tomate.setDiasCaducidad(10);
-			// tomate.setEstaciones(estaciones);
-			// tomate.setFreezer(false);
-			// tomate.setMedida(EnumMedida.Kilo);
-			// tomate.setNombre("Papa");
-			// s.save(tomate);
-			// s.flush();
-			//
-			// // POLLO
-			// Ingrediente pollo = new Ingrediente();
-			// pollo.setCantidadStock(56);
-			// pollo.setDiasCaducidad(4);
-			// pollo.setEstaciones(estaciones);
-			// pollo.setFreezer(true);
-			// pollo.setMedida(EnumMedida.Kilo);
-			// pollo.setNombre("Pollo");
-			// s.save(pollo);
-			// s.flush();
-			//
-			// // CEBOLLA
-			// Ingrediente cebolla = new Ingrediente();
-			// cebolla.setCantidadStock(10);
-			// cebolla.setDiasCaducidad(15);
-			// cebolla.setEstaciones(estaciones);
-			// cebolla.setFreezer(false);
-			// cebolla.setMedida(EnumMedida.Kilo);
-			// cebolla.setNombre("Cebolla");
-			// s.save(cebolla);
-			// s.flush();
-			//
-			// // Arroz
-			// Ingrediente arroz = new Ingrediente();
-			// arroz.setCantidadStock(250);
-			// arroz.setDiasCaducidad(360);
-			// arroz.setEstaciones(estaciones);
-			// arroz.setFreezer(false);
-			// arroz.setMedida(EnumMedida.Kilo);
-			// arroz.setNombre("Arroz");
-			// s.save(arroz);
-			// s.flush();
-			//
-			// // LOMO
-			// Ingrediente lomo = new Ingrediente();
-			// lomo.setCantidadStock(250);
-			// lomo.setDiasCaducidad(360);
-			// lomo.setEstaciones(estaciones);
-			// lomo.setFreezer(true);
-			// lomo.setMedida(EnumMedida.Kilo);
-			// lomo.setNombre("Lomo");
-			// s.save(lomo);
-			// s.flush();
-			//
-			// // BROCOLI
-			// Ingrediente brocoli = new Ingrediente();
-			// brocoli.setCantidadStock(5);
-			// brocoli.setDiasCaducidad(10);
-			// brocoli.setEstaciones(estaciones);
-			// brocoli.setFreezer(true);
-			// brocoli.setMedida(EnumMedida.Kilo);
-			// brocoli.setNombre("Brocoli");
-			// // Agregamos restricciones.
-			//
-			// s.save(brocoli);
-			// s.flush();
-			//
-			// // ACEITE DE OLIVA
-			// Ingrediente oliva = new Ingrediente();
-			// oliva.setCantidadStock(25);
-			// oliva.setDiasCaducidad(90);
-			// oliva.setEstaciones(estaciones);
-			// oliva.setFreezer(false);
-			// oliva.setMedida(EnumMedida.Litro);
-			// oliva.setNombre("Aceite de Oliva");
-			// s.save(oliva);
-			// s.flush();
-			//
-			// // ACEITE DE girasol
-			// Ingrediente girasol = new Ingrediente();
-			// girasol.setCantidadStock(25);
-			// girasol.setDiasCaducidad(90);
-			// girasol.setEstaciones(estaciones);
-			// girasol.setFreezer(false);
-			// girasol.setMedida(EnumMedida.Litro);
-			// girasol.setNombre("Aceite de Girasol");
-			// s.save(girasol);
-			// s.flush();
-			//
-			// // LIMON
-			// Ingrediente limon = new Ingrediente();
-			// limon.setCantidadStock(25);
-			// limon.setDiasCaducidad(4);
-			// limon.setEstaciones(estaciones);
-			// limon.setFreezer(false);
-			// limon.setMedida(EnumMedida.Kilo);
-			// limon.setNombre("Limon");
-			//
-			// s.save(limon);
-			// s.flush();
-			//
-			// // SAL
-			// Ingrediente sal = new Ingrediente();
-			// sal.setCantidadStock(25);
-			// sal.setDiasCaducidad(365);
-			// sal.setEstaciones(estaciones);
-			// sal.setFreezer(false);
-			// sal.setMedida(EnumMedida.Kilo);
-			// sal.setNombre("Sal");
-			// s.save(sal);
-			// s.flush();
-			//
-			// // Champi
-			// Ingrediente champi = new Ingrediente();
-			// champi.setCantidadStock(500);
-			// champi.setDiasCaducidad(15);
-			// champi.setEstaciones(estaciones);
-			// champi.setFreezer(false);
-			// champi.setMedida(EnumMedida.Gramo);
-			// champi.setNombre("Champiï¿½on");
-			// s.save(champi);
-			// s.flush();
-			//
-			// // Ajo
-			// Ingrediente ajo = new Ingrediente();
-			// ajo.setCantidadStock(5);
-			// ajo.setDiasCaducidad(15);
-			// ajo.setEstaciones(estaciones);
-			// ajo.setFreezer(false);
-			// ajo.setMedida(EnumMedida.Unidad);
-			// ajo.setNombre("Ajo");
-			// s.save(ajo);
-			// s.flush();
-			//
-			// // Pure de tomate
-			// Ingrediente pureTomate = new Ingrediente();
-			// pureTomate.setCantidadStock(15);
-			// pureTomate.setDiasCaducidad(60);
-			// pureTomate.setEstaciones(estaciones);
-			// pureTomate.setFreezer(false);
-			// pureTomate.setMedida(EnumMedida.Litro);
-			// pureTomate.setNombre("Pure de Tomate");
-			// s.save(pureTomate);
-			// s.flush();
-			//
-			// // Crema de Leche
-			// Ingrediente crema = new Ingrediente();
-			// crema.setCantidadStock(15);
-			// crema.setDiasCaducidad(5);
-			// crema.setEstaciones(estaciones);
-			// crema.setFreezer(false);
-			// crema.setMedida(EnumMedida.Litro);
-			// crema.setNombre("Crema de Leche");
-			// s.save(crema);
-			// s.flush();
-			//
-			// // Perejil
-			// Ingrediente perejil = new Ingrediente();
-			// perejil.setCantidadStock(300);
-			// perejil.setDiasCaducidad(5);
-			// perejil.setEstaciones(estaciones);
-			// perejil.setFreezer(false);
-			// perejil.setMedida(EnumMedida.Gramo);
-			// perejil.setNombre("Perejil");
-			// s.save(perejil);
-			// s.flush();
+
 
 			Ingrediente aceitedegirasol = new Ingrediente("Aceite de girasol",
 					999999, EnumMedida.Litro, 365, true, estaciones);
@@ -579,7 +400,12 @@ public class InitializeSystems {
 			s.save(zucchini);
 			s.flush();
 
-			// Tag
+			/**********************
+			 * 
+			 *  Tag
+			 *  
+			 *  
+			 ***********************/
 
 			Tag pescado = new Tag("pescado", "pescado");
 			s.save(pescado);
@@ -610,11 +436,42 @@ public class InitializeSystems {
 					EnumEstado.ACTIVO, null, listaRestricciones, "Centro"));
 
 			listaRestricciones.add(restriccion2);
+			
+			
 
 			ClientesDAO.crearCliente(new Cliente("Chalo", "Camino", "Calle 2",
 					"22222", "13:30", "Quilmes", "1878", null,
 					EnumEstado.ACTIVO, null, listaRestricciones, "Oeste"));
+			
+			listaRestricciones.clear();
+			listaRestricciones.add(restriccion3);
+			listaRestricciones.add(restriccion4);
+			
+			ClientesDAO.crearCliente(new Cliente("Emma", "Mastro", "Calle 3",
+					"3333", "13:30", "Marteli", "4444", null,
+					EnumEstado.ACTIVO, null, listaRestricciones, "Norte"));
+			
+			listaRestricciones.add(restriccion3);
+			
+			ClientesDAO.crearCliente(new Cliente("Damiancito", "Quiroga", "Calle 4",
+					"4444", "13:30", "Adelina", "5555", null,
+					EnumEstado.ACTIVO, null, listaRestricciones, "Norte"));
+			
+			listaRestricciones.clear();
+			listaRestricciones.add(restriccion1);
+			listaRestricciones.add(restriccion3);
 
+			ClientesDAO.crearCliente(new Cliente("Santi", "Rodriguez", "Calle 5",
+					"5555", "13:30", "Almagro", "6666", null,
+					EnumEstado.ACTIVO, null, listaRestricciones, "Capital"));
+			
+			/****************
+			 * 
+			 *Creación de PLatos 
+			 * 
+			 ******************/
+			
+			
 			Plato cazuelacampestre = new Plato(
 					"Cazuela campestre",
 					"Pelar las papas y las zanahorias y cortarlas en cuatro. Cortar la carne de cordero en cubos medianos y el puerro en trozos no muy pequeños. En una olla con un chorro de aceite, sofreír el puerro. Agregar los cubos de cordero y cocinar por unos minutos. Incorporar las zanahorias, las papas y las flores de coliflor. Salpimentar a gusto. Cubrir con el caldo. Incorporar la rama de laurel y cocinar a fuego suave por uno 40 minutos.",
@@ -722,23 +579,14 @@ public class InitializeSystems {
 					"Lavar los duraznos, secarlos, ponerlos en una cacerola, cubrirlos con agua y agregar azucar a gusto hasta que el agua tome el sabor que se prefiera. Agregar la chaucha de vainilla o la esencia a gusto. Cocinar hasta que los duraznos esten tiernos, pero firmes. Retirar del fuego, pelarlos con cuidado, quitar los carozos. Colocar los carozos y la piel de los duraznos en la cacerola donde estaba el agua y continuar la coccion. Cuando se obtiene un almibar semidenso, colar y reservar. Limpiar frascos de vidrio con alcohol fino,dejar unos minutos hasta que se evapore el olor a alcohol, acomodar los duraznos y llenar los frascos con el almibar caliente. Dejar enfriar y cerrar los frascos hermeticamente. Conservar en la heladera.",
 					EnumTipoPlato.Postre, null);
 
-			// Creacion de Platos
-			// // Lomo Strogonoff Liviano
-			// Plato plato = new Plato();
-			// List<ItemIngrediente> ingredientes = new
-			// ArrayList<ItemIngrediente>();
-			// ingredientes.add(new ItemIngrediente(crema, 1));
-			// ingredientes.add(new ItemIngrediente(lomo, 1));
-			// ingredientes.add(new ItemIngrediente(perejil, 1));
-			// ingredientes.add(new ItemIngrediente(champi, 1));
-			// ingredientes.add(new ItemIngrediente(pureTomate, 1));
-			// ingredientes.add(new ItemIngrediente(cebolla, 1));
-			// ingredientes.add(new ItemIngrediente(crema, 1));
-			// ingredientes.add(new ItemIngrediente(ajo, 1));
-			// plato.setIngredientes(ingredientes);
-			// plato.setNombre("Lomo Strogonoff Liviano");
-			// plato.setReceta("1.	Retirar cualquier rastro de grasa visible que pudiera tener el lomo; cortarlo en cubos de 2cm de lado.<br> 2.	Cortar los champiï¿½ones en laminas. Reservar todo.<br>3.	Picar la cebolla y el ajo. Cocinarlos en una olla, con 1 cucharada de caldo, hasta que la cebolla este transparente.<br>4.	Aï¿½adir los cubos de lomo y cocinar hasta que cambien de color en toda su superficie.<br>5.	Agregar los champiï¿½ones, el resto del caldo, el pure de tomate y la mostaza. Continuar la coccion aproximadamente 20 minutos mas, hasta que la carne este tierna.<br>6.	Incorporar la crema de leche y cocinar 10 minutos mas.<br/>7.Espolvorear con peejil picado y servir caliente, con el arroz blanco como guarnicion.");
-			// s.save(plato);
+			/***********************
+			 * 
+			 *  
+			 *  Creacion de ItemIngrediente para los Platos
+			 *  
+			 *  
+			 **************************/
+
 
 			cazuelacampestre.getIngredientes().add(
 					new ItemIngrediente(puerro, Float.parseFloat("1")));
@@ -1122,22 +970,41 @@ public class InitializeSystems {
 					new ItemIngrediente(esenciadevainilla, Float
 							.parseFloat("0.02")));
 
+			listaRestricciones.clear();
+			listaRestricciones.add(restriccion1);
+			cazuelacampestre.setRestricciones(listaRestricciones);
 			s.save(cazuelacampestre);
 			s.flush();
+			listaRestricciones.clear();
+			listaRestricciones.add(restriccion2);
+			carnealvapor.setRestricciones(listaRestricciones);
 			s.save(carnealvapor);
 			s.flush();
 			s.save(goulashHungaro);
 			s.flush();
+			listaRestricciones.clear();
+			listaRestricciones.add(restriccion1);
+			listaRestricciones.add(restriccion4);
+			medallonDeLomoEnCrouteDeHierbas.setRestricciones(listaRestricciones);
 			s.save(medallonDeLomoEnCrouteDeHierbas);
 			s.flush();
 			s.save(guisodeternera);
 			s.flush();
+			listaRestricciones.clear();
+			listaRestricciones.add(restriccion1);
+			lomodecerdoalhornoconcebollitas.setRestricciones(listaRestricciones);
 			s.save(lomodecerdoalhornoconcebollitas);
 			s.flush();
+			listaRestricciones.clear();
+			listaRestricciones.add(restriccion3);
+			tortilladeespinaca.setRestricciones(listaRestricciones);
 			s.save(tortilladeespinaca);
 			s.flush();
 			s.save(platoArvejas);
 			s.flush();
+			listaRestricciones.clear();
+			listaRestricciones.add(restriccion4);
+			polloconsalsadechampinones.setRestricciones(listaRestricciones);
 			s.save(polloconsalsadechampinones);
 			s.flush();
 			s.save(pescadoensalsadeaji);
@@ -1183,6 +1050,7 @@ public class InitializeSystems {
 
 			DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 
+
 			Menu menu1 = new Menu();
 			menu1.setCalorias(1000);
 			menu1.setEstado(EnumEstado.ACTIVO);
@@ -1191,11 +1059,11 @@ public class InitializeSystems {
 			platos1.add(platoArvejas);
 			platos1.add(duraznoenalmibar);
 			menu1.setPlatos(platos1);
-			menu1.setRestricciones(listaRestricciones);
 			menu1.setTag(pescado);
 			menu1.setUltimoUso(df.parse("2014/01/01"));
 			s.save(menu1);
 			s.flush();
+
 
 			Menu menu2 = new Menu();
 			menu2.setCalorias(1500);
@@ -1205,12 +1073,13 @@ public class InitializeSystems {
 			platos2.add(platoArvejas);
 			platos2.add(platoBanana);
 			menu2.setPlatos(platos2);
-			menu2.setRestricciones(listaRestricciones);
 			menu2.setTag(carne);
 			menu2.setUltimoUso(df.parse("2014/01/01"));
 			s.save(menu2);
 			s.flush();
 
+
+			
 			Menu menu3 = new Menu();
 			menu3.setCalorias(1500);
 			menu3.setEstado(EnumEstado.ACTIVO);
@@ -1219,10 +1088,68 @@ public class InitializeSystems {
 			platos3.add(platoArvejas);
 			platos3.add(platoManzana);
 			menu3.setPlatos(platos3);
-			menu3.setRestricciones(listaRestricciones);
 			menu3.setTag(verdura);
 			menu3.setUltimoUso(df.parse("2014/01/01"));
 			s.save(menu3);
+			s.flush();
+			
+			
+			
+			Menu menu4 = new Menu();
+			menu4.setCalorias(1000);
+			menu4.setEstado(EnumEstado.ACTIVO);
+			List<Plato> plato4 = new ArrayList<Plato>();
+			plato4.add(polloconsalsadechampinones);
+			plato4.add(platoArvejas);
+			plato4.add(platoManzana);
+			menu4.setPlatos(plato4);
+			menu4.setTag(tagpollo);
+			menu4.setUltimoUso(df.parse("2014/01/01"));
+			s.save(menu4);
+			s.flush();
+			
+
+			
+			Menu menu5 = new Menu();
+			menu5.setCalorias(1000);
+			menu5.setEstado(EnumEstado.ACTIVO);
+			List<Plato> plato5 = new ArrayList<Plato>();
+			plato5.add(lomodecerdoalhornoconcebollitas);
+			plato5.add(platoArvejas);
+			plato5.add(platoManzana);
+			menu5.setPlatos(plato5);
+			menu5.setTag(cerdo);
+			menu5.setUltimoUso(df.parse("2014/01/01"));
+			s.save(menu5);
+			s.flush();
+			
+			Menu menu6 = new Menu();
+			menu6.setCalorias(1500);
+			menu6.setEstado(EnumEstado.ACTIVO);
+			List<Plato> platos6 = new ArrayList<Plato>();
+			platos6.add(guisodeternera);
+			platos6.add(platoArvejas);
+			platos6.add(platoBanana);
+			menu6.setPlatos(platos6);
+			menu6.setTag(carne);
+			menu6.setUltimoUso(df.parse("2014/02/01"));
+			s.save(menu6);
+			s.flush();
+			
+
+			
+			Menu menu7 = new Menu();
+			menu7.setCalorias(1500);
+			menu7.setEstado(EnumEstado.ACTIVO);
+			List<Plato> platos7 = new ArrayList<Plato>();
+			platos7.add(medallonDeLomoEnCrouteDeHierbas);
+			platos7.add(platoArvejas);
+			platos7.add(platoBanana);
+			menu7.setPlatos(platos7);
+			menu7.setRestricciones(listaRestricciones);
+			menu7.setTag(carne);
+			menu7.setUltimoUso(df.parse("2014/02/01"));
+			s.save(menu7);
 			s.flush();
 
 			// transac.commit();
