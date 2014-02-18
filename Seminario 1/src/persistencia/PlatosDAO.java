@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import utilidades.GlobalsVars;
+import views.PlatoVO;
 
 public class PlatosDAO {
 
@@ -25,5 +26,22 @@ public class PlatosDAO {
 	public static List<Plato> getPlatosById(List<Integer> platosId){
 		List<Plato> platos =	(List<Plato>) s.createCriteria(Plato.class).add(Restrictions.in( "idPlato", platosId));
 		return platos;
+	}
+	
+	public static ArrayList<PlatoVO> getPlatos() {
+		ArrayList<PlatoVO> platos = new ArrayList<PlatoVO>();
+		ArrayList<Plato> plat = (ArrayList<Plato>) s.createQuery("from Plato")
+				.list();
+		for (Plato plato : plat) {
+			PlatoVO pvo = new PlatoVO(plato);
+			platos.add(pvo);
+		}
+		return platos;
+	}
+	public static PlatoVO getPlatoVO(String idPlato) {
+		Plato p = (Plato) s.createQuery(
+				"from Plato p WHERE p.idPlato= " + idPlato).uniqueResult();
+		PlatoVO pvo = new PlatoVO(p);
+		return pvo;
 	}
 }

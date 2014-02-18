@@ -59,4 +59,14 @@
     <servlet-name>PlatoServlet</servlet-name>
     <url-pattern>/PlatoServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>OCServlet</display-name>
+    <servlet-name>OCServlet</servlet-name>
+    <servlet-class>servlets.OCServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OCServlet</servlet-name>
+    <url-pattern>/OCServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

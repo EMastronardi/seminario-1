@@ -15,6 +15,7 @@ import modelo.EnumEstado;
 import modelo.Ingrediente;
 import modelo.ItemIngrediente;
 import modelo.ItemMenu;
+import modelo.ItemOrdenDeCompra;
 import modelo.Menu;
 import modelo.OrdenDeCompra;
 import modelo.Plan;
@@ -25,13 +26,15 @@ import modelo.Tag;
 import persistencia.ClientesDAO;
 import persistencia.IngredienteDAO;
 import persistencia.MenusDAO;
+import persistencia.OrdenDeCompraDAO;
 import persistencia.RestriccionesDAO;
 import persistencia.TagDAO;
+import utilidades.GlobalsVars;
 
 public class Logica {
 
 	public static Plan generarPlanSemanal(List<String> tags,
-			Date fechaComienzo, Date FechaFin)throws Exception {
+			Date fechaComienzo, Date FechaFin) throws Exception {
 		// TODO armado del plan semanal con los planes diarios // Busco los
 		// menús que coinciden con los tags ordenados
 
@@ -78,23 +81,24 @@ public class Logica {
 
 				PlanDiario planDiario = new PlanDiario(fecha.getTime());
 				planDiario.setEstado(EnumEstado.ACTIVO);
-				if(turno == 0){
+				if (turno == 0) {
 					planDiario.setTurno("almuerzo");
 					turno++;
-				}
-				else{
+				} else {
 					planDiario.setTurno("cena");
 				}
-				
+
 				planDiario.setTag(t.getNombre());
-				
 
 				// Primer búsqueda: Busco solo 1 menu, que cumple con el tag y
 				// es el
 				// que se uso hace mas tiempo
 
 				// Obtenemos Los menus por prioridades definidas.
-				Menu menuPrimeraPrioridad = MenusDAO.buscarMejorMenuPorTag(t); // Tag Fecha de uso
+				Menu menuPrimeraPrioridad = MenusDAO.buscarMejorMenuPorTag(t); // Tag
+																				// Fecha
+																				// de
+																				// uso
 				List<Menu> menuSegundaPrioridad = MenusDAO
 						.buscarMenusPorSegundaPri(t); // Tag Restriccion
 				List<Menu> menuTerceraPrioridad = MenusDAO
@@ -140,25 +144,26 @@ public class Logica {
 				 */
 				if (clientes.size() > 0) {
 					System.out.println("----------------///////------------");
-					System.out.println("planDiario:" );
-					System.out.println("Fecha: " + planDiario.getFecha().toString());
+					System.out.println("planDiario:");
+					System.out.println("Fecha: "
+							+ planDiario.getFecha().toString());
 					System.out.println("Tag: " + planDiario.getTag());
 					System.out.println("Turno: " + planDiario.getTurno());
 					System.out.println("Items usados en el del plan: ");
 					int count = 0;
-					for (ItemMenu itemMenu :  planDiario.getItems()) {
+					for (ItemMenu itemMenu : planDiario.getItems()) {
 						System.out.println("=======");
 						System.out.println("itemMenu nro:" + ++i);
-						
+
 						System.out.println("Platos:");
 						for (Plato p : itemMenu.getMenu().getPlatos()) {
 							System.out.println(p.getNombre());
 						}
 						System.out.println("/-/-/-/-/-/-/-/");
-						
-						
+
 					}
-					System.out.println("====================*=====================");
+					System.out
+							.println("====================*=====================");
 					System.out
 							.println("Los clientes que se listan a continuacion se encuentras sin plan:");
 					for (Cliente cliente : clientes) {
@@ -171,6 +176,9 @@ public class Logica {
 			}
 		}
 		plan.setItems(planesDiarios);
+		OrdenDeCompra oc = generarOrdenDeCompraPorPlan(plan);
+		if(oc!= null)
+			OrdenDeCompraDAO.guardarOC(oc);
 		return plan;
 	}
 
@@ -206,42 +214,80 @@ public class Logica {
 		}
 		return mapaClientes;
 	}
-/*
-	public Plan generarPlanSemanal() {
-		ArrayList<String> tags = new ArrayList<String>();
-		tags.add("carne");
-		tags.add("pasta");
-		tags.add("pollo");
-		tags.add("cerdo");
-		tags.add("verduras");
-		return generarPlanSemanal(tags, new Date(), new Date());
-	}
-*/
+
+	/*
+	 * public Plan generarPlanSemanal() { ArrayList<String> tags = new
+	 * ArrayList<String>(); tags.add("carne"); tags.add("pasta");
+	 * tags.add("pollo"); tags.add("cerdo"); tags.add("verduras"); return
+	 * generarPlanSemanal(tags, new Date(), new Date()); }
+	 */
+	// backup generarOrdenDeCompraPorPlan
+	// public static OrdenDeCompra generarOrdenDeCompraPorPlan(Plan plan) {
+	// OrdenDeCompra oc;
+	//
+	// Map<Ingrediente, Float> items = new HashMap<Ingrediente, Float>();
+	//
+	// for (ItemIngrediente itemIngrediente : plan
+	// .obtenerIngredientesNecesarios()) {
+	// Ingrediente ingrediente = itemIngrediente.getIngrediente();
+	// Ingrediente stockDeIngrediente = IngredienteDAO
+	// .buscarIngredientePorId(ingrediente.getIdIngrediente());
+	// Float cantidad = itemIngrediente.getCantidad()
+	// - stockDeIngrediente.getCantidadStock();
+	//
+	// if (items.get(ingrediente) == null) {
+	// items.put(ingrediente, cantidad);
+	// } else {
+	//
+	// items.put(ingrediente, items.get(ingrediente) + cantidad);
+	// }
+	//
+	// }
+	//
+	// oc = new OrdenDeCompra(new Date(), plan.getFechaInicio(),
+	// EnumEstado.CREADA, items);
+	//
+	// return oc;
+	// }
+
 	public static OrdenDeCompra generarOrdenDeCompraPorPlan(Plan plan) {
 		OrdenDeCompra oc;
+		ArrayList<ItemOrdenDeCompra> items = new ArrayList<ItemOrdenDeCompra>();
 
-		Map<Ingrediente, Float> items = new HashMap<Ingrediente, Float>();
-
-		for (ItemIngrediente itemIngrediente : plan
-				.obtenerIngredientesNecesarios()) {
+		for (ItemIngrediente itemIngrediente : plan.obtenerIngredientesNecesarios()) {
 			Ingrediente ingrediente = itemIngrediente.getIngrediente();
-			Ingrediente stockDeIngrediente = IngredienteDAO
-					.buscarIngredientePorId(ingrediente.getIdIngrediente());
-			Float cantidad = itemIngrediente.getCantidad()
-					- stockDeIngrediente.getCantidadStock();
+			Ingrediente stockDeIngrediente = IngredienteDAO .buscarIngredientePorId(ingrediente.getIdIngrediente());
+			Float cantidad = stockDeIngrediente.getCantidadStock() - itemIngrediente.getCantidad();
 
-			if (items.get(ingrediente) == null) {
-				items.put(ingrediente, cantidad);
-			} else {
-
-				items.put(ingrediente, items.get(ingrediente) + cantidad);
+			if (cantidad > 0) { // no compro, pero actualizo el stock del
+								// ingrediente
+				ingrediente.setCantidadStock(cantidad);
+				GlobalsVars.HIBERATE_SESSION.update(ingrediente);
+			}else{
+				boolean encontrado = false;
+				for (ItemOrdenDeCompra itm : items) {
+					if (itm.getIngrediente().getIdIngrediente() == ingrediente
+							.getIdIngrediente()) {
+						encontrado = true;
+						itm.setCantidad(itm.getCantidad() + (cantidad*-1));
+					}
+				}
+				if (!encontrado) {
+					ItemOrdenDeCompra itmOD = new ItemOrdenDeCompra();
+					itmOD.setIngrediente(ingrediente);
+					itmOD.setCantidad(cantidad);
+					items.add(itmOD);
+				}
 			}
 
 		}
 
-		oc = new OrdenDeCompra(new Date(), plan.getFechaInicio(),
+		if(items.size()>0){
+			oc = new OrdenDeCompra(new Date(), plan.getFechaInicio(),
 				EnumEstado.CREADA, items);
-
+		
 		return oc;
+		}else 
+			return null;
 	}
 }

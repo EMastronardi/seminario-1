@@ -110,7 +110,7 @@ select {
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Check</th>
+							<th>Seleccionar</th>
 							<th>ID</th>
 							<th>Nombre</th>
 							<th>Apellido</th>

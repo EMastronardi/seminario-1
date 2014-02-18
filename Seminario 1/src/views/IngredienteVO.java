@@ -9,7 +9,7 @@ import modelo.Ingrediente;
 public class IngredienteVO {
 	private int idIngrediente;
 	private String nombre;
-	private int cantidadStock;
+	private float cantidadStock;
 	private String medida;
 	private int diasCaducidad;
 	private boolean freezer;
@@ -45,10 +45,10 @@ public class IngredienteVO {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getCantidadStock() {
+	public float getCantidadStock() {
 		return cantidadStock;
 	}
-	public void setCantidadStock(int cantidadStock) {
+	public void setCantidadStock(float cantidadStock) {
 		this.cantidadStock = cantidadStock;
 	}
 	public String getMedida() {
