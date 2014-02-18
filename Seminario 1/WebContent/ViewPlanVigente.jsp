@@ -48,7 +48,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-    <title>La Cocina de Silvia / Visualizaci&oacute;n Plan Generado</title>
+    <title>La Cocina de Silvia / Visualizaci&oacute;n Plan Vigente</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -130,11 +130,11 @@
       	 <ol class="breadcrumb">
 				<li><a href="Home.jsp">Inicio</a></li>
 				<li><a href="GenerarPlan.jsp">Generar Plan</a></li>
-				<li class="active">Vista Plan Generado</li>
+				<li class="active">Vista Plan Vigente</li>
 			</ol>
 
 			<div class="page-header">
-				<h1>Visualizaci&oacute;n plan Generado</h1>
+				<h1>Visualizaci&oacute;n plan Vigente</h1>
 			</div>
      	
      	<ul class="nav nav-tabs nav-justified" id="myTab">

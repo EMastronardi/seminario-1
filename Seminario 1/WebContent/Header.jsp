@@ -31,7 +31,7 @@
 			</a>
 				<ul class="dropdown-menu">
 					<li><a href="GenerarPlan.jsp">Genera Plan</a></li>
-					<li><a href="Planes.jsp">Plan Vigente</a></li>
+					<li><a href="ViewPlanVigente.jsp">Plan Vigente</a></li>
 					<li><a href="#">Listar Planes...</a></li>
 
 				</ul></li>
