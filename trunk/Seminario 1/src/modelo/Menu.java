@@ -96,14 +96,16 @@ public class Menu {
 		this.estado = estado;
 	}
 
-	public boolean cumpleRestricciones(List<Restriccion> restricciones) {
+	public boolean cumpleRestricciones(List<Restriccion> restriccionesCliente) {
 
-		if (restricciones.size() == 0) {
+		if (restriccionesCliente.size() == 0) {
 			return true;
 		} else {
-			for (Restriccion restriccion : restricciones) {
-				if (this.getRestricciones().contains(restriccion)) {
-					return false;
+			for (Restriccion restriccionCliente : restriccionesCliente) {
+				for (Restriccion restriccionMenu : this.getRestricciones()) {
+					if(restriccionMenu.getIdRestriccion() == restriccionCliente.getIdRestriccion()){
+						return false;						
+					}
 				}
 			}
 		}
@@ -113,10 +115,13 @@ public class Menu {
 	}
 
 	private List<Restriccion> getRestricciones() {
-		if (this.restricciones == null) {
+		if (this.restricciones == null || this.restricciones.size() == 0) {
 			restricciones = new ArrayList<Restriccion>();
 			for (Plato plato : platos) {
-				restricciones.addAll(plato.getRestricciones());
+				for (Restriccion r : plato.getRestricciones()) {
+					if(!restricciones.contains(r))
+						restricciones.add(r);
+				}
 			}
 		}
 
