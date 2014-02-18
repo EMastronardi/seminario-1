@@ -89,7 +89,7 @@ public class Sistema {
 	}
 
 	public PlanVO obtenerPlanActual() {
-		// TODO debo buscar el �ltimo plan que se gener�
+		// TODO debo buscar el utimo plan que se genero
 		Plan plan = PlanDAO.obtenerPlanActual();
 		if (plan != null) {
 			return new PlanVO(PlanDAO.obtenerPlanActual());
@@ -104,12 +104,12 @@ public class Sistema {
 
 	public RestriccionVOList getRestriccionesCliente(String idCliente) {
 		
-		return getRestriccionesCliente(idCliente);
+		return RestriccionesDAO.getRestriccionesCliente(idCliente);
 	}
 
 	public PlatoVO getPlatoVO(String idPlato) {
 		
-		return getPlatoVO(idPlato);
+		return PlatosDAO.getPlatoVO(idPlato);
 	}
 
 	public List<EstacionVO> getEstaciones() {
