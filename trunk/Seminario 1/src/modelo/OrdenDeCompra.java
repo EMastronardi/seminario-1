@@ -1,18 +1,16 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-
-import views.OrdenDeCompraVO;
 
 @Entity
 public class OrdenDeCompra {
@@ -22,16 +20,19 @@ public class OrdenDeCompra {
 	private Date fechaCreacion;
 	private Date fechaInicioPlan;
 	private EnumEstado estado;
-	@OneToMany
-	@JoinColumn(name = "idOrdenDeCompra")
-	private Map<Ingrediente, Float> items;
-
+	
+	@OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="idOrdenDeCompra")
+	private List<ItemOrdenDeCompra> items;
+	
+	
+	
 	public OrdenDeCompra() {
-		items = new HashMap<Ingrediente, Float>();
+		items = new ArrayList<ItemOrdenDeCompra>();
 	}
 
 	public OrdenDeCompra(Date fechaCreacion, Date fechaInicioPlan,
-			EnumEstado estado, Map<Ingrediente, Float> items) {
+			EnumEstado estado, ArrayList<ItemOrdenDeCompra> items) {
 		this.fechaCreacion = fechaCreacion;
 		this.fechaInicioPlan = fechaInicioPlan;
 		this.estado = estado;
@@ -62,12 +63,31 @@ public class OrdenDeCompra {
 		this.estado = estado;
 	}
 
-	public Map<Ingrediente, Float> getItems() {
+	
+	public List<ItemOrdenDeCompra> getItems() {
 		return items;
 	}
 
-	public void setItems(Map<Ingrediente, Float> items) {
+	public void setItems(List<ItemOrdenDeCompra> items) {
 		this.items = items;
 	}
 
+	public void setItems(ArrayList<ItemOrdenDeCompra> items) {
+		this.items = items;
+	}
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaInicioPlan() {
+		return fechaInicioPlan;
+	}
+
+	public void setFechaInicioPlan(Date fechaInicioPlan) {
+		this.fechaInicioPlan = fechaInicioPlan;
+	}
 }

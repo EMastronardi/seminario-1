@@ -5,7 +5,9 @@ import modelo.Estacion;
 import modelo.Ingrediente;
 import modelo.ItemIngrediente;
 import modelo.ItemMenu;
+import modelo.ItemOrdenDeCompra;
 import modelo.Menu;
+import modelo.OrdenDeCompra;
 import modelo.Plan;
 import modelo.PlanDiario;
 import modelo.Plato;
@@ -14,7 +16,6 @@ import modelo.Servicio;
 import modelo.ServicioCliente;
 import modelo.Tag;
 import modelo.TipoPago;
-import modelo.Usuario;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -48,6 +49,9 @@ public class HibernateUtil {
 		ac.addAnnotatedClass(TipoPago.class);
 		ac.addAnnotatedClass(ServicioCliente.class);
 		ac.addAnnotatedClass(Servicio.class);
+		ac.addAnnotatedClass(OrdenDeCompra.class);
+		ac.addAnnotatedClass(ItemOrdenDeCompra.class);
+		
 		sessionFactory = ac.buildSessionFactory();
 		return sessionFactory;
 	}

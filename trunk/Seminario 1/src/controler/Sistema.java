@@ -23,17 +23,21 @@ import modelo.Usuario;
 
 import org.hibernate.Session;
 
+import persistencia.ClientesDAO;
 import persistencia.EstacionDAO;
 import persistencia.HibernateUtil;
 import persistencia.IngredienteDAO;
 import persistencia.MenusDAO;
+import persistencia.OrdenDeCompraDAO;
 import persistencia.PlanDAO;
 import persistencia.PlatosDAO;
+import persistencia.RestriccionesDAO;
 import persistencia.TagDAO;
 import utilidades.GlobalsVars;
 import views.ClienteVO;
 import views.EstacionVO;
 import views.IngredienteVO;
+import views.ItemOrdenDeCompraVO;
 import views.MenuVO;
 import views.OrdenDeCompraVO;
 import views.PlanVO;
@@ -57,7 +61,7 @@ public class Sistema {
 		return instancia;
 	}
 
-	public boolean validarLogin(String user, String password) {
+	/*public boolean validarLogin(String user, String password) {
 		Session s = HibernateUtil.getCurrent();
 		List<Usuario> list = s
 				.createQuery(
@@ -68,43 +72,19 @@ public class Sistema {
 			return true;
 		else
 			return false;
-	}
+	}*/
 
 	public ArrayList<PlatoVO> getPlatos() {
-		ArrayList<PlatoVO> platos = new ArrayList<PlatoVO>();
-		ArrayList<Plato> plat = (ArrayList<Plato>) s.createQuery("from Plato")
-				.list();
-		for (Plato plato : plat) {
-			PlatoVO pvo = new PlatoVO(plato);
-			platos.add(pvo);
-		}
-		return platos;
+		return PlatosDAO.getPlatos();
 	}
-
+	
 	public ArrayList<ClienteVO> getClientesVO() {
-		ArrayList<ClienteVO> clientes = new ArrayList<ClienteVO>();
-		ArrayList<Cliente> clis = (ArrayList<Cliente>) s.createQuery(
-				"from Cliente").list();
 
-		for (Cliente c : clis) {
-			ClienteVO cvo = new ClienteVO(c);
-			clientes.add(cvo);
-		}
-
-		return clientes;
+		return ClientesDAO.getClientesVO();
 	}
 
 	public ArrayList<IngredienteVO> getIngredientes() {
-		ArrayList<IngredienteVO> ingredientes = new ArrayList<IngredienteVO>();
-
-		ArrayList<Ingrediente> ing = (ArrayList<Ingrediente>) s.createQuery(
-				"from Ingrediente").list();
-
-		for (Ingrediente ingrediente : ing) {
-			IngredienteVO ingVO = new IngredienteVO(ingrediente);
-			ingredientes.add(ingVO);
-		}
-		return ingredientes;
+		return IngredienteDAO.getIngredientes();
 
 	}
 
@@ -119,42 +99,22 @@ public class Sistema {
 	}
 
 	public RestriccionVOList getRestricciones() {
-		RestriccionVOList restricciones = new RestriccionVOList();
-		ArrayList<Restriccion> rest = (ArrayList<Restriccion>) s.createQuery(
-				"from Restriccion").list();
-		for (Restriccion restriccion : rest) {
-			RestriccionVO restriccionVO = new RestriccionVO(restriccion);
-			restricciones.add(restriccionVO);
-		}
-		return restricciones;
+		return RestriccionesDAO.getRestricciones();
 	}
 
 	public RestriccionVOList getRestriccionesCliente(String idCliente) {
-		RestriccionVOList restricciones = new RestriccionVOList();
-		ArrayList<Restriccion> rest = (ArrayList<Restriccion>) s.createQuery(
-				"select c.restricciones from Cliente c WHERE c.idCliente = "
-						+ idCliente).list();
-		for (Restriccion restriccion : rest) {
-			RestriccionVO restriccionVO = new RestriccionVO(restriccion);
-			restricciones.add(restriccionVO);
-		}
-		return restricciones;
+		
+		return getRestriccionesCliente(idCliente);
 	}
 
 	public PlatoVO getPlatoVO(String idPlato) {
-		Plato p = (Plato) s.createQuery(
-				"from Plato p WHERE p.idPlato= " + idPlato).uniqueResult();
-		PlatoVO pvo = new PlatoVO(p);
-		return pvo;
+		
+		return getPlatoVO(idPlato);
 	}
 
 	public List<EstacionVO> getEstaciones() {
-		List<EstacionVO> estacionesVO = new ArrayList<EstacionVO>();
-		List<Estacion> estaciones = EstacionDAO.estaciones();
-		for (Estacion estacion : estaciones) {
-			estacionesVO.add(new EstacionVO(estacion));
-		}
-		return estacionesVO;
+
+		return EstacionDAO.getEstaciones();
 	}
 
 	public boolean altaIngrediente(String name, int cantidadStock,
@@ -289,6 +249,10 @@ public class Sistema {
 		}
 
 	}
+	
+	public ArrayList<OrdenDeCompraVO> getOrdenesDeCompraVO(){
+		return OrdenDeCompraDAO.getOrdenesDeCompraVO();
+	}
 
 	public boolean bajaMenu(int idMenu) {
 		try {
@@ -346,5 +310,10 @@ public class Sistema {
 		Plan pl = PlanDAO.obtenerPlanPorId(idPlan);
 		PlanVO plan = new PlanVO(pl);
 		return plan;
+	}
+
+	public List<ItemOrdenDeCompraVO> getItemsOrdenDeCompraVO(String idOc) {
+		ArrayList<ItemOrdenDeCompraVO> vo = OrdenDeCompraDAO.getItemsOrdenCompraVO(idOc);
+		return vo;
 	}
 }

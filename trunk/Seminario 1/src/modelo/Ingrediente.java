@@ -19,7 +19,7 @@ public class Ingrediente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idIngrediente;
 	private String nombre;
-	private int cantidadStock;
+	private float cantidadStock;
 	@Enumerated(EnumType.STRING)
 	private EnumMedida medida;
 	private int diasCaducidad;
@@ -55,10 +55,10 @@ public class Ingrediente {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getCantidadStock() {
+	public float getCantidadStock() {
 		return cantidadStock;
 	}
-	public void setCantidadStock(int cantidadStock) {
+	public void setCantidadStock(float cantidadStock) {
 		this.cantidadStock = cantidadStock;
 	}
 	public EnumMedida getMedida() {

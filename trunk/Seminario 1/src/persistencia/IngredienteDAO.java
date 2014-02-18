@@ -2,12 +2,15 @@ package persistencia;
 
 
 
+import java.util.ArrayList;
+
 import modelo.Ingrediente;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import utilidades.GlobalsVars;
+import views.IngredienteVO;
 
 public class IngredienteDAO {
 	private static Session s = GlobalsVars.HIBERATE_SESSION;
@@ -34,5 +37,18 @@ public class IngredienteDAO {
 		Ingrediente ingrediente;
 		ingrediente = (Ingrediente) s.load(Ingrediente.class,idIngrediente);
 		return ingrediente;
+	}
+	public static ArrayList<IngredienteVO> getIngredientes() {
+		ArrayList<IngredienteVO> ingredientes = new ArrayList<IngredienteVO>();
+
+		ArrayList<Ingrediente> ing = (ArrayList<Ingrediente>) s.createQuery(
+				"from Ingrediente").list();
+
+		for (Ingrediente ingrediente : ing) {
+			IngredienteVO ingVO = new IngredienteVO(ingrediente);
+			ingredientes.add(ingVO);
+		}
+		return ingredientes;
+
 	}
 }
