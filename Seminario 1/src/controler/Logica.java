@@ -19,6 +19,7 @@ import modelo.Menu;
 import modelo.OrdenDeCompra;
 import modelo.Plan;
 import modelo.PlanDiario;
+import modelo.Plato;
 import modelo.Restriccion;
 import modelo.Tag;
 import persistencia.ClientesDAO;
@@ -35,7 +36,7 @@ public class Logica {
 		// menús que coinciden con los tags ordenados
 
 		Plan plan = new Plan();
-
+		plan.setEstado(EnumEstado.ACTIVO);
 		// Map<Date, PlanDiario> planesDiarios = new HashMap<Date,
 		// PlanDiario>();
 		Map<Date, ArrayList<Tag>> mapaPlan = new HashMap<Date, ArrayList<Tag>>();
@@ -66,6 +67,7 @@ public class Logica {
 			// for (int i = 0; i <= 7; i++) { // cada día de la semana, empieza
 			// el
 			// lunes
+			int turno = 0;
 			for (Tag t : (ArrayList<Tag>) me.getValue()) {
 
 				List<Cliente> clientes = ClientesDAO.obtenerClientes();
@@ -75,7 +77,17 @@ public class Logica {
 				fecha.setTime((Date) me.getKey());
 
 				PlanDiario planDiario = new PlanDiario(fecha.getTime());
+				planDiario.setEstado(EnumEstado.ACTIVO);
+				if(turno == 0){
+					planDiario.setTurno("almuerzo");
+					turno++;
+				}
+				else{
+					planDiario.setTurno("cena");
+				}
+				
 				planDiario.setTag(t.getNombre());
+				
 
 				// Primer búsqueda: Busco solo 1 menu, que cumple con el tag y
 				// es el
@@ -127,6 +139,26 @@ public class Logica {
 				 * CLIENTES AFUERA DE NUESTRO PLAN GENERAMOS MENSAJE AL USUARIO
 				 */
 				if (clientes.size() > 0) {
+					System.out.println("----------------///////------------");
+					System.out.println("planDiario:" );
+					System.out.println("Fecha: " + planDiario.getFecha().toString());
+					System.out.println("Tag: " + planDiario.getTag());
+					System.out.println("Turno: " + planDiario.getTurno());
+					System.out.println("Items usados en el del plan: ");
+					int count = 0;
+					for (ItemMenu itemMenu :  planDiario.getItems()) {
+						System.out.println("=======");
+						System.out.println("itemMenu nro:" + ++i);
+						
+						System.out.println("Platos:");
+						for (Plato p : itemMenu.getMenu().getPlatos()) {
+							System.out.println(p.getNombre());
+						}
+						System.out.println("/-/-/-/-/-/-/-/");
+						
+						
+					}
+					System.out.println("====================*=====================");
 					System.out
 							.println("Los clientes que se listan a continuacion se encuentras sin plan:");
 					for (Cliente cliente : clientes) {
