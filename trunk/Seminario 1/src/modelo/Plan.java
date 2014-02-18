@@ -19,7 +19,6 @@ public class Plan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPlan;
-
 	private EnumEstado estado;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idPlan")
