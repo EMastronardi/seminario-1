@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class OrdenDeCompra {
@@ -20,6 +21,10 @@ public class OrdenDeCompra {
 	private Date fechaCreacion;
 	private Date fechaInicioPlan;
 	private EnumEstado estado;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idPlan")
+	private Plan referenciaPlan;
 	
 	@OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="idOrdenDeCompra")
