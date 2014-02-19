@@ -216,7 +216,7 @@ select {
 													|| $("#horaEntregaInput")
 															.val() != ''
 													|| $("#estadoInput").val() != '') {
-												$("#createCliente").submit();
+												FuncionalidadNoDisponible();
 											} else {
 												alert("Para dar de alta un Cliente debe ingresar todos los campos");
 											}
