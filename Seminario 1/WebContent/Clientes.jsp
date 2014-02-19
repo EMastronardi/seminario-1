@@ -156,7 +156,7 @@ select {
 				var password = "";
 				// Handler for .ready() called.
 				$("#newCliente").click(function() {
-					FuncionalidadNoDisponible();
+					CreateUser();
 				});
 				$("#updateCliente").click(function() {
 					FuncionalidadNoDisponible();
