@@ -75,4 +75,7 @@ public class IngredienteVO {
 	public void setEstaciones(List<EstacionVO> estaciones) {
 		this.estaciones = estaciones;
 	}
+	public double getCantStock(){
+		return this.cantidadStock;
+	}
 }

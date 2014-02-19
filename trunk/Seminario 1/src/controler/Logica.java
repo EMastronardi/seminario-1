@@ -250,7 +250,7 @@ public class Logica {
 	// return oc;
 	// }
 
-	public static OrdenDeCompra generarOrdenDeCompraPorPlan(Plan plan) {
+	public static OrdenDeCompra generarOrdenDeCompraPorPlan(Plan plan) { //MODIFICAR!
 		OrdenDeCompra oc;
 		ArrayList<ItemOrdenDeCompra> items = new ArrayList<ItemOrdenDeCompra>();
 
@@ -260,9 +260,8 @@ public class Logica {
 			Float cantidad = stockDeIngrediente.getCantidadStock() - itemIngrediente.getCantidad();
 
 			if (cantidad > 0) { // no compro, pero actualizo el stock del
-								// ingrediente
-				ingrediente.setCantidadStock(cantidad);
-				GlobalsVars.HIBERATE_SESSION.update(ingrediente);
+								
+				
 			}else{
 				boolean encontrado = false;
 				for (ItemOrdenDeCompra itm : items) {

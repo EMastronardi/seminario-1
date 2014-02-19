@@ -316,4 +316,9 @@ public class Sistema {
 		ArrayList<ItemOrdenDeCompraVO> vo = OrdenDeCompraDAO.getItemsOrdenCompraVO(idOc);
 		return vo;
 	}
+
+	public boolean existePlanvigente() {
+		
+		return PlanDAO.existePlanVigente();
+	}
 }

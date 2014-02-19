@@ -25,4 +25,13 @@ public class PlanDAO {
 		return (Plan)c.uniqueResult();
 	}
 
+	public static boolean existePlanVigente() {
+		Query q  = s.createQuery("select count(p) from Plan p where p.estado = 3 "); 
+		int cant  = (int)q.uniqueResult();
+		if(cant > 0 )
+			return true;
+		else 
+			return false;
+	}
+
 }
