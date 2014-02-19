@@ -99,9 +99,11 @@
 		   hr{
 		   	border-top:  1px solid #C0B4B4
 		   }
-		   .panel-default{
-		   	border-top: none;
-		   }		    
+		   .btn-content{
+			   margin: auto;
+				width: 400px;
+			}
+		       
 	</style>
   </head>
 
@@ -144,7 +146,7 @@
 			<li><a href="#Thursday">Jueves</a></li>
 			<li><a href="#Friday">Viernes</a></li>
      	</ul>
-     	<div class="panel panel-default "> 
+     	<div class="panel panel-default" style="border-top:none"> 
      	<div id="content" class="tab-content">
      		<%
 		 	PlanDiarioVO almuerzo;
@@ -202,7 +204,7 @@
 							    	<th>Principal</th>
 							    	<th>Postre</th>
 							    	<th>Cantidad</th>
-							    	<th>Accion</th>
+							    	<th>Clientes</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -216,7 +218,7 @@
 									+"<td>"+item.getMenu().getPrincipal().getNombre()+"</td>"
 									+"<td>"+item.getMenu().getPostre().getNombre()+"</td>"
 									+"<td>"+item.getCantidad()+"</td>"
-									+"<td><ahref=\"\">ver mas</a></td>"	
+									+"<td><a href=\"javascript:selectClientesItemsMenu("+item.getIdItemMenu()+")\">Ver</a></td>"
 								    +"</tr>");
 								   j++;
 							   }
@@ -269,7 +271,7 @@
 							    	<th>Principal</th>
 							    	<th>Postre</th>
 							    	<th>Cantidad</th>
-							    	<th>Accion</th>
+							    	<th>Clientes</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -283,7 +285,7 @@
 									+"<td>"+item.getMenu().getPrincipal().getNombre()+"</td>"
 									+"<td>"+item.getMenu().getPostre().getNombre()+"</td>"
 									+"<td>"+item.getCantidad()+"</td>"
-									+"<td><ahref=\"\">ver mas</a></td>"	
+									+"<td><a href=\"javascript:selectClientesItemsMenu("+item.getIdItemMenu()+")\">Ver</a></td>"
 								    +"</tr>");
 								   j++;
 							   }
@@ -296,6 +298,10 @@
 					</div>
 					</div>
 					</div>
+					<div class="btn-content">
+				      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> Imprimir Orden de Trabajo</button>
+				      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-time"></span>  Plan Diario Finalizado</button>
+				    </div>	
 			    <br clear="all">
 		    </div>
 		    <% 		
@@ -310,6 +316,7 @@
 	<br/>
 	<br/>
    <jsp:include page="/Footer.jsp" />
+   <script type="text/javascript" src="js/Planes.js"></script>
 	<script type="text/javascript">
 		$(function () {
 			var now = new Date();

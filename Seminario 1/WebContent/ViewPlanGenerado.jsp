@@ -22,18 +22,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%
-	/*
-	if(request.getAttribute("return") != null ){
-		if(request.getAttribute("return").equals("OK")){
-			PlanVO plan = Sistema.getInstance().getPlanById((int)Integer.parseInt(request.getAttribute("idPLan").toString()));	
-		}	
-	}else{
-		String redirectURL = "GenerarPlan.jsp"; 
-	    response.sendRedirect(redirectURL);
-	}*/
-
-	PlanVO plan = Sistema.getInstance().getPlanById(7);
 	
+	if(request.getAttribute("return") != null ){
+		if(!request.getAttribute("return").equals("OK")){
+			String redirectURL = "GenerarPlan.jsp"; 
+		    response.sendRedirect(redirectURL);			
+		}
+	}	
+	
+	PlanVO plan = Sistema.getInstance().getPlanById((int)Integer.parseInt(request.getAttribute("idPlan").toString()));
 	DateFormat format=new SimpleDateFormat("dd/MM/yyyy");
 	String fechaInicio = format.format(plan.getFechaInicio());
 	String fechaFin = format.format(plan.getFechaFin());
@@ -99,7 +96,7 @@
 		   hr{
 		   	border-top:  1px solid #C0B4B4
 		   }
-		   .panel-default{
+		   .panel-custom{
 		   	border-top: none;
 		   }		    
 	</style>
@@ -144,7 +141,7 @@
 			<li><a href="#Thursday">Jueves</a></li>
 			<li><a href="#Friday">Viernes</a></li>
      	</ul>
-     	<div class="panel panel-default "> 
+     	<div class="panel panel-default" style="border-top:none"> 
      	<div id="content" class="tab-content">
      		<%
 		 	PlanDiarioVO almuerzo;
@@ -202,7 +199,7 @@
 							    	<th>Principal</th>
 							    	<th>Postre</th>
 							    	<th>Cantidad</th>
-							    	<th>Accion</th>
+							    	<th>Clientes</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -216,7 +213,7 @@
 									+"<td>"+item.getMenu().getPrincipal().getNombre()+"</td>"
 									+"<td>"+item.getMenu().getPostre().getNombre()+"</td>"
 									+"<td>"+item.getCantidad()+"</td>"
-									+"<td><ahref=\"\">ver mas</a></td>"	
+									+"<td><a href=\"javascript:selectClientesItemsMenu("+item.getIdItemMenu()+")\">Ver</a></td>"	
 								    +"</tr>");
 								   j++;
 							   }
@@ -269,7 +266,7 @@
 							    	<th>Principal</th>
 							    	<th>Postre</th>
 							    	<th>Cantidad</th>
-							    	<th>Accion</th>
+							    	<th>Clientes</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -283,7 +280,7 @@
 									+"<td>"+item.getMenu().getPrincipal().getNombre()+"</td>"
 									+"<td>"+item.getMenu().getPostre().getNombre()+"</td>"
 									+"<td>"+item.getCantidad()+"</td>"
-									+"<td><ahref=\"\">ver mas</a></td>"	
+									+"<td><a href=\"javascript:selectClientesItemsMenu("+item.getIdItemMenu()+")\">Ver</a></td>"	
 								    +"</tr>");
 								   j++;
 							   }
@@ -310,6 +307,7 @@
 	<br/>
 	<br/>
    <jsp:include page="/Footer.jsp" />
+   <script type="text/javascript" src="js/Planes.js"></script>
 	<script type="text/javascript">
 		$(function () {
 			var now = new Date();
