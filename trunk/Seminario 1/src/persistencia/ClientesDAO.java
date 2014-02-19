@@ -16,7 +16,8 @@ public class ClientesDAO {
 	private static Session s = GlobalsVars.HIBERATE_SESSION;
 
 	public static void crearCliente(Cliente c) {
-		s.persist(c);
+		s.save(c);
+		s.flush();
 	}
 
 	public static List<Cliente> obtenerClientes() {

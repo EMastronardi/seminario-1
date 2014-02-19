@@ -428,39 +428,35 @@ public class InitializeSystems {
 			// Creacion de Clientes
 			//
 
-			List<Restriccion> listaRestricciones = new ArrayList<Restriccion>();
-			listaRestricciones.add(restriccion1);
+			List<Restriccion> listaRestricciones1 = new ArrayList<Restriccion>();
+			listaRestricciones1.add(restriccion1);
+			List<Restriccion> listaRestricciones2 = new ArrayList<Restriccion>();
+			listaRestricciones2.add(restriccion2);
+			List<Restriccion> listaRestricciones3 = new ArrayList<Restriccion>();
+			listaRestricciones3.add(restriccion3);
+			List<Restriccion> listaRestricciones4 = new ArrayList<Restriccion>();
+			listaRestricciones4.add(restriccion4);
 
 			ClientesDAO.crearCliente(new Cliente("Checho", "Molinero",
 					"Calle 1", "111111", "13", "Quilmes", "1878", null,
-					EnumEstado.ACTIVO, null, listaRestricciones, "Centro"));
-
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion2);
+					EnumEstado.ACTIVO, null, listaRestricciones1, "Centro"));
 
 			ClientesDAO.crearCliente(new Cliente("Chalo", "Camino", "Calle 2",
 					"22222", "13:30", "Quilmes", "1878", null,
-					EnumEstado.ACTIVO, null, listaRestricciones, "Oeste"));
-
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion3);
+					EnumEstado.ACTIVO, null, listaRestricciones2, "Oeste"));
 
 			ClientesDAO.crearCliente(new Cliente("Emma", "Mastro", "Calle 3",
 					"3333", "13:30", "Marteli", "4444", null,
-					EnumEstado.ACTIVO, null, listaRestricciones, "Norte"));
-
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion4);
+					EnumEstado.ACTIVO, null, listaRestricciones3, "Norte"));
 
 			ClientesDAO.crearCliente(new Cliente("Damiancito", "Quiroga",
 					"Calle 4", "4444", "13:30", "Adelina", "5555", null,
-					EnumEstado.ACTIVO, null, listaRestricciones, "Norte"));
+					EnumEstado.ACTIVO, null, listaRestricciones4, "Norte"));
 
-			listaRestricciones.clear();
 
 			ClientesDAO.crearCliente(new Cliente("Santi", "Rodriguez",
 					"Calle 5", "5555", "13:30", "Almagro", "6666", null,
-					EnumEstado.ACTIVO, null, listaRestricciones, "Capital"));
+					EnumEstado.ACTIVO, null, null, "Capital"));
 
 			/****************
 			 * 
@@ -970,50 +966,38 @@ public class InitializeSystems {
 			 * Agregado de las Restricciones Y persistencia de los platos
 			 */
 
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion1);
-			cazuelacampestre.setRestricciones(listaRestricciones);
+			cazuelacampestre.setRestricciones(listaRestricciones1);
 			s.save(cazuelacampestre);
 			s.flush();
 
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion2);
-			carnealvapor.setRestricciones(listaRestricciones);
+			carnealvapor.setRestricciones(listaRestricciones2);
 			s.save(carnealvapor);
 			s.flush();
 
 			s.save(goulashHungaro);
 			s.flush();
 
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion4);
 			medallonDeLomoEnCrouteDeHierbas
-					.setRestricciones(listaRestricciones);
+					.setRestricciones(listaRestricciones4);
 			s.save(medallonDeLomoEnCrouteDeHierbas);
 			s.flush();
 
 			s.save(guisodeternera);
 			s.flush();
 
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion1);
 			lomodecerdoalhornoconcebollitas
-					.setRestricciones(listaRestricciones);
+					.setRestricciones(listaRestricciones1);
 			s.save(lomodecerdoalhornoconcebollitas);
 			s.flush();
 
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion3);
-			tortilladeespinaca.setRestricciones(listaRestricciones);
+			tortilladeespinaca.setRestricciones(listaRestricciones3);
 			s.save(tortilladeespinaca);
 			s.flush();
 
 			s.save(platoArvejas);
 			s.flush();
 
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion4);
-			polloconsalsadechampinones.setRestricciones(listaRestricciones);
+			polloconsalsadechampinones.setRestricciones(listaRestricciones4);
 			s.save(polloconsalsadechampinones);
 			s.flush();
 
@@ -1047,9 +1031,7 @@ public class InitializeSystems {
 			s.save(pescadoconaceitunas);
 			s.flush();
 
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion2);
-			fideosalhuevoconmanteca.setRestricciones(listaRestricciones);
+			fideosalhuevoconmanteca.setRestricciones(listaRestricciones2);
 			s.save(fideosalhuevoconmanteca);
 			s.flush();
 
