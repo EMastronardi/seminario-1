@@ -34,7 +34,7 @@ public class PlanDAO {
 	}
 	public static boolean existePlanVigente() {
 		Query q  = s.createQuery("select count(p) from Plan p where p.estado = 3 "); 
-		long cant  = (long)q.uniqueResult();
+		long cant = ((Long) q.uniqueResult()).longValue();
 		if(cant > 0 )
 			return true;
 		else 
