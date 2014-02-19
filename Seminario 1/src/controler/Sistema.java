@@ -315,7 +315,6 @@ public class Sistema {
 		ArrayList<ItemOrdenDeCompraVO> vo = OrdenDeCompraDAO.getItemsOrdenCompraVO(idOc);
 		return vo;
 	}
-<<<<<<< .mine
 	public List<ClienteVO> getClientesItemMenu(int idItemMenu){
 		List<ClienteVO> result = new ArrayList<ClienteVO>();
 		List<Cliente> clientes = ItemMenuDAO.getClientesByItemId(idItemMenu);
