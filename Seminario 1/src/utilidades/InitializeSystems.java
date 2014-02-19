@@ -66,26 +66,27 @@ public class InitializeSystems {
 
 			// Creacion de restricciones
 			Restriccion restriccion1 = new Restriccion();
-			restriccion1.setDescripcion("Descrip Restriccion 1");
-			restriccion1.setNombre("Restriccion 1");
+			restriccion1.setDescripcion("Hipertensión - No consumir Sal");
+			restriccion1.setNombre("Sin Sal");
 			restriccion1.setSeveridad(5);
 			s.save(restriccion1);
 			s.flush();
 			Restriccion restriccion2 = new Restriccion();
-			restriccion2.setDescripcion("Descrip Restriccion 2");
-			restriccion2.setNombre("Restriccion 2");
+			restriccion2.setDescripcion("Intolerancia a TACC");
+			restriccion2.setNombre("Celíaco");
 			restriccion2.setSeveridad(8);
 			s.save(restriccion2);
 			s.flush();
 			Restriccion restriccion3 = new Restriccion();
-			restriccion3.setDescripcion("Descrip Restriccion 3");
-			restriccion3.setNombre("Restriccion 3");
+			restriccion3.setDescripcion("Diabetes - No consumir azúcar");
+			restriccion3.setNombre("Sin azúcar");
 			restriccion3.setSeveridad(3);
 			s.save(restriccion3);
 			s.flush();
 			Restriccion restriccion4 = new Restriccion();
-			restriccion4.setDescripcion("Descrip Restriccion 4");
-			restriccion4.setNombre("Restriccion 4");
+			restriccion4
+					.setDescripcion("Divertículos - Evitar comidas sin fibras");
+			restriccion4.setNombre("Divertículos");
 			restriccion4.setSeveridad(5);
 			s.save(restriccion4);
 			s.flush();
@@ -93,107 +94,106 @@ public class InitializeSystems {
 			 * Creacion de Ingredientes
 			 */
 
-
 			Ingrediente aceitedegirasol = new Ingrediente("Aceite de girasol",
-					999999, EnumMedida.Litro, 365, true, estaciones);
+					9, EnumMedida.Litro, 365, true, estaciones);
 			s.save(aceitedegirasol);
 			s.flush();
-			Ingrediente aceitedeoliva = new Ingrediente("Aceite de oliva",
-					999999, EnumMedida.Litro, 90, true, estaciones);
+			Ingrediente aceitedeoliva = new Ingrediente("Aceite de oliva", 9,
+					EnumMedida.Litro, 90, true, estaciones);
 			s.save(aceitedeoliva);
 			s.flush();
-			Ingrediente aceituna = new Ingrediente("Aceituna", 999999,
+			Ingrediente aceituna = new Ingrediente("Aceituna", 9,
 					EnumMedida.Unidad, 30, true, estaciones);
 			s.save(aceituna);
 			s.flush();
-			Ingrediente ajiamarillo = new Ingrediente("Ají amarillo", 999999,
+			Ingrediente ajiamarillo = new Ingrediente("Ají amarillo", 9,
 					EnumMedida.Unidad, 7, true, estaciones);
 			s.save(ajiamarillo);
 			s.flush();
-			Ingrediente ajo = new Ingrediente("Ajo", 999999, EnumMedida.Kilo,
-					7, true, estaciones);
+			Ingrediente ajo = new Ingrediente("Ajo", 9, EnumMedida.Kilo, 7,
+					true, estaciones);
 			s.save(ajo);
 			s.flush();
-			Ingrediente alcaparras = new Ingrediente("Alcaparras", 999999,
+			Ingrediente alcaparras = new Ingrediente("Alcaparras", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(alcaparras);
 			s.flush();
-			Ingrediente almendra = new Ingrediente("Almendra", 999999,
+			Ingrediente almendra = new Ingrediente("Almendra", 9,
 					EnumMedida.Kilo, 90, true, estaciones);
 			s.save(almendra);
 			s.flush();
-			Ingrediente almendras = new Ingrediente("Almendras", 999999,
+			Ingrediente almendras = new Ingrediente("Almendras", 9,
 					EnumMedida.Kilo, 15, true, estaciones);
 			s.save(almendras);
 			s.flush();
-			Ingrediente arroz = new Ingrediente("Arroz", 999999,
-					EnumMedida.Kilo, 365, true, estaciones);
+			Ingrediente arroz = new Ingrediente("Arroz", 9, EnumMedida.Kilo,
+					365, true, estaciones);
 			s.save(arroz);
 			s.flush();
-			Ingrediente arvejas = new Ingrediente("Arvejas", 999999,
+			Ingrediente arvejas = new Ingrediente("Arvejas", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(arvejas);
 			s.flush();
-			Ingrediente avena = new Ingrediente("Avena", 999999,
-					EnumMedida.Kilo, 90, true, estaciones);
+			Ingrediente avena = new Ingrediente("Avena", 9, EnumMedida.Kilo,
+					90, true, estaciones);
 			s.save(avena);
 			s.flush();
-			Ingrediente azucar = new Ingrediente("Azúcar", 999999,
-					EnumMedida.Kilo, 365, true, estaciones);
+			Ingrediente azucar = new Ingrediente("Azúcar", 9, EnumMedida.Kilo,
+					365, true, estaciones);
 			s.save(azucar);
 			s.flush();
-			Ingrediente banana = new Ingrediente("Banana", 999999,
-					EnumMedida.Kilo, 7, true, estaciones);
+			Ingrediente banana = new Ingrediente("Banana", 9, EnumMedida.Kilo,
+					7, true, estaciones);
 			s.save(banana);
 			s.flush();
-			Ingrediente berenjena = new Ingrediente("Berenjena", 999999,
+			Ingrediente berenjena = new Ingrediente("Berenjena", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(berenjena);
 			s.flush();
-			Ingrediente brocoli = new Ingrediente("Brócoli", 999999,
+			Ingrediente brocoli = new Ingrediente("Brócoli", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(brocoli);
 			s.flush();
-			Ingrediente carnedecordero = new Ingrediente("Carne de cordero",
-					999999, EnumMedida.Kilo, 90, false, estaciones);
+			Ingrediente carnedecordero = new Ingrediente("Carne de cordero", 9,
+					EnumMedida.Kilo, 90, false, estaciones);
 			s.save(carnedecordero);
 			s.flush();
-			Ingrediente carnederes = new Ingrediente("Carne de res", 999999,
+			Ingrediente carnederes = new Ingrediente("Carne de res", 9,
 					EnumMedida.Kilo, 90, false, estaciones);
 			s.save(carnederes);
 			s.flush();
 
-			Ingrediente carnedeternera = new Ingrediente("Carne de ternera",
-					999999, EnumMedida.Kilo, 90, false, estaciones);
+			Ingrediente carnedeternera = new Ingrediente("Carne de ternera", 9,
+					EnumMedida.Kilo, 90, false, estaciones);
 			s.save(carnedeternera);
 			s.flush();
-			Ingrediente cebolla = new Ingrediente("Cebolla", 999999,
+			Ingrediente cebolla = new Ingrediente("Cebolla", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(cebolla);
 			s.flush();
 			Ingrediente cebollitadeverdeo = new Ingrediente(
-					"Cebollita de verdeo", 999999, EnumMedida.Kilo, 7, true,
+					"Cebollita de verdeo", 9, EnumMedida.Kilo, 7, true,
 					estaciones);
 			s.save(cebollitadeverdeo);
 			s.flush();
-			Ingrediente champinones = new Ingrediente("Champiñones", 999999,
+			Ingrediente champinones = new Ingrediente("Champiñones", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(champinones);
 			s.flush();
-			Ingrediente choclo = new Ingrediente("Choclo", 999999,
-					EnumMedida.Kilo, 7, true, estaciones);
+			Ingrediente choclo = new Ingrediente("Choclo", 9, EnumMedida.Kilo,
+					7, true, estaciones);
 			s.save(choclo);
 			s.flush();
-			Ingrediente coliflor = new Ingrediente("Coliflor", 999999,
+			Ingrediente coliflor = new Ingrediente("Coliflor", 9,
 					EnumMedida.Unidad, 7, true, estaciones);
 			s.save(coliflor);
 			s.flush();
-			Ingrediente comino = new Ingrediente("Comino", 999999,
-					EnumMedida.Kilo, 365, true, estaciones);
+			Ingrediente comino = new Ingrediente("Comino", 9, EnumMedida.Kilo,
+					365, true, estaciones);
 			s.save(comino);
 			s.flush();
-			Ingrediente conac = new Ingrediente("Coñac", 999999,
-					EnumMedida.Litro, 365, true, estaciones);
+			Ingrediente conac = new Ingrediente("Coñac", 9, EnumMedida.Litro,
+					365, true, estaciones);
 			s.save(conac);
 			s.flush();
 			Ingrediente cremadeleche = new Ingrediente("Crema de Leche", 15,
@@ -201,125 +201,125 @@ public class InitializeSystems {
 			s.save(cremadeleche);
 			s.flush();
 			Ingrediente cubodecaldoverdura = new Ingrediente(
-					"Cubo de caldo verdura", 999999, EnumMedida.Unidad, 90,
-					true, estaciones);
+					"Cubo de caldo verdura", 9, EnumMedida.Unidad, 90, true,
+					estaciones);
 			s.save(cubodecaldoverdura);
 			s.flush();
-			Ingrediente durazno = new Ingrediente("Durazno", 999999,
+			Ingrediente durazno = new Ingrediente("Durazno", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(durazno);
 			s.flush();
 			Ingrediente esenciadevainilla = new Ingrediente(
-					"Esencia de vainilla", 999999, EnumMedida.Litro, 365, true,
+					"Esencia de vainilla", 9, EnumMedida.Litro, 365, true,
 					estaciones);
 			s.save(esenciadevainilla);
 			s.flush();
-			Ingrediente espinaca = new Ingrediente("Espinaca", 999999,
+			Ingrediente espinaca = new Ingrediente("Espinaca", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(espinaca);
 			s.flush();
 			Ingrediente filetedepescado = new Ingrediente("Filete de pescado",
-					999999, EnumMedida.Kilo, 90, true, estaciones);
+					9, EnumMedida.Kilo, 90, true, estaciones);
 			s.save(filetedepescado);
 			s.flush();
-			Ingrediente harina = new Ingrediente("Harina", 999999,
-					EnumMedida.Kilo, 365, true, estaciones);
+			Ingrediente harina = new Ingrediente("Harina", 9, EnumMedida.Kilo,
+					365, true, estaciones);
 			s.save(harina);
 			s.flush();
-			Ingrediente harinadegluten = new Ingrediente("Harina de gluten",
-					999999, EnumMedida.Kilo, 365, true, estaciones);
+			Ingrediente harinadegluten = new Ingrediente("Harina de gluten", 9,
+					EnumMedida.Kilo, 365, true, estaciones);
 			s.save(harinadegluten);
 			s.flush();
-			Ingrediente harinadesoja = new Ingrediente("Harina de soja",
-					999999, EnumMedida.Kilo, 365, true, estaciones);
+			Ingrediente harinadesoja = new Ingrediente("Harina de soja", 9,
+					EnumMedida.Kilo, 365, true, estaciones);
 			s.save(harinadesoja);
 			s.flush();
-			Ingrediente hierbas = new Ingrediente("Hierbas", 999999,
+			Ingrediente hierbas = new Ingrediente("Hierbas", 9,
 					EnumMedida.Kilo, 90, true, estaciones);
 			s.save(hierbas);
 			s.flush();
-			Ingrediente hongo = new Ingrediente("Hongo", 999999,
-					EnumMedida.Kilo, 365, true, estaciones);
+			Ingrediente hongo = new Ingrediente("Hongo", 9, EnumMedida.Kilo,
+					365, true, estaciones);
 			s.save(hongo);
 			s.flush();
-			Ingrediente huevo = new Ingrediente("Huevo", 999999,
-					EnumMedida.Unidad, 7, true, estaciones);
+			Ingrediente huevo = new Ingrediente("Huevo", 9, EnumMedida.Unidad,
+					7, true, estaciones);
 			s.save(huevo);
 			s.flush();
-			Ingrediente jamon = new Ingrediente("Jamón", 999999,
-					EnumMedida.Kilo, 7, true, estaciones);
+			Ingrediente jamon = new Ingrediente("Jamón", 9, EnumMedida.Kilo, 7,
+					true, estaciones);
 			s.save(jamon);
 			s.flush();
-			Ingrediente laurel = new Ingrediente("Laurel", 999999,
+			Ingrediente laurel = new Ingrediente("Laurel", 9,
 					EnumMedida.Unidad, 7, true, estaciones);
 			s.save(laurel);
 			s.flush();
-			Ingrediente leche = new Ingrediente("Leche", 999999,
-					EnumMedida.Litro, 60, true, estaciones);
+			Ingrediente leche = new Ingrediente("Leche", 9, EnumMedida.Litro,
+					60, true, estaciones);
 			s.save(leche);
 			s.flush();
-			Ingrediente limon = new Ingrediente("Limón", 999999,
-					EnumMedida.Kilo, 7, true, estaciones);
+			Ingrediente limon = new Ingrediente("Limón", 9, EnumMedida.Kilo, 7,
+					true, estaciones);
 			s.save(limon);
 			s.flush();
-			Ingrediente lomo = new Ingrediente("Lomo", 999999, EnumMedida.Kilo,
-					90, false, estaciones);
+			Ingrediente lomo = new Ingrediente("Lomo", 9, EnumMedida.Kilo, 90,
+					false, estaciones);
 			s.save(lomo);
 			s.flush();
-			Ingrediente lomodecerdo = new Ingrediente("Lomo de cerdo", 999999,
+			Ingrediente lomodecerdo = new Ingrediente("Lomo de cerdo", 9,
 					EnumMedida.Kilo, 90, true, estaciones);
 			s.save(lomodecerdo);
 			s.flush();
-			Ingrediente mandioca = new Ingrediente("Mandioca", 999999,
+			Ingrediente mandioca = new Ingrediente("Mandioca", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(mandioca);
 			s.flush();
-			Ingrediente manteca = new Ingrediente("Manteca", 999999,
+			Ingrediente manteca = new Ingrediente("Manteca", 9,
 					EnumMedida.Kilo, 15, true, estaciones);
 			s.save(manteca);
 			s.flush();
-			Ingrediente manzana = new Ingrediente("Manzana", 999999,
+			Ingrediente manzana = new Ingrediente("Manzana", 9,
 					EnumMedida.Kilo, 15, true, estaciones);
 			s.save(manzana);
 			s.flush();
 			Ingrediente masahojaldradaparatartas = new Ingrediente(
-					"Masa hojaldrada para tartas", 999999, EnumMedida.Unidad,
-					30, true, estaciones);
+					"Masa hojaldrada para tartas", 9, EnumMedida.Unidad, 30,
+					true, estaciones);
 			s.save(masahojaldradaparatartas);
 			s.flush();
-			Ingrediente mostaza = new Ingrediente("Mostaza", 999999,
+			Ingrediente mostaza = new Ingrediente("Mostaza", 9,
 					EnumMedida.Kilo, 30, true, estaciones);
 			s.save(mostaza);
 			s.flush();
-			Ingrediente oregano = new Ingrediente("Oregano", 999999,
+			Ingrediente oregano = new Ingrediente("Oregano", 9,
 					EnumMedida.Kilo, 365, true, estaciones);
 			s.save(oregano);
 			s.flush();
-			Ingrediente panintegral = new Ingrediente("Pan integral", 999999,
+			Ingrediente panintegral = new Ingrediente("Pan integral", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(panintegral);
 			s.flush();
-			Ingrediente panrallado = new Ingrediente("Pan rallado", 999999,
+			Ingrediente panrallado = new Ingrediente("Pan rallado", 9,
 					EnumMedida.Kilo, 15, true, estaciones);
 			s.save(panrallado);
 			s.flush();
-			Ingrediente papa = new Ingrediente("Papa", 999999, EnumMedida.Kilo,
-					7, true, estaciones);
+			Ingrediente papa = new Ingrediente("Papa", 9, EnumMedida.Kilo, 7,
+					true, estaciones);
 			s.save(papa);
 			s.flush();
-			Ingrediente pechugadepollo = new Ingrediente("Pechuga de pollo",
-					999999, EnumMedida.Unidad, 90, false, estaciones);
+			Ingrediente pechugadepollo = new Ingrediente("Pechuga de pollo", 9,
+					EnumMedida.Unidad, 90, false, estaciones);
 			s.save(pechugadepollo);
 			s.flush();
-			Ingrediente perejil = new Ingrediente("Perejil", 999999,
+			Ingrediente perejil = new Ingrediente("Perejil", 9,
 					EnumMedida.Kilo, 30, true, estaciones);
 			s.save(perejil);
 			s.flush();
-			Ingrediente pimenton = new Ingrediente("Pimenton", 999999,
+			Ingrediente pimenton = new Ingrediente("Pimenton", 9,
 					EnumMedida.Kilo, 365, true, estaciones);
 			s.save(pimenton);
 			s.flush();
-			Ingrediente pimienta = new Ingrediente("Pimienta", 999999,
+			Ingrediente pimienta = new Ingrediente("Pimienta", 9,
 					EnumMedida.Kilo, 365, true, estaciones);
 			s.save(pimienta);
 			s.flush();
@@ -327,7 +327,7 @@ public class InitializeSystems {
 					4, false, estaciones);
 			s.save(pollo);
 			s.flush();
-			Ingrediente puerro = new Ingrediente("Puerro", 999999,
+			Ingrediente puerro = new Ingrediente("Puerro", 9,
 					EnumMedida.Unidad, 7, true, estaciones);
 			s.save(puerro);
 			s.flush();
@@ -335,76 +335,76 @@ public class InitializeSystems {
 					EnumMedida.Litro, 60, true, estaciones);
 			s.save(puredetomate);
 			s.flush();
-			Ingrediente quesocrema = new Ingrediente("Queso crema", 999999,
+			Ingrediente quesocrema = new Ingrediente("Queso crema", 9,
 					EnumMedida.Kilo, 60, true, estaciones);
 			s.save(quesocrema);
 			s.flush();
-			Ingrediente quesoporsalud = new Ingrediente("Queso por salud",
-					999999, EnumMedida.Kilo, 60, true, estaciones);
+			Ingrediente quesoporsalud = new Ingrediente("Queso por salud", 9,
+					EnumMedida.Kilo, 60, true, estaciones);
 			s.save(quesoporsalud);
 			s.flush();
-			Ingrediente quesorallado = new Ingrediente("Queso rallado", 999999,
+			Ingrediente quesorallado = new Ingrediente("Queso rallado", 9,
 					EnumMedida.Kilo, 15, true, estaciones);
 			s.save(quesorallado);
 			s.flush();
-			Ingrediente ricotta = new Ingrediente("Ricotta", 999999,
+			Ingrediente ricotta = new Ingrediente("Ricotta", 9,
 					EnumMedida.Kilo, 4, true, estaciones);
 			s.save(ricotta);
 			s.flush();
-			Ingrediente rucula = new Ingrediente("Rúcula", 999999,
-					EnumMedida.Kilo, 7, true, estaciones);
+			Ingrediente rucula = new Ingrediente("Rúcula", 9, EnumMedida.Kilo,
+					7, true, estaciones);
 			s.save(rucula);
 			s.flush();
-			Ingrediente sal = new Ingrediente("Sal", 999999, EnumMedida.Kilo,
-					365, true, estaciones);
+			Ingrediente sal = new Ingrediente("Sal", 9, EnumMedida.Kilo, 365,
+					true, estaciones);
 			s.save(sal);
 			s.flush();
-			Ingrediente salsadetomate = new Ingrediente("Salsa de tomate",
-					999999, EnumMedida.Kilo, 365, true, estaciones);
+			Ingrediente salsadetomate = new Ingrediente("Salsa de tomate", 9,
+					EnumMedida.Kilo, 365, true, estaciones);
 			s.save(salsadetomate);
 			s.flush();
 			Ingrediente semilladesesamo = new Ingrediente("Semilla de sésamo",
-					999999, EnumMedida.Kilo, 60, true, estaciones);
+					9, EnumMedida.Kilo, 60, true, estaciones);
 			s.save(semilladesesamo);
 			s.flush();
-			Ingrediente tomate = new Ingrediente("Tomate", 999999,
-					EnumMedida.Kilo, 7, true, estaciones);
+			Ingrediente tomate = new Ingrediente("Tomate", 9, EnumMedida.Kilo,
+					7, true, estaciones);
 			s.save(tomate);
 			s.flush();
-			Ingrediente tomatecherry = new Ingrediente("Tomate cherry", 999999,
+			Ingrediente tomatecherry = new Ingrediente("Tomate cherry", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(tomatecherry);
 			s.flush();
-			Ingrediente tomillo = new Ingrediente("Tomillo", 999999,
+			Ingrediente tomillo = new Ingrediente("Tomillo", 9,
 					EnumMedida.Unidad, 7, true, estaciones);
 			s.save(tomillo);
 			s.flush();
-			Ingrediente vinoblanco = new Ingrediente("Vino blanco", 999999,
+			Ingrediente vinoblanco = new Ingrediente("Vino blanco", 9,
 					EnumMedida.Litro, 365, true, estaciones);
 			s.save(vinoblanco);
 			s.flush();
-			Ingrediente vinotinto = new Ingrediente("Vino tinto", 999999,
+			Ingrediente vinotinto = new Ingrediente("Vino tinto", 9,
 					EnumMedida.Litro, 365, true, estaciones);
 			s.save(vinotinto);
 			s.flush();
-			Ingrediente zanahoria = new Ingrediente("Zanahoria", 999999,
+			Ingrediente zanahoria = new Ingrediente("Zanahoria", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(zanahoria);
 			s.flush();
-			Ingrediente zapallito = new Ingrediente("Zapallito", 999999,
+			Ingrediente zapallito = new Ingrediente("Zapallito", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(zapallito);
 			s.flush();
-			Ingrediente zucchini = new Ingrediente("Zucchini", 999999,
+			Ingrediente zucchini = new Ingrediente("Zucchini", 9,
 					EnumMedida.Kilo, 7, true, estaciones);
 			s.save(zucchini);
 			s.flush();
 
 			/**********************
 			 * 
-			 *  Tag
-			 *  
-			 *  
+			 * Tag
+			 * 
+			 * 
 			 ***********************/
 
 			Tag pescado = new Tag("pescado", "pescado");
@@ -435,43 +435,39 @@ public class InitializeSystems {
 					"Calle 1", "111111", "13", "Quilmes", "1878", null,
 					EnumEstado.ACTIVO, null, listaRestricciones, "Centro"));
 
+			listaRestricciones.clear();
 			listaRestricciones.add(restriccion2);
-			
-			
 
 			ClientesDAO.crearCliente(new Cliente("Chalo", "Camino", "Calle 2",
 					"22222", "13:30", "Quilmes", "1878", null,
 					EnumEstado.ACTIVO, null, listaRestricciones, "Oeste"));
-			
+
 			listaRestricciones.clear();
 			listaRestricciones.add(restriccion3);
-			listaRestricciones.add(restriccion4);
-			
+
 			ClientesDAO.crearCliente(new Cliente("Emma", "Mastro", "Calle 3",
 					"3333", "13:30", "Marteli", "4444", null,
 					EnumEstado.ACTIVO, null, listaRestricciones, "Norte"));
-			
-			listaRestricciones.add(restriccion3);
-			
-			ClientesDAO.crearCliente(new Cliente("Damiancito", "Quiroga", "Calle 4",
-					"4444", "13:30", "Adelina", "5555", null,
-					EnumEstado.ACTIVO, null, listaRestricciones, "Norte"));
-			
-			listaRestricciones.clear();
-			listaRestricciones.add(restriccion1);
-			listaRestricciones.add(restriccion3);
 
-			ClientesDAO.crearCliente(new Cliente("Santi", "Rodriguez", "Calle 5",
-					"5555", "13:30", "Almagro", "6666", null,
+			listaRestricciones.clear();
+			listaRestricciones.add(restriccion4);
+
+			ClientesDAO.crearCliente(new Cliente("Damiancito", "Quiroga",
+					"Calle 4", "4444", "13:30", "Adelina", "5555", null,
+					EnumEstado.ACTIVO, null, listaRestricciones, "Norte"));
+
+			listaRestricciones.clear();
+
+			ClientesDAO.crearCliente(new Cliente("Santi", "Rodriguez",
+					"Calle 5", "5555", "13:30", "Almagro", "6666", null,
 					EnumEstado.ACTIVO, null, listaRestricciones, "Capital"));
-			
+
 			/****************
 			 * 
-			 *Creación de PLatos 
+			 * Creación de PLatos
 			 * 
 			 ******************/
-			
-			
+
 			Plato cazuelacampestre = new Plato(
 					"Cazuela campestre",
 					"Pelar las papas y las zanahorias y cortarlas en cuatro. Cortar la carne de cordero en cubos medianos y el puerro en trozos no muy pequeños. En una olla con un chorro de aceite, sofreír el puerro. Agregar los cubos de cordero y cocinar por unos minutos. Incorporar las zanahorias, las papas y las flores de coliflor. Salpimentar a gusto. Cubrir con el caldo. Incorporar la rama de laurel y cocinar a fuego suave por uno 40 minutos.",
@@ -581,12 +577,11 @@ public class InitializeSystems {
 
 			/***********************
 			 * 
-			 *  
-			 *  Creacion de ItemIngrediente para los Platos
-			 *  
-			 *  
+			 * 
+			 * Creacion de ItemIngrediente para los Platos
+			 * 
+			 * 
 			 **************************/
-
 
 			cazuelacampestre.getIngredientes().add(
 					new ItemIngrediente(puerro, Float.parseFloat("1")));
@@ -970,79 +965,115 @@ public class InitializeSystems {
 					new ItemIngrediente(esenciadevainilla, Float
 							.parseFloat("0.02")));
 
+			/*
+			 * 
+			 * Agregado de las Restricciones Y persistencia de los platos
+			 */
+
 			listaRestricciones.clear();
 			listaRestricciones.add(restriccion1);
 			cazuelacampestre.setRestricciones(listaRestricciones);
 			s.save(cazuelacampestre);
 			s.flush();
+
 			listaRestricciones.clear();
 			listaRestricciones.add(restriccion2);
 			carnealvapor.setRestricciones(listaRestricciones);
 			s.save(carnealvapor);
 			s.flush();
+
 			s.save(goulashHungaro);
 			s.flush();
+
 			listaRestricciones.clear();
-			listaRestricciones.add(restriccion1);
 			listaRestricciones.add(restriccion4);
-			medallonDeLomoEnCrouteDeHierbas.setRestricciones(listaRestricciones);
+			medallonDeLomoEnCrouteDeHierbas
+					.setRestricciones(listaRestricciones);
 			s.save(medallonDeLomoEnCrouteDeHierbas);
 			s.flush();
+
 			s.save(guisodeternera);
 			s.flush();
+
 			listaRestricciones.clear();
 			listaRestricciones.add(restriccion1);
-			lomodecerdoalhornoconcebollitas.setRestricciones(listaRestricciones);
+			lomodecerdoalhornoconcebollitas
+					.setRestricciones(listaRestricciones);
 			s.save(lomodecerdoalhornoconcebollitas);
 			s.flush();
+
 			listaRestricciones.clear();
 			listaRestricciones.add(restriccion3);
 			tortilladeespinaca.setRestricciones(listaRestricciones);
 			s.save(tortilladeespinaca);
 			s.flush();
+
 			s.save(platoArvejas);
 			s.flush();
+
 			listaRestricciones.clear();
 			listaRestricciones.add(restriccion4);
 			polloconsalsadechampinones.setRestricciones(listaRestricciones);
 			s.save(polloconsalsadechampinones);
 			s.flush();
+
 			s.save(pescadoensalsadeaji);
 			s.flush();
+
 			s.save(pasteldechoclo);
 			s.flush();
+
 			s.save(milanesadesoja);
 			s.flush();
+
 			s.save(pasteldeberenjenasyespinacas);
 			s.flush();
+
 			s.save(pollocrocanteconavena);
 			s.flush();
+
 			s.save(risottoconhongos);
 			s.flush();
+
 			s.save(rollosdepescadoyespinaca);
 			s.flush();
+
 			s.save(pollogrilleallimon);
 			s.flush();
+
 			s.save(ensaladadeverdurasgrilladas);
 			s.flush();
+
 			s.save(pescadoconaceitunas);
 			s.flush();
+
+			listaRestricciones.clear();
+			listaRestricciones.add(restriccion2);
+			fideosalhuevoconmanteca.setRestricciones(listaRestricciones);
 			s.save(fideosalhuevoconmanteca);
 			s.flush();
+
 			s.save(manzanaasada);
 			s.flush();
+
 			s.save(raviolesdejamonyricotta);
 			s.flush();
+
 			s.save(tartadezapallitos);
 			s.flush();
+
 			s.save(platoBanana);
 			s.flush();
+
 			s.save(platoManzana);
 			s.flush();
+
 			s.save(puredepapa);
 			s.flush();
+
 			s.save(puredezapallo);
 			s.flush();
+
 			s.save(duraznoenalmibar);
 			s.flush();
 
@@ -1050,106 +1081,70 @@ public class InitializeSystems {
 
 			DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 
+			Menu menu1 = creaMenu(cazuelacampestre, platoArvejas,
+					duraznoenalmibar, pescado, df.parse("2014/01/01"));
 
-			Menu menu1 = new Menu();
-			menu1.setCalorias(1000);
-			menu1.setEstado(EnumEstado.ACTIVO);
-			List<Plato> platos1 = new ArrayList<Plato>();
-			platos1.add(cazuelacampestre);
-			platos1.add(platoArvejas);
-			platos1.add(duraznoenalmibar);
-			menu1.setPlatos(platos1);
-			menu1.setTag(pescado);
-			menu1.setUltimoUso(df.parse("2014/01/01"));
 			s.save(menu1);
 			s.flush();
 
-
-			Menu menu2 = new Menu();
-			menu2.setCalorias(1500);
-			menu2.setEstado(EnumEstado.ACTIVO);
-			List<Plato> platos2 = new ArrayList<Plato>();
-			platos2.add(carnealvapor);
-			platos2.add(platoArvejas);
-			platos2.add(platoBanana);
-			menu2.setPlatos(platos2);
-			menu2.setTag(carne);
-			menu2.setUltimoUso(df.parse("2014/01/01"));
+			Menu menu2 = creaMenu(carnealvapor, platoArvejas, platoBanana, carne,
+					df.parse("2014/01/01"));
 			s.save(menu2);
 			s.flush();
 
-
-			
-			Menu menu3 = new Menu();
-			menu3.setCalorias(1500);
-			menu3.setEstado(EnumEstado.ACTIVO);
-			List<Plato> platos3 = new ArrayList<Plato>();
-			platos3.add(tortilladeespinaca);
-			platos3.add(platoArvejas);
-			platos3.add(platoManzana);
-			menu3.setPlatos(platos3);
-			menu3.setTag(verdura);
-			menu3.setUltimoUso(df.parse("2014/01/01"));
+			Menu menu3 = creaMenu(tortilladeespinaca, platoArvejas,
+					platoManzana, verdura, df.parse("2014/01/01"));
 			s.save(menu3);
 			s.flush();
-			
-			
-			
-			Menu menu4 = new Menu();
-			menu4.setCalorias(1000);
-			menu4.setEstado(EnumEstado.ACTIVO);
-			List<Plato> plato4 = new ArrayList<Plato>();
-			plato4.add(polloconsalsadechampinones);
-			plato4.add(platoArvejas);
-			plato4.add(platoManzana);
-			menu4.setPlatos(plato4);
-			menu4.setTag(tagpollo);
-			menu4.setUltimoUso(df.parse("2014/01/01"));
+
+			Menu menu4 = creaMenu(polloconsalsadechampinones, platoArvejas,
+					platoManzana, tagpollo, df.parse("2014/01/01"));
 			s.save(menu4);
 			s.flush();
-			
 
-			
-			Menu menu5 = new Menu();
-			menu5.setCalorias(1000);
-			menu5.setEstado(EnumEstado.ACTIVO);
-			List<Plato> plato5 = new ArrayList<Plato>();
-			plato5.add(lomodecerdoalhornoconcebollitas);
-			plato5.add(platoArvejas);
-			plato5.add(platoManzana);
-			menu5.setPlatos(plato5);
-			menu5.setTag(cerdo);
-			menu5.setUltimoUso(df.parse("2014/01/01"));
+			Menu menu5 = creaMenu(lomodecerdoalhornoconcebollitas,
+					puredezapallo, platoManzana, cerdo, df.parse("2014/01/01"));
 			s.save(menu5);
 			s.flush();
-			
-			Menu menu6 = new Menu();
-			menu6.setCalorias(1500);
-			menu6.setEstado(EnumEstado.ACTIVO);
-			List<Plato> platos6 = new ArrayList<Plato>();
-			platos6.add(guisodeternera);
-			platos6.add(platoArvejas);
-			platos6.add(platoBanana);
-			menu6.setPlatos(platos6);
-			menu6.setTag(carne);
-			menu6.setUltimoUso(df.parse("2014/02/01"));
+
+			Menu menu6 = creaMenu(guisodeternera, platoArvejas, platoBanana,
+					carne, df.parse("2014/01/01"));
 			s.save(menu6);
 			s.flush();
-			
 
-			
-			Menu menu7 = new Menu();
-			menu7.setCalorias(1500);
-			menu7.setEstado(EnumEstado.ACTIVO);
-			List<Plato> platos7 = new ArrayList<Plato>();
-			platos7.add(medallonDeLomoEnCrouteDeHierbas);
-			platos7.add(platoArvejas);
-			platos7.add(platoBanana);
-			menu7.setPlatos(platos7);
-			menu7.setRestricciones(listaRestricciones);
-			menu7.setTag(carne);
-			menu7.setUltimoUso(df.parse("2014/02/01"));
+			Menu menu7 = creaMenu(medallonDeLomoEnCrouteDeHierbas,
+					puredepapa, platoBanana, carne, df.parse("2012/01/01"));
 			s.save(menu7);
+			s.flush();
+
+			Menu menu8 = creaMenu(fideosalhuevoconmanteca, platoArvejas,
+					duraznoenalmibar, pasta, df.parse("2014/02/01"));
+			s.save(menu8);
+			s.flush();
+
+			Menu menu9 = creaMenu(raviolesdejamonyricotta, platoArvejas,
+					duraznoenalmibar, pasta, df.parse("2014/01/01"));
+			s.save(menu9);
+			s.flush();
+
+			Menu menu10 = creaMenu(pescadoensalsadeaji, platoArvejas,
+					duraznoenalmibar, pescado, df.parse("2012/01/01"));
+			s.save(menu10);
+			s.flush();
+
+			Menu menu11 = creaMenu(pasteldechoclo, platoArvejas,
+					duraznoenalmibar, verdura, df.parse("2013/01/01"));
+			s.save(menu11);
+			s.flush();
+
+			Menu menu12 = creaMenu(pollocrocanteconavena, platoArvejas,
+					duraznoenalmibar, tagpollo, df.parse("2012/01/01"));
+			s.save(menu12);
+			s.flush();
+
+			Menu menu13 = creaMenu(rollosdepescadoyespinaca, platoArvejas,
+					duraznoenalmibar, pescado, df.parse("2013/10/01"));
+			s.save(menu13);
 			s.flush();
 
 			// transac.commit();
@@ -1159,5 +1154,24 @@ public class InitializeSystems {
 			System.out.println("No se pudo dar de alto los resgistros");
 		}
 
+	}
+
+	private static Menu creaMenu(Plato cazuelacampestre, Plato platoArvejas,
+			Plato duraznoenalmibar, Tag pescado, Date fecha) {
+
+		List<Plato> platos = new ArrayList<Plato>();
+
+		Menu menu = new Menu();
+		menu.setCalorias(1000);
+		menu.setEstado(EnumEstado.ACTIVO);
+
+		platos.add(cazuelacampestre);
+		platos.add(platoArvejas);
+		platos.add(duraznoenalmibar);
+		menu.setPlatos(platos);
+		menu.setTag(pescado);
+		menu.setUltimoUso(fecha);
+
+		return menu;
 	}
 }

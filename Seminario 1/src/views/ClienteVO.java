@@ -30,8 +30,7 @@ public class ClienteVO {
 
 	public ClienteVO(int idCliente, String nombre, String apellido,
 			String calle, String telefono, String horaEntrega,
-			String localidad, String cP, String tipoPago,
-			EnumEstado estado,
+			String localidad, String cP, String tipoPago, EnumEstado estado,
 			ArrayList<ServicioClienteVO> serviciosCliente,
 			ArrayList<RestriccionVO> restricciones, String zona) {
 		this.idCliente = idCliente;
@@ -58,18 +57,24 @@ public class ClienteVO {
 		this.horaEntrega = c.getHoraEntrega();
 		this.localidad = c.getLocalidad();
 		this.CP = c.getCP();
-		this.tipoPago = (String) (c == null || (c.getTipoPago() == null) ? "N/A" : c.getTipoPago().toString());
+		this.tipoPago = (String) (c == null || (c.getTipoPago() == null) ? "N/A"
+				: c.getTipoPago().toString());
 		this.estado = c.getEstado();
 		this.serviciosCliente = new ArrayList<ServicioClienteVO>();
-		for (ServicioCliente serv : c.getServiciosCliente()) {
-			ServicioClienteVO sVO = new ServicioClienteVO(serv);
-			this.serviciosCliente.add(sVO);
+		if (c.getServiciosCliente() != null) {
+			for (ServicioCliente serv : c.getServiciosCliente()) {
+				ServicioClienteVO sVO = new ServicioClienteVO(serv);
+				this.serviciosCliente.add(sVO);
+			}
 		}
 		this.restricciones = new ArrayList<RestriccionVO>();
-		for (Restriccion r : c.getRestricciones()) {
-			RestriccionVO rVO = new RestriccionVO(r);
-			this.restricciones.add(rVO);
+		if (c.getRestricciones() != null) {
+			for (Restriccion r : c.getRestricciones()) {
+				RestriccionVO rVO = new RestriccionVO(r);
+				this.restricciones.add(rVO);
+			}
 		}
+
 		this.zona = c.getZona();
 
 	}
