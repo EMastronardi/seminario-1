@@ -32,17 +32,19 @@ public class Menu {
 	private List<Restriccion> restricciones;
 	private EnumEstado estado;
 	private Date ultimoUso;
-	
-	public Menu(){
+
+	public Menu() {
 		platos = new ArrayList<Plato>();
 		restricciones = new ArrayList<Restriccion>();
 	}
-	public Menu(List<Plato> platos, Tag tag, int calorias){
+
+	public Menu(List<Plato> platos, Tag tag, int calorias) {
 		restricciones = new ArrayList<Restriccion>();
 		this.platos = platos;
 		this.tag = tag;
 		this.calorias = calorias;
 	}
+
 	public Tag getTag() {
 		return tag;
 	}
@@ -63,7 +65,6 @@ public class Menu {
 		this.restricciones = restricciones;
 	}
 
-	
 	public int getIdMenu() {
 		return idMenu;
 	}
@@ -98,13 +99,16 @@ public class Menu {
 
 	public boolean cumpleRestricciones(List<Restriccion> restriccionesCliente) {
 
-		if (restriccionesCliente.size() == 0) {
-			return true;
-		} else {
-			for (Restriccion restriccionCliente : restriccionesCliente) {
-				for (Restriccion restriccionMenu : this.getRestricciones()) {
-					if(restriccionMenu.getIdRestriccion() == restriccionCliente.getIdRestriccion()){
-						return false;						
+		if (restriccionesCliente != null) {
+			if (restriccionesCliente.size() == 0) {
+				return true;
+			} else {
+				for (Restriccion restriccionCliente : restriccionesCliente) {
+					for (Restriccion restriccionMenu : this.getRestricciones()) {
+						if (restriccionMenu.getIdRestriccion() == restriccionCliente
+								.getIdRestriccion()) {
+							return false;
+						}
 					}
 				}
 			}
@@ -119,7 +123,7 @@ public class Menu {
 			restricciones = new ArrayList<Restriccion>();
 			for (Plato plato : platos) {
 				for (Restriccion r : plato.getRestricciones()) {
-					if(!restricciones.contains(r))
+					if (!restricciones.contains(r))
 						restricciones.add(r);
 				}
 			}
