@@ -88,4 +88,15 @@ public class Ingrediente {
 	public void addEstacion(Estacion estacion){
 		this.estaciones.add(estacion);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(Ingrediente.class.isInstance(obj)){
+			if (((Ingrediente)obj).getIdIngrediente() == this.idIngrediente){
+				return true;
+			}
+		}	
+		return false;
+	}
 }

@@ -250,11 +250,37 @@ public class Logica {
 	// return oc;
 	// }
 
-	public static OrdenDeCompra generarOrdenDeCompraPorPlan(Plan plan) { //MODIFICAR!
+	public static OrdenDeCompra generarOrdenDeCompraPorPlan(Plan plan) {
 		OrdenDeCompra oc;
 		ArrayList<ItemOrdenDeCompra> items = new ArrayList<ItemOrdenDeCompra>();
 
-		for (ItemIngrediente itemIngrediente : plan.obtenerIngredientesNecesarios()) {
+		List<ItemIngrediente> ingredientesNecesarios = plan.obtenerIngredientesNecesarios();
+		Map<Ingrediente, Float> ingredientesSumarizados = new HashMap<Ingrediente,Float>();
+		
+		for (ItemIngrediente itemIngrediente : ingredientesNecesarios) {
+			
+			if(ingredientesSumarizados.containsKey(itemIngrediente.getIngrediente() )){
+				ingredientesSumarizados.put(itemIngrediente.getIngrediente() , ingredientesSumarizados.get(itemIngrediente.getIngrediente() )+itemIngrediente.getCantidad());
+			}else{//valor nuevo
+				ingredientesSumarizados.put(itemIngrediente.getIngrediente(),itemIngrediente.getCantidad());
+			}
+		}
+		
+		//por cada ingrediente en el mapa, chequeo el stock y si es mayor a lo que indica el mapa, genero itemOC
+		Iterator<Entry<Ingrediente, Float>> itera = ingredientesSumarizados.entrySet().iterator();
+		while(itera.hasNext()){
+			Entry<Ingrediente,Float> entry = itera.next();
+			Ingrediente ingr = entry.getKey();
+			if(ingr.getCantidadStock()<entry.getValue()){
+				//genero itemOC
+				ItemOrdenDeCompra ioc = new ItemOrdenDeCompra();
+				ioc.setIngrediente(ingr);
+				ioc.setCantidad(entry.getValue() - ingr.getCantidadStock());
+				items.add(ioc);
+			}
+		}
+		
+		/*for (ItemIngrediente itemIngrediente : plan.obtenerIngredientesNecesarios()) {
 			Ingrediente ingrediente = itemIngrediente.getIngrediente();
 			Ingrediente stockDeIngrediente = IngredienteDAO .buscarIngredientePorId(ingrediente.getIdIngrediente());
 			Float cantidad = stockDeIngrediente.getCantidadStock() - itemIngrediente.getCantidad();
@@ -279,11 +305,12 @@ public class Logica {
 				}
 			}
 
-		}
+		}*/
 
 		if(items.size()>0){
 			oc = new OrdenDeCompra(new Date(), plan.getFechaInicio(),
 				EnumEstado.CREADA, items);
+			oc.setReferenciaPlan(plan);
 		
 		return oc;
 		}else 
