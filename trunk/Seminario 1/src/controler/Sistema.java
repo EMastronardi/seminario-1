@@ -19,14 +19,13 @@ import modelo.Plan;
 import modelo.Plato;
 import modelo.Restriccion;
 import modelo.Tag;
-import modelo.Usuario;
 
 import org.hibernate.Session;
 
 import persistencia.ClientesDAO;
 import persistencia.EstacionDAO;
-import persistencia.HibernateUtil;
 import persistencia.IngredienteDAO;
+import persistencia.ItemMenuDAO;
 import persistencia.MenusDAO;
 import persistencia.OrdenDeCompraDAO;
 import persistencia.PlanDAO;
@@ -315,6 +314,27 @@ public class Sistema {
 	public List<ItemOrdenDeCompraVO> getItemsOrdenDeCompraVO(String idOc) {
 		ArrayList<ItemOrdenDeCompraVO> vo = OrdenDeCompraDAO.getItemsOrdenCompraVO(idOc);
 		return vo;
+	}
+<<<<<<< .mine
+	public List<ClienteVO> getClientesItemMenu(int idItemMenu){
+		List<ClienteVO> result = new ArrayList<ClienteVO>();
+		List<Cliente> clientes = ItemMenuDAO.getClientesByItemId(idItemMenu);
+		if(clientes != null){
+			for (Cliente cliente : clientes) {
+				result.add(new ClienteVO(cliente));
+			}
+		}
+		return result;
+	}
+	public List<PlanVO> getPlanesHistoricos(){
+		List<PlanVO> result = new ArrayList<PlanVO>();
+		List<Plan> planes = PlanDAO.getPlanes();
+		
+		for (Plan plan : planes) {
+			PlanVO pvo = new PlanVO(plan);
+			result.add(pvo);
+		}
+		return result;
 	}
 
 	public boolean existePlanvigente() {

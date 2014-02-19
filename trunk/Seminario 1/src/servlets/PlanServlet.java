@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import views.ClienteVO;
+import views.ClienteVOList;
 import views.RestriccionVO;
 import views.RestriccionVOList;
 
@@ -101,6 +103,24 @@ public class PlanServlet extends Controlador {
 			}
 		} else if ("listarPlanes".equals(action)) {
 
+		}else if("getClientesAjax".equals(action)){
+			if(request.getParameter("iditemmenu") != null){
+				List<ClienteVO> cl = Sistema.getInstance().getClientesItemMenu(Integer.parseInt(request.getParameter("iditemmenu")));
+				ClienteVOList list = new ClienteVOList();
+				for (ClienteVO clienteVO : cl) {				
+					list.add(clienteVO);
+				}	
+				XStream xstream = new XStream(new DomDriver());
+			    xstream.alias("cliente", ClienteVO.class);
+			    xstream.alias("clientes", ClienteVOList.class);
+			    xstream.addImplicitCollection(ClienteVOList.class, "clientes");
+			    String xml = xstream.toXML(list);
+			    response.setContentType("text/plain");
+		        response.setCharacterEncoding("UTF-8");
+		        response.getWriter().write(xml);
+		        dispacher = false;
+			}
+			
 		}
 		if (dispacher)
 			super.dispatch(jspPage, request, response);
