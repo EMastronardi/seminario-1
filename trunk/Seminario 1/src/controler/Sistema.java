@@ -138,6 +138,7 @@ public class Sistema {
 			return true;
 		} catch (Exception e) {
 			System.out.println("No se ha podido persistir el ingrediente");
+			e.printStackTrace();
 			return false;
 		}
 	}

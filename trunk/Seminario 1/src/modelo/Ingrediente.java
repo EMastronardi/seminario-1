@@ -24,7 +24,7 @@ public class Ingrediente {
 	private EnumMedida medida;
 	private int diasCaducidad;
 	private boolean freezer;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinColumn(name = "idIngrediente")
 	private List<Estacion> estaciones;
 	
