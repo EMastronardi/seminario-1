@@ -9,9 +9,16 @@
 <%@page import="views.EstacionVO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<script>
+	var flagPlanVigente="";
 <% 
 	Map<Integer, String> tags = Sistema.getInstance().getTags();
+	String planVigente = (String)request.getAttribute("planVigente");
+	if(planVigente!= null && !planVigente.isEmpty())
+		out.println("flagPlanVigente = 'Activo';");
 %>	
+
+	</script>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -204,11 +211,19 @@
 				html+="<button type=\"button\" class=\"btn btn-default btn-md\" id=\"idButtonGenerate\"><span class=\"glyphicon glyphicon-flash\"></span> Generar Plan!</button>"
 				$( "#dayList").html(html);
 				$("#idButtonGenerate").click(function() {
-					$("#idFormGeneratePlan").submit();
+					if(flagPlanVigente==""){
+						$("#idFormGeneratePlan").submit();
+					}
+					else{
+						PlanYaGenerado();
+					}
 				});
 			});
 			
 		});
+		function PlanYaGenerado() {
+			bootbox.dialog({message : "<label>Ya existe un Plan Vigente, debe finalizarlo antes de generar uno nuevo\.</label>"});
+	}
 	</script>
 	
   </body>

@@ -95,4 +95,12 @@ public class OrdenDeCompra {
 	public void setFechaInicioPlan(Date fechaInicioPlan) {
 		this.fechaInicioPlan = fechaInicioPlan;
 	}
+
+	public Plan getReferenciaPlan() {
+		return referenciaPlan;
+	}
+
+	public void setReferenciaPlan(Plan referenciaPlan) {
+		this.referenciaPlan = referenciaPlan;
+	}
 }
