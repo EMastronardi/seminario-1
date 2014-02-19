@@ -164,7 +164,7 @@
 				 out.println("<tr class='information'>"+
 			 					"<td><input type='checkbox' value='"+ing.getIdIngrediente()+"' onClick=\"unChecked(this,'"+ing.getIdIngrediente()+"')\"/></td>"+
 				 				"<td class='cellclass'>"+ ing.getNombre()+"</td>"+
-			 					"<td class='cellclass'>"+ ing.getCantidadStock()+"</td>"+
+			 					"<td class='cellclass'>"+ ing.getCantStock()+"</td>"+
 				 				"<td class='cellclass'>"+ ing.getMedida()+"</td>"+
 			 					"<td class='cellclass'>"+ ing.getDiasCaducidad()+"</td>"+
 				 				"<td class='cellclass'>"+ ing.isFreezer()+"</td>"+
