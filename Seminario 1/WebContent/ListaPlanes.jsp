@@ -15,7 +15,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
-	List<PlanVO> planes = Sistema.getInstance().getPlanesHistoricos();
+	List<PlanVO> planes = new ArrayList<PlanVO>(); 
+	planes.addAll(Sistema.getInstance().getPlanesHistoricos());
 	//Map<Integer, String> tags = Sistema.getInstance().getTags();
 %>
 <!DOCTYPE html>
@@ -127,7 +128,7 @@
 						<%
 						int i = 0;
 						for (PlanVO plan : planes) {
-							out.println("<tr class='information'><td class='cellclass'>" + i + "</td>" 
+							out.println("<tr class='information'><td class='cellclass'>" + plan.getIdPlan() + "</td>" 
 										+ "<td class='cellclass'>"+ plan.getFechaInicio()
 										+ "</td>" + "<td class='cellclass'>"+ plan.getFechaFin() + "</td>" 
 										+ "<td class='cellclass'>"+ plan.getEstado() + "</td>" 

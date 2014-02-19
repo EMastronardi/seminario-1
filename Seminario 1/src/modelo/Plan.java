@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Planes")
+@Table(name = "Planes")
 public class Plan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,20 +33,26 @@ public class Plan {
 	}
 
 	public Date getFechaInicio() {
-		Date fechaInicio = items.get(0).getFecha();
-		for (PlanDiario plan : items) {
-			if (plan.getFecha().before(fechaInicio)) {
-				fechaInicio = plan.getFecha();
+		Date fechaInicio = null;
+		if (items.size() > 0) {
+			fechaInicio = items.get(0).getFecha();
+			for (PlanDiario plan : items) {
+				if (plan.getFecha().before(fechaInicio)) {
+					fechaInicio = plan.getFecha();
+				}
 			}
 		}
 		return fechaInicio;
 	}
 
 	public Date getFechaFin() {
-		Date fechaFin = items.get(0).getFecha();
-		for (PlanDiario plan : items) {
-			if (plan.getFecha().after(fechaFin)) {
-				fechaFin = plan.getFecha();
+		Date fechaFin = null;
+		if (items.size() > 0) {
+			fechaFin = items.get(0).getFecha();
+			for (PlanDiario plan : items) {
+				if (plan.getFecha().after(fechaFin)) {
+					fechaFin = plan.getFecha();
+				}
 			}
 		}
 		return fechaFin;
