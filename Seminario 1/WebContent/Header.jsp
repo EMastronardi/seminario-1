@@ -19,14 +19,6 @@
 			<li <%if(pageName.equals("Platos.jsp")) out.println("class=\"active\"");%>><a href="Platos.jsp">Platos</a></li>
 			<li <%if(pageName.equals("Menus.jsp")) out.println("class=\"active\"");%>><a href="Menus.jsp">Menus</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown">Compras <b class="caret"></b>
-			</a>
-				<ul class="dropdown-menu">
-					<li><a href="OrdenesCompras.jsp">Ordenes de Compras</a></li>
-					<li><a href="#">Listado sarasa ....</a></li>
-
-				</ul></li>
-			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown">Planes <b class="caret"></b>
 			</a>
 				<ul class="dropdown-menu">
@@ -35,6 +27,7 @@
 					<li><a href="ListaPlanes.jsp">Listar Planes</a></li>
 
 				</ul></li>
+			<li <%if(pageName.equals("OrdenesCompras.jsp")) out.println("class=\"active\"");%>><a href="OrdenesCompras.jsp">Compras</a></li>	
 		</ul>
 	</div>
 	<!-- /.navbar-collapse -->
