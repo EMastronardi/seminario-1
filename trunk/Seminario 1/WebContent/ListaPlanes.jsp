@@ -10,6 +10,8 @@
 <%@page import="views.PlanDiarioVO"%>
 <%@page import="views.PlanVO"%>
 <%@page import="views.MenuVO"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -78,6 +80,7 @@
   </head>
 
   <body>
+  <form action="PlanServlet?action=verPlan" method="post" id="theForm"><input type="hidden" name="idPlan" id="inputId" value=""></form>
 <!-- Wrap all page content here -->
     <div id="wrap">
 		<jsp:include page="/Header.jsp" />
@@ -124,13 +127,14 @@
 					</thead>
 					<tbody>
 						<%
+						DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
 						int i = 0;
 						for (PlanVO plan : planes) {
 							out.println("<tr class='information'><td class='cellclass'>" + plan.getIdPlan() + "</td>" 
-										+ "<td class='cellclass'>"+ plan.getFechaInicio()
-										+ "</td>" + "<td class='cellclass'>"+ plan.getFechaFin() + "</td>" 
+										+ "<td class='cellclass'>"+ fecha.format(plan.getFechaInicio()).toString()
+										+ "</td>" + "<td class='cellclass'>"+ fecha.format(plan.getFechaFin()).toString() + "</td>" 
 										+ "<td class='cellclass'>"+ plan.getEstado() + "</td>" 
-										+ "<td class='cellclass'><a href=''#''>Ver detalle</a></td></tr>");
+										+ "<td class='cellclass'><a href='javascript:sendForm("+plan.getIdPlan()+");'>Ver detalle</a></td></tr>");
 						}
 						%>
 					</tbody>
@@ -155,6 +159,10 @@
 		$(function () {
 			$('.footable').footable();
 		});
+		function sendForm(idPlan){
+			$("#inputId").val(idPlan);
+			$("#theForm").submit();
+		}
 	</script>
 	
   </body>
