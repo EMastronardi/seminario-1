@@ -87,23 +87,40 @@ select {
 			<div class="page-header">
 				<h1>Platos</h1>
 			</div>
-		<div class="panel panel-default">
+			<p class="lead">
+			   <div class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading">
-				<button type="button" id="newPlato" class="btn btn-default btn-sm">
-					<span class="glyphicon glyphicon-star"></span> Nuevo Plato
-				</button>
-				<button type="button" id="updatePlato"
-					class="btn btn-default btn-sm">
-					<span class="glyphicon glyphicon-pencil"></span> Editar
-				</button>
-				<button type="button" id="deletePlato"
-					class="btn btn-default btn-sm">
-					<span class="glyphicon glyphicon-trash"></span> Eliminar
-				</button>
-			</div>
+            	<div class="row">
+            		<div class="col-lg-6">
+						<button type="button" id="newPlato" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-star"></span> Nuevo Plato
+						</button>
+						<button type="button" id="updatePlato"
+							class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-pencil"></span> Editar
+						</button>
+						<button type="button" id="deletePlato"
+							class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-trash"></span> Eliminar
+						</button>
+					</div>   
+            	 	<div class="col-lg-6">
+		            	<div class="row">
+						  <div class="col-lg-8">
+						    <div class="input-group">
+						      <input type="text" class="form-control" id="valorinput" name="valor" value="">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default">Buscar!</button>
+						      </span>
+						    </div>
+						  </div>
+						  </div>
+					 </div>
+			    	</div>
+			    </div>
 			<!-- Table -->
-			<table class="table footable" data-page-size="4" data-limit-navigation="3" id="platosTable">
+			<table class="table footable" data-page-size="8" data-limit-navigation="3" id="platosTable">
 			
 				<thead>
 					<tr>
@@ -135,10 +152,11 @@ select {
 						}
 					%>
 				</tbody>
-				<tfoot><tr><td colspan="6"><div class="pagination pagination-centered hide-if-no-paging"></div></td></tr></tfoot>
+				<tfoot><tr><td colspan="7"><div class="pagination pagination-centered hide-if-no-paging"></div></td></tr></tfoot>
 		
 			</table>
 		</div>
+		</p>
 		<!-- End content -->
 		<jsp:include page="/Footer.jsp" />
 		<script type="text/javascript" src="js/PlatosABM.js"></script>
