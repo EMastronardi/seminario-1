@@ -51,7 +51,7 @@ public class Sistema {
 
 	private Sistema() {
 		s = GlobalsVars.HIBERATE_SESSION;
-		 //InitializeSystems.cargador();
+		//InitializeSystems.cargador();
 
 	}
 
@@ -341,5 +341,11 @@ public class Sistema {
 	public boolean existePlanvigente() {
 		
 		return PlanDAO.existePlanVigente();
+	}
+
+	public boolean finalizarPlan(int idPlan) {
+
+		
+		return PlanDAO.finalizarPlan(idPlan);
 	}
 }
