@@ -32,7 +32,14 @@
 	    response.sendRedirect(redirectURL);
 	}*/
 
-	PlanVO plan = Sistema.getInstance().getPlanById(7);
+	//PlanVO plan = Sistema.getInstance().getPlanById(7);
+	PlanVO plan = Sistema.getInstance().obtenerPlanActual();
+	if (plan == null){
+		String redirectURL = "NoHayPlan.jsp";
+	    response.sendRedirect(redirectURL);
+	    return;
+	}
+	
 	
 	DateFormat format=new SimpleDateFormat("dd/MM/yyyy");
 	String fechaInicio = format.format(plan.getFechaInicio());
