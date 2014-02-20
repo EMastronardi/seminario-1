@@ -33,6 +33,7 @@ import persistencia.PlatosDAO;
 import persistencia.RestriccionesDAO;
 import persistencia.TagDAO;
 import utilidades.GlobalsVars;
+import utilidades.InitializeSystems;
 import views.ClienteVO;
 import views.EstacionVO;
 import views.IngredienteVO;
@@ -50,8 +51,8 @@ public class Sistema {
 
 	private Sistema() {
 		s = GlobalsVars.HIBERATE_SESSION;
-		// InitializeSystems.cargador();
-		// Cargador.cargarDatos();
+		 //InitializeSystems.cargador();
+
 	}
 
 	public static Sistema getInstance() {

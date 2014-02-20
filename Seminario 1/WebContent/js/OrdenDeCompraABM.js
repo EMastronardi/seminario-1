@@ -16,7 +16,7 @@ function selectIngredientesOC(idOc){
     		  			//+ "<td><input type='checkbox' name='ingrediente"+i.toString()+"' value='OK' /></td>" 
     		  			+ "<td>"+$(this).find('id').text()+"</td>"
     		  			+ "<td>"+$(this).find('ingrediente').text()+"</td>"
-    		  			+ "<td>"+$(this).find('cantidad').text()+"</td>"
+    		  			+ "<td>"+$(this).find('cantidad').text()+ " " +$(this).find('medida').text()+"</td>"
     		  			+"</tr>";
     		  	i++;
     	  });
@@ -63,7 +63,7 @@ function openDialogRestriccion(tableRows){
 			+" <tfoot><tr><td colspan=\"6\"><div class=\"pagination pagination-centered\"></div></td></tr></tfoot>"
 			+ "</table>"
 			+ "</div>",
-		title : "Ingredientes en la OC",
+		title : "Ingredientes a Comprar",
 		buttons : {
 			success : {
 				label : "Confirmar",

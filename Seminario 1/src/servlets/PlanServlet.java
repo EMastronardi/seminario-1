@@ -46,7 +46,7 @@ public class PlanServlet extends Controlador {
 			//Generar Plan si no existe plan VIGENTE
 			
 			if(Sistema.getInstance().existePlanvigente()){
-				request.setAttribute("planVigente", "Error al generar Plan, existe otro Plan Vigente");
+				request.setAttribute("return", "NOK");
 				
 			}else{
 				List<String> tags = new ArrayList<String>();
