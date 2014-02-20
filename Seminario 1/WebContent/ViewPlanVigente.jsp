@@ -108,7 +108,7 @@
 		   }
 		   .btn-content{
 			   margin: auto;
-				width: 400px;
+				width: 530px;
 			}
 		       
 	</style>
@@ -308,6 +308,8 @@
 					<div class="btn-content">
 				      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> Imprimir Orden de Trabajo</button>
 				      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-time"></span>  Plan Diario Finalizado</button>
+					  <button type="button" class="btn btn-default" name="<% out.print(plan.getIdPlan());%>" id="finalizarPlan"><span class="glyphicon glyphicon-time"></span>  Finalizar Plan</button>
+			
 				    </div>	
 			    <br clear="all">
 		    </div>
@@ -325,6 +327,33 @@
    <jsp:include page="/Footer.jsp" />
    <script type="text/javascript" src="js/Planes.js"></script>
 	<script type="text/javascript">
+		$("#finalizarPlan").click(function(){
+				var  value  = "finalizarPlan";
+				var id = $('#finalizarPlan').attr('name');
+				$.ajax({
+			        type: "POST",
+			        url: "PlanServlet",
+			        data: { action : value, plan : id }
+			      }).done(function(xmlStr) {
+			    	  xml = $.parseXML(xmlStr),
+			    	  $xml = $(xml);
+			    	  var tdStr="";
+			    	  var i=0;
+			    	  var result = $(xml).find('resultado').text();
+			    	  if(result == "true"){
+			    		tdStr+="<div class=\"alert alert-success\"><b>El Plan se ha finalizado correctamente\.</b></div>";
+					  }else{
+						tdStr+="<div class=\"alert alert-danger\"><b>Error al finalizar el Plan\.</b></div>";
+					  }
+			    		bootbox.dialog({
+			    			message :(tdStr.toString())
+			    		});
+			    		$(".bootbox-close-button").click(function(){
+			    			window.location.replace("GenerarPlan.jsp");
+			    		});
+			      });
+		});
+		
 		$(function () {
 			var now = new Date();
 			var days = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];

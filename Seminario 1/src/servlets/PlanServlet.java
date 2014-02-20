@@ -42,29 +42,30 @@ public class PlanServlet extends Controlador {
 
 		} else if ("generarPlan".equals(action)) {
 			jspPage = "/GenerarPlan.jsp";
-			
-			//Generar Plan si no existe plan VIGENTE
-			
-			if(Sistema.getInstance().existePlanvigente()){
+
+			// Generar Plan si no existe plan VIGENTE
+
+			if (Sistema.getInstance().existePlanvigente()) {
 				request.setAttribute("return", "NOK");
-				
-			}else{
+
+			} else {
 				List<String> tags = new ArrayList<String>();
 				String fechaI = null, fechaF = null;
-				if(request.getParameter("fechaInicio") != null)
+				if (request.getParameter("fechaInicio") != null)
 					fechaI = request.getParameter("fechaInicio");
 				else
 					fechaI = "";
-				if(request.getParameter("fechaInicio") != null)
-						fechaF = request.getParameter("fechaFin");
+				if (request.getParameter("fechaInicio") != null)
+					fechaF = request.getParameter("fechaFin");
 				else
 					fechaF = "";
 				Date fechaInicio;
 				Date fechaFin;
 				try {
-					fechaInicio = new SimpleDateFormat("dd-MM-yyyy").parse(fechaI);
+					fechaInicio = new SimpleDateFormat("dd-MM-yyyy")
+							.parse(fechaI);
 					fechaFin = new SimpleDateFormat("dd-MM-yyyy").parse(fechaF);
-	
+
 					// Id del tag en cada uno de estos
 					if (request.getParameter("tagLunesAlm") != null)
 						tags.add(request.getParameter("tagLunesAlm"));
@@ -86,45 +87,60 @@ public class PlanServlet extends Controlador {
 						tags.add(request.getParameter("tagViernesAlm"));
 					if (request.getParameter("tagViernesCen") != null)
 						tags.add(request.getParameter("tagViernesCen"));
-	
-					int retorno = Sistema.getInstance().generarPlanSemanal(tags,fechaInicio, fechaFin);
-					if(retorno > 0){
+
+					int retorno = Sistema.getInstance().generarPlanSemanal(
+							tags, fechaInicio, fechaFin);
+					if (retorno > 0) {
 						jspPage = "/ViewPlanGenerado.jsp";
 						request.setAttribute("return", "OK");
 						request.setAttribute("idPlan", retorno);
-					}else{
+					} else {
 						request.setAttribute("return", "NOK");
 					}
-				
+
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		} else if ("listarPlanes".equals(action)) {
-			
-		}else if("getClientesAjax".equals(action)){
-			if(request.getParameter("iditemmenu") != null){
-				List<ClienteVO> cl = Sistema.getInstance().getClientesItemMenu(Integer.parseInt(request.getParameter("iditemmenu")));
+
+		} else if ("getClientesAjax".equals(action)) {
+			if (request.getParameter("iditemmenu") != null) {
+				List<ClienteVO> cl = Sistema.getInstance().getClientesItemMenu(
+						Integer.parseInt(request.getParameter("iditemmenu")));
 				ClienteVOList list = new ClienteVOList();
-				for (ClienteVO clienteVO : cl) {				
+				for (ClienteVO clienteVO : cl) {
 					list.add(clienteVO);
-				}	
+				}
 				XStream xstream = new XStream(new DomDriver());
-			    xstream.alias("cliente", ClienteVO.class);
-			    xstream.alias("clientes", ClienteVOList.class);
-			    xstream.addImplicitCollection(ClienteVOList.class, "clientes");
-			    String xml = xstream.toXML(list);
-			    response.setContentType("text/plain");
-		        response.setCharacterEncoding("UTF-8");
-		        response.getWriter().write(xml);
-		        dispacher = false;
+				xstream.alias("cliente", ClienteVO.class);
+				xstream.alias("clientes", ClienteVOList.class);
+				xstream.addImplicitCollection(ClienteVOList.class, "clientes");
+				String xml = xstream.toXML(list);
+				response.setContentType("text/plain");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(xml);
+				dispacher = false;
 			}
-			
+
 		} else if ("verPlan".equals(action)) {
 			jspPage = "/ViewPlanHistorico.jsp";
 			int id = Integer.parseInt(request.getParameter("idPlan"));
-			request.setAttribute("idPlan",id);
+			request.setAttribute("idPlan", id);
+		} else if ("finalizarPlan".equals(action)) {
+			dispacher = false;
+			boolean ok = false;
+			int idPlan;
+			if (request.getParameter("plan") != null) {
+				idPlan = Integer.parseInt(request.getParameter("plan"));
+				ok = Sistema.getInstance().finalizarPlan(idPlan);
+
+			}
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write("<resultado>"+ok+"</resultado>");
+
 		}
 		if (dispacher)
 			super.dispatch(jspPage, request, response);
