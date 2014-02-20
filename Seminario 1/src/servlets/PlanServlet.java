@@ -102,7 +102,7 @@ public class PlanServlet extends Controlador {
 				}
 			}
 		} else if ("listarPlanes".equals(action)) {
-
+			
 		}else if("getClientesAjax".equals(action)){
 			if(request.getParameter("iditemmenu") != null){
 				List<ClienteVO> cl = Sistema.getInstance().getClientesItemMenu(Integer.parseInt(request.getParameter("iditemmenu")));
@@ -121,6 +121,10 @@ public class PlanServlet extends Controlador {
 		        dispacher = false;
 			}
 			
+		} else if ("verPlan".equals(action)) {
+			jspPage = "/ViewPlanHistorico.jsp";
+			int id = Integer.parseInt(request.getParameter("idPlan"));
+			request.setAttribute("idPlan",id);
 		}
 		if (dispacher)
 			super.dispatch(jspPage, request, response);
