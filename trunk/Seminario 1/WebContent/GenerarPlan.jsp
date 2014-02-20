@@ -10,12 +10,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<script>
-	var flagPlanVigente="";
+	
 <% 
 	Map<Integer, String> tags = Sistema.getInstance().getTags();
-	String planVigente = (String)request.getAttribute("planVigente");
-	if(planVigente!= null && !planVigente.isEmpty())
-		out.println("flagPlanVigente = 'Activo';");
 %>	
 
 	</script>
@@ -95,6 +92,13 @@
         <div class="page-header">
           <h1>Generar Plan Semanal</h1>
         </div>
+        <%
+if(request.getAttribute("return") != null ){
+	if(request.getAttribute("return").equals("NOK")){
+		out.println("<div class=\"alert alert-danger\"><b>Existe un Plan vigente generado. Se debe finalizar el Plan Vigente para poder generar uno nuevo.</b></div>");
+	}
+}
+%>
         <p class="lead">  
         	<div class="panel panel-default">
             <!-- Default panel contents -->
@@ -211,19 +215,12 @@
 				html+="<button type=\"button\" class=\"btn btn-default btn-md\" id=\"idButtonGenerate\"><span class=\"glyphicon glyphicon-flash\"></span> Generar Plan!</button>"
 				$( "#dayList").html(html);
 				$("#idButtonGenerate").click(function() {
-					if(flagPlanVigente==""){
 						$("#idFormGeneratePlan").submit();
-					}
-					else{
-						PlanYaGenerado();
-					}
+					
 				});
 			});
 			
 		});
-		function PlanYaGenerado() {
-			bootbox.dialog({message : "<label>Ya existe un Plan Vigente, debe finalizarlo antes de generar uno nuevo\.</label>"});
-	}
 	</script>
 	
   </body>
