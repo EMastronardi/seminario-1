@@ -92,30 +92,22 @@ select {
 			<div class="panel panel-default">
 				<!-- Default panel contents -->
 				<div class="panel-heading">
-					<div class="row">
-            		<div class="col-lg-6">
-						<button type="button" id="updateMenu"
-							class="btn btn-default btn-sm">
-							<span class="glyphicon glyphicon-pencil"></span> Editar OC
-						</button>
-						<button type="button" id="deleteMenu"
-							class="btn btn-default btn-sm">
-							<span class="glyphicon glyphicon-trash"></span> Eliminar OC
-						</button>
-					</div>   
-            	 	<div class="col-lg-6">
-		            	<div class="row">
-						  <div class="col-lg-8">
-						    <div class="input-group">
-						      <input type="text" class="form-control" id="valorinput" name="valor" value="">
-						      <span class="input-group-btn">
-						        <button class="btn btn-default">Buscar!</button>
-						      </span>
-						    </div>
-						  </div>
-						  </div>
-					 </div>
-			    	</div>
+					<button type="button" id="newCliente"
+						class="btn btn-default btn-sm">
+						<span class="glyphicon glyphicon-star"></span> Informe de Compra Realizada
+					</button>
+<!-- 				<button type="button" id="updateCliente"
+						class="btn btn-default btn-sm">
+						<span class="glyphicon glyphicon-pencil"></span> Editar
+					</button>
+					<button type="button" id="deleteCliente"
+						class="btn btn-default btn-sm">
+						<span class="glyphicon glyphicon-trash"></span> Eliminar
+					</button>-->
+<!-- 					<button type="button" id="restriccionesCliente" -->
+<!-- 						class="btn btn-default btn-sm"> -->
+<!-- 						<span class="glyphicon glyphicon-pencil"></span> Editar Restricciones -->
+<!-- 					</button> -->
 				</div>
 				
 				<!-- Table -->
