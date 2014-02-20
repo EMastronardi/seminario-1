@@ -99,18 +99,16 @@
             		<div class="col-lg-6">
 					</div>   
             	 	<div class="col-lg-6">
-		            	<form method="post"  action='IngredientesServlet?action=search' id="theform">
 		            	<div class="row">
 						  <div class="col-lg-8">
 						    <div class="input-group">
 						      <input type="text" class="form-control" id="valorinput" name="valor" value="">
 						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="submit">Buscar!</button>
+						        <button class="btn btn-default">Buscar!</button>
 						      </span>
 						    </div>
 						  </div>
 						  </div>
-					    </form>
 					 </div>
 			    	</div>
 			    </div>
