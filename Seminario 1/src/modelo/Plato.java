@@ -2,7 +2,9 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -130,6 +132,14 @@ public class Plato {
 
 	public void descontar() {
 		// TODO
+	}
+	
+	public Set<Estacion> getEstaciones(){
+		Set<Estacion> estaciones = new HashSet<Estacion>();
+		for(ItemIngrediente it: ingredientes){
+			estaciones.addAll(it.getIngrediente().getEstaciones());
+		}
+		return estaciones;
 	}
 
 }

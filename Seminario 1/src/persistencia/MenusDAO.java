@@ -73,7 +73,7 @@ public class MenusDAO {
 					+ "join i.estaciones e "
 					+ "where m.idMenu = mp.idMenu "
 					+ "group by e.estacion "
-					+ "having count(*) >= ("
+					+ "having count(*) = ("
 						+ "select count(distinct i1) "
 						+ "from Menu m1 "
 						+ "join m1.platos p1 "
@@ -104,7 +104,7 @@ public class MenusDAO {
 					+ "join i.estaciones e "
 					+ "where m.idMenu = mp.idMenu "
 					+ "group by e.estacion "
-					+ "having count(*) >= ("
+					+ "having count(*) = ("
 						+ "select count(distinct i1) "
 						+ "from Menu m1 "
 						+ "join m1.platos p1 "
@@ -139,7 +139,7 @@ public class MenusDAO {
 					+ "join i.estaciones e "
 					+ "where m.idMenu = mp.idMenu "
 					+ "group by e.estacion "
-					+ "having count(*) >= ("
+					+ "having count(*) = ("
 						+ "select count(distinct i1) "
 						+ "from Menu m1 "
 						+ "join m1.platos p1 "
@@ -180,7 +180,7 @@ public class MenusDAO {
 				"join i.estaciones e " +
 				"where m.idMenu = :x " +
 				"group by e.estacion " +
-				"having count(*) >= :y" +
+				"having count(*) = :y" +
 				")");
 		query.setInteger("x", idMenu);
 		query.setInteger("y", cantIngredientes);
