@@ -1,9 +1,16 @@
 package modelo;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import persistencia.EstacionDAO;
 
 @Entity
 public class Estacion {
@@ -15,15 +22,16 @@ public class Estacion {
 	public Estacion(){
 		
 	}
+	
 	public Estacion(String name) {
 		// TODO Auto-generated constructor stub
 		this.estacion = name;
 	}
-
+	
 	public int getIdEstacion() {
 		return idEstacion;
 	}
-
+	
 	public void setIdEstacion(int idEstacion) {
 		this.idEstacion = idEstacion;
 	}
@@ -35,6 +43,7 @@ public class Estacion {
 	public void setEstacion(String estacion) {
 		this.estacion = estacion;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub

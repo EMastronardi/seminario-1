@@ -189,7 +189,7 @@
 					<br>
 					<div class="panel panel-default">
 			    	<!-- Default panel contents -->
-						<div class="panel-heading">Detalles de Platos ha realizar</div>
+						<div class="panel-heading">Detalles de Platos a realizar</div>
 							<!-- Table -->
 							<table class="table">
 							  <thead>
