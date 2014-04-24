@@ -242,8 +242,15 @@ public class Sistema {
 			DateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
 			String startDate = "1900-01-01";
 			menu.setUltimoUso(parser.parse(startDate));
-			MenusDAO.addMenu(menu);
-			return true;
+			// valido que todos los platos sean de la misma estacion
+			if (menu.getEstaciones().size() > 0){
+				MenusDAO.addMenu(menu);
+				return true;
+			}
+			else {
+				System.out.println("[DEBUG] Error al crear el menu! Las estaciones de lso platos elegidos no coinciden!!!");
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -277,8 +284,15 @@ public class Sistema {
 			menu.setEstado(status);
 			List<Plato> platos = PlatosDAO.getPlatosById(platosId);
 			menu.setPlatos(platos);
-			MenusDAO.editMenu(menu);
-			return true;
+			// valido que todos los platos sean de la misma estacion
+			if (menu.getEstaciones().size() > 0){
+				MenusDAO.editMenu(menu);
+				return true;
+			}
+			else {
+				System.out.println("[DEBUG] Error al crear el menu! Las estaciones de lso platos elegidos no coinciden!!!");
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
