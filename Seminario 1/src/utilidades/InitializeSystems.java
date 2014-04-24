@@ -61,6 +61,10 @@ public class InitializeSystems {
 			ArrayList<Estacion> estaciones = (ArrayList<Estacion>) s
 					.createQuery("from Estacion").list();
 			ArrayList<Restriccion> restricciones;
+			
+			// estaciones truncadas
+			ArrayList<Estacion> estacionesIncompletas = new ArrayList<Estacion>();
+			estacionesIncompletas.add(invierno);
 
 			Ingrediente ingrediente = new Ingrediente();
 
@@ -93,7 +97,7 @@ public class InitializeSystems {
 			/*
 			 * Creacion de Ingredientes
 			 */
-
+			// probar algun ingrediente don estacionesIncompletas en vez de con estaciones
 			Ingrediente aceitedegirasol = new Ingrediente("Aceite de girasol",
 					9, EnumMedida.Litro, 365, true, estaciones);
 			s.save(aceitedegirasol);

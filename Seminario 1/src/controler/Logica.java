@@ -24,6 +24,7 @@ import modelo.Plato;
 import modelo.Restriccion;
 import modelo.Tag;
 import persistencia.ClientesDAO;
+import persistencia.EstacionDAO;
 import persistencia.IngredienteDAO;
 import persistencia.MenusDAO;
 import persistencia.OrdenDeCompraDAO;
@@ -95,14 +96,15 @@ public class Logica {
 				// que se uso hace mas tiempo
 
 				// Obtenemos Los menus por prioridades definidas.
-				Menu menuPrimeraPrioridad = MenusDAO.buscarMejorMenuPorTag(t); // Tag
+				String estacion = EstacionDAO.getEstacionPorFecha(fechaComienzo).getEstacion();
+				Menu menuPrimeraPrioridad = MenusDAO.buscarMejorMenuPorTag(t,estacion); // Tag
 																				// Fecha
 																				// de
 																				// uso
 				List<Menu> menuSegundaPrioridad = MenusDAO
-						.buscarMenusPorSegundaPri(t); // Tag Restriccion
+						.buscarMenusPorSegundaPri(t, estacion); // Tag Restriccion
 				List<Menu> menuTerceraPrioridad = MenusDAO
-						.buscarMejorMenuPorTerceraPri(); // Restriccion
+						.buscarMejorMenuPorTerceraPri(estacion); // Restriccion
 
 				// Agregamos las distintas Listas de menu a nuestra lista de
 				// posibles menus para incorporar al plan
